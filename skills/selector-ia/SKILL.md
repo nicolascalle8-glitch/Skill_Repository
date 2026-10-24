@@ -89,6 +89,8 @@ Si es solo una pregunta suelta ("¿qué modelo uso para esto?") sin proyecto, no
 ## Límites
 
 - No hace la tarea, solo recomienda.
+- Si el gasto viene de lo que carga cada chat (memoria, docs del proyecto, chats viejos) y no
+  del modelo elegido, recomienda `depurador-recursos`.
 - No promete límites exactos de uso: los planes los cambian seguido y casi nunca los
   publican con números. Di "gasta más" o "gasta menos", no cifras inventadas.
 - No compara benchmarks ni da rankings de "el mejor modelo del mundo". Recomienda para

@@ -18,7 +18,8 @@ qué etapa está el trabajo según `shared/CONTRATO-OPERATIVO.md`:
 3. **Diseñar y detallar:** CAD, tolerancias, materiales, planos.
 4. **Fabricar o probar:** impresión 3D, maquinado, montaje, ensayo.
 5. **Comunicar:** informe, presentación, artículo, memoria de cálculo.
-6. **Continuar:** relevo entre chats, retomar un proyecto o coordinar con otras IAs.
+6. **Continuar:** relevo entre chats, retomar un proyecto, coordinar con otras IAs o
+   depurar memoria, docs del proyecto y chats viejos (`depurador-recursos`).
 
 No saltes a CAD o a redactar si falta el cálculo o la decisión que eso debe mostrar.
 Recomienda la skill más temprana que destrabe el problema y después sus apoyos.

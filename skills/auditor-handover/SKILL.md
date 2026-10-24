@@ -1,6 +1,6 @@
 ---
 name: auditor-handover
-description: Audita si un chat (o un proyecto completo) ya está saturado y perdiendo calidad, da un reporte con puntaje y semáforo, y si el usuario quiere, arma un handover con decisiones, hitos, trazabilidad, tiempos y pendientes, más un CONTEXTO compacto para que un chat nuevo continúe el trabajo sin releer el chat viejo ni gastar tokens; lo archiva en GitHub por proyecto sin borrar versiones anteriores. Úsala siempre que el usuario diga que las respuestas están empeorando, que el chat está "tonto", lento, repetitivo u olvidadizo, que pida auditar el chat o la memoria, revisar la capacidad o el límite del chat, hacer un handover, un traspaso, un resumen para pasar a otro chat, "empezar un chat nuevo sin perder nada", o actualizar el HANDOVER de un proyecto, aunque no nombre la skill.
+description: Audita si un chat (o un proyecto completo) ya está saturado y perdiendo calidad, da un reporte con puntaje y semáforo, y si el usuario quiere, arma un handover con decisiones, hitos, trazabilidad, tiempos y pendientes, más un CONTEXTO compacto para que un chat nuevo continúe el trabajo sin releer el chat viejo ni gastar tokens; lo archiva en GitHub por proyecto sin borrar versiones anteriores. Úsala siempre que el usuario diga que las respuestas están empeorando, que el chat está "tonto", lento, repetitivo u olvidadizo, que pida auditar el chat, revisar la capacidad o el límite del chat, hacer un handover, un traspaso, un resumen para pasar a otro chat, "empezar un chat nuevo sin perder nada", o actualizar el HANDOVER de un proyecto, aunque no nombre la skill. Para limpiar la memoria de Claude, los docs del proyecto o los chats viejos, usa depurador-recursos.
 ---
 
 # Auditor de chat + Handover
@@ -62,6 +62,8 @@ Semáforo: 🟢 / 🟡 / 🔴  — Puntaje: <X>/100
 ```
 
 Si recomiendas dividir, di en qué chats (ej. "uno para la web, otro para la cotización").
+
+Si en la auditoría ves que el problema no es este chat sino lo que carga cada chat (memoria inflada, docs del proyecto pesados, muchos chats repetidos del mismo tema), dilo en una línea y recomienda `depurador-recursos` después del handover.
 
 ## Paso 5 — Preguntar si arma el handover
 

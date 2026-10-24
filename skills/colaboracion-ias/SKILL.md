@@ -12,6 +12,7 @@ Nick usa varias IAs en sus proyectos. Ninguna recuerda lo que hizo la otra, así
 - `proyectos/<proyecto>/BITACORA.md`: quién hizo qué, propuestas y aprobaciones. Solo crece.
 - **Copia en Google Drive** de esa misma bitácora: `Proyectos IA / <proyecto> / Bitácora — <proyecto>`. Los ids están en `registry/DRIVE.yml` y el cómo, en `shared/BITACORA-DRIVE.md`. **Toda entrada que escribas va a los dos lados, idéntica.** Gemini puede escribir directo en el Doc de Drive.
 - `proyectos/<proyecto>/HANDOVER.md`: historial largo. Solo se abre si hace falta.
+- `proyectos/<proyecto>/archivos/investigaciones/` y `archivos/calculos/`: fichas de investigación y memorias de cálculo (las arma `depurador-recursos`). Léelas antes de volver a investigar o calcular algo del proyecto.
 
 Repo: `nicolascalle8-glitch/Skill_Repository` (privado). Si no está en la sesión, agrégalo con `add_repo` (acceso `push`) y clónalo como diga el resultado. Si GitHub no está disponible, trabaja igual y al final entrega la entrada de bitácora en un bloque de código para que Nick la suba.
 

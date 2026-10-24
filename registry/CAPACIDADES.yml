@@ -39,6 +39,13 @@ capacidades:
     catalogo_revisado: 2026-10-24
     nota: Probada en seco con 3 casos (artículo + Excel de engranajes, research de la fábrica de medias, arreglo en el tema de Shopify de Artequino). Falta que Nick confirme sus planes (Claude, Cursor o Copilot).
 
+  depuracion-de-recursos:
+    skill: depurador-recursos
+    etapa: continuar
+    estado: en-prueba
+    ultima_revision: 2026-10-24
+    nota: Limpia memoria de Claude, docs del proyecto y chats viejos sin perder datos técnicos ni investigaciones (fichas de investigación y memorias de cálculo en proyectos/<proyecto>/archivos/). Falta probarla con una depuración real.
+
   bitacora-en-drive:
     skill: null
     etapa: continuar

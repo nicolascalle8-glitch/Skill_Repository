@@ -8,10 +8,27 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Propuestas sin respuesta
 - 2026-10-24 17:41 — Claude — Cambiar la regla "todo en SI" del contrato operativo a "SI por defecto, salvo que el libro o el enunciado use otro sistema".
+- 2026-10-24 18:04 — Claude — Agregar depurador-recursos a la sección 8 del contrato operativo.
 
 ---
 
 ## Entradas
+
+### 2026-10-24 18:04 — Claude Opus 5.5 — HECHO
+**Qué:** Se crea la skill depurador-recursos: limpia memoria de Claude, docs del proyecto y chats viejos para gastar menos tokens, sin perder datos técnicos (etiquetas del contrato operativo) ni investigaciones (fichas con fecha y vigencia). Se registra en CAPACIDADES y en el catálogo del router, y las otras 4 skills la nombran. auditor-handover ya no se dispara con "auditar la memoria" para no chocar con la nueva.
+**Archivos:** skills/depurador-recursos/, registry/CAPACIDADES.yml, skills/router-ing/SKILL.md, skills/router-ing/references/catalogo.md, skills/auditor-handover/SKILL.md, skills/selector-ia/SKILL.md, skills/colaboracion-ias/SKILL.md, README.md
+**Fuentes:** pedido de Nick en el chat del 2026-10-24 ("skill para depurar los chats y reservar memoria").
+**Verificado:** Las 5 skills pasan quick_validate; CAPACIDADES.yml carga como YAML; las 5 se empaquetaron como .skill. La skill no se ha probado con una depuración real (estado en-prueba).
+**Para Nick:** Instalar depurador-recursos.skill y reinstalar auditor-handover, router-ing, selector-ia y colaboracion-ias (cambió su texto). Probarla con "depura mi memoria" en un chat normal (fuera de proyecto) para que pueda editar la memoria de la cuenta.
+**Para la siguiente IA:** Fichas de investigación en proyectos/<proyecto>/archivos/investigaciones/ y memorias de cálculo en archivos/calculos/. Leerlas antes de volver a investigar o calcular.
+
+### 2026-10-24 18:04 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Agregar en shared/CONTRATO-OPERATIVO.md, sección 8, la línea: "Para limpiar memoria, docs del proyecto y chats viejos sin perder datos, se usa depurador-recursos."
+**Archivos:** ninguno todavía.
+**Fuentes:** creación de depurador-recursos (entrada anterior).
+**Verificado:** n/a.
+**Para Nick:** aprobar o rechazar.
+**Para la siguiente IA:** no cambiar el contrato operativo hasta que Nick decida.
 
 ### 2026-10-24 17:55 — Claude Opus 5.5 — HECHO
 **Qué:** Se crea la skill selector-ia (qué IA, modelo y nivel usar) con catálogo de modelos revisado el 2026-10-24. Se monta la copia de las bitácoras en Google Drive: carpeta Proyectos IA con una subcarpeta y un Doc de bitácora por proyecto (engranajes-helicoidales y skills). colaboracion-ias, auditor-handover y selector-ia ahora escriben en GitHub y en Drive.

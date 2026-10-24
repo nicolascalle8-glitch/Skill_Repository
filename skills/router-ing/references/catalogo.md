@@ -8,6 +8,7 @@ es un índice para elegir rápido; confírmalo cuando el entorno lo permita.
 | `router-ing` | todas | Elegir skill, combinarlas o detectar huecos. | No hace el trabajo final. | activa |
 | `auditor-handover` | continuar | Auditar si un chat o proyecto perdió calidad y armar el relevo (CONTEXTO + HANDOVER). | No reemplaza las fuentes del proyecto. | activa |
 | `colaboracion-ias` | continuar | Coordinar a Claude con Gemini, Cursor, Copilot, Grok y Perplexity por la bitácora del proyecto (GitHub + Google Drive). | No toma decisiones por Nick; solo deja propuestas. | en-prueba |
+| `depurador-recursos` | continuar | Limpiar memoria de Claude, docs del proyecto y chats viejos para gastar menos tokens, guardando antes cálculos e investigaciones en el repo. | No borra chats ni archivos subidos (da la lista); no hace handovers. | en-prueba |
 | `selector-ia` | todas | Decidir qué IA, modelo y nivel de razonamiento usar para una tarea, cuidando límites. | No hace la tarea; no inventa límites de uso. | en-prueba |
 | `marco-problema-ing` | enmarcar | Convertir un enunciado o encargo en ficha: objetivo, datos, incógnitas, restricciones, criterio de aceptación. | No calcula ni diseña. | pendiente |
 | `calculo-trazable` | calcular | Memorias de cálculo de elementos de máquinas (engranajes, ejes, rodamientos, uniones, resortes) con fuentes, unidades y verificación en Python. | No da por válido un resultado sin supuestos explícitos ni sustituye una norma completa. | pendiente |
@@ -24,6 +25,8 @@ es un índice para elegir rápido; confírmalo cuando el entorno lo permita.
 - **Copiar una pieza existente:** `ingenieria-inversa-cad` → `calculo-trazable` (si cambia material o carga) → `puerta-fabricacion`.
 - **Presentación o informe:** `entregables-ing` → `voz-nick`.
 - **Chat largo que empieza a fallar:** `auditor-handover`.
+- **Memoria, proyecto o chats cargados / ahorrar tokens:** `depurador-recursos` → (`auditor-handover` para los chats que haya que guardar antes de borrar).
+- **Investigación terminada (research, M&A, sector):** `depurador-recursos` (ficha de investigación) y cerrar el chat.
 - **Pasarle o recibir trabajo de otra IA:** `colaboracion-ias`.
 - **No sé dónde hacer esto / qué modelo usar:** `selector-ia` → (`colaboracion-ias` si va a otra IA).
 
