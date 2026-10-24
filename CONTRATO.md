@@ -42,6 +42,7 @@ Notas, comentarios, entregables, mensajes, guiones de exposición:
 4. **Revisa lo que otra IA hizo antes de construir encima.** El trabajo de otra IA es un insumo, no una verdad. Si encuentras un error, se anota en la bitácora.
 5. **Cuando cambies algo, busca los restos viejos** en todos los archivos del proyecto (diapositivas, notas, textos) para que no quede nada contradictorio.
 6. **No reabras temas cerrados.** Lo que está en "Decisiones vigentes" del CONTEXTO.md no se discute otra vez salvo que yo lo pida.
+7. **Trabajo técnico de ingeniería:** sigue además `shared/CONTRATO-OPERATIVO.md` (etiquetas [Dato], [Norma], [Supuesto], [Calculado], [Por validar], [Decisión]; ecuaciones con fuente; verificación en Python; puerta antes de fabricar).
 
 ## 5. Lo que necesita mi aprobación antes de hacerse
 

@@ -1,6 +1,6 @@
 ---
 name: colaboracion-ias
-description: Coordina el trabajo de Claude con las otras IAs de Nick (Gemini, Cursor, Copilot, Grok, Perplexity) en sus proyectos, usando el repo de GitHub Skill_Repository como punto de encuentro: lee el CONTRATO de trabajo y el estado del proyecto antes de empezar, registra lo hecho en la BITÁCORA del proyecto, deja propuestas para que Nick apruebe, revisa el trabajo de otras IAs, y prepara mensajes para IAs sin acceso al repo. Úsala siempre que Nick hable de trabajar con otra IA, de pasarle algo a Gemini/Cursor/Grok/Perplexity, de "lo que hizo Gemini", de la bitácora, del contrato de trabajo, de aprobar o rechazar una propuesta, o cuando vaya a trabajar en un proyecto que tenga carpeta en proyectos/, aunque no nombre la skill.
+description: Coordina el trabajo de Claude con las otras IAs de Nick (Gemini, Cursor, Copilot, Grok, Perplexity) en sus proyectos, usando el repo de GitHub Skill_Repository como punto de encuentro. Lee el CONTRATO de trabajo y el estado del proyecto antes de empezar, registra lo hecho en la BITÁCORA del proyecto, deja propuestas para que Nick apruebe, revisa el trabajo de otras IAs, y prepara mensajes para IAs sin acceso al repo. Úsala siempre que Nick hable de trabajar con otra IA, de pasarle algo a Gemini/Cursor/Grok/Perplexity, de "lo que hizo Gemini", de la bitácora, del contrato de trabajo, de aprobar o rechazar una propuesta, o cuando vaya a trabajar en un proyecto que tenga carpeta en proyectos/, aunque no nombre la skill.
 ---
 
 # Colaboración entre IAs

@@ -1,0 +1,78 @@
+version: 1
+actualizado: 2026-10-24
+contratos:
+  trabajo: CONTRATO.md
+  tecnico: shared/CONTRATO-OPERATIVO.md
+
+# Estados:
+#   activa    -> existe, está probada con un caso real y se puede usar
+#   pendiente -> planeada; todavía no existe su SKILL.md
+#   hueco     -> se detectó la necesidad, pero no se crea hasta que un caso real lo pida
+
+capacidades:
+  enrutamiento:
+    skill: router-ing
+    etapa: todas
+    estado: activa
+    ultima_revision: 2026-10-24
+
+  continuidad-entre-chats:
+    skill: auditor-handover
+    etapa: continuar
+    estado: activa
+    ultima_revision: 2026-10-24
+    caso_de_prueba: Handover de engranajes helicoidales (2026-10-24).
+
+  colaboracion-entre-ias:
+    skill: colaboracion-ias
+    etapa: continuar
+    estado: activa
+    ultima_revision: 2026-10-24
+    nota: Contrato de trabajo en borrador (v0.1); falta probarla con un intercambio real con otra IA.
+
+  enmarcar-problema:
+    skill: marco-problema-ing
+    etapa: enmarcar
+    estado: pendiente
+
+  calculo-elementos-de-maquinas:
+    skill: calculo-trazable
+    etapa: calcular
+    estado: pendiente
+    caso_de_prueba: Ejercicio de engranajes helicoidales (Mott 10-2, Casos A y B).
+
+  sistemas-termicos:
+    skill: sistemas-termicos
+    etapa: calcular
+    estado: pendiente
+
+  ingenieria-inversa:
+    skill: ingenieria-inversa-cad
+    etapa: diseñar
+    estado: pendiente
+    caso_de_prueba: Palanca de freno modelada en Fusion 360.
+
+  revision-antes-de-fabricar:
+    skill: puerta-fabricacion
+    etapa: fabricar
+    estado: pendiente
+
+  entregables-academicos:
+    skill: entregables-ing
+    etapa: comunicar
+    estado: pendiente
+
+  voz-propia:
+    skill: voz-nick
+    etapa: comunicar
+    estado: pendiente
+
+  simulacion-fea:
+    skill: null
+    estado: hueco
+    nota: Crear solo si un caso real necesita revisar resultados de elementos finitos.
+
+  seleccion-materiales:
+    skill: null
+    estado: hueco
+    nota: Crear solo si se repite en varios proyectos y no cabe en puerta-fabricacion.

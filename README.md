@@ -1,6 +1,8 @@
 # Skill_Repository
 
-Repositorio privado de Nick para skills de Claude y handovers de proyectos.
+Repositorio privado de Nick para skills de Claude, el contrato con las IAs y la memoria de cada proyecto.
+
+El método viene del repositorio `twolucky-capabilities` de Luisa (contrato compartido, router con catálogo, puertas de revisión y registro de huecos), adaptado a ingeniería mecánica.
 
 ## Estructura
 
@@ -10,7 +12,12 @@ AGENTS.md          Entrada para Cursor, Copilot, Codex → apunta al contrato
 GEMINI.md          Entrada para Gemini → apunta al contrato
 CLAUDE.md          Entrada para Claude → apunta al contrato
 .github/copilot-instructions.md, .cursor/rules/contrato.mdc  (lo mismo)
+shared/
+  CONTRATO-OPERATIVO.md  Reglas técnicas de ingeniería (etiquetas, unidades, puertas)
+  PLANTILLA-SKILL.md     Formato para crear una skill nueva
+registry/CAPACIDADES.yml Qué skills están activas, pendientes o son huecos
 skills/            Skills de Claude (una carpeta por skill)
+  router-ing/        Elige qué skill usar y detecta las que faltan
   auditor-handover/  Audita la saturación de un chat y arma handovers
   colaboracion-ias/  Coordina a Claude con las otras IAs (bitácora, propuestas)
 proyectos/<proyecto>/
@@ -31,6 +38,13 @@ proyectos/<proyecto>/
 - **Cursor / Copilot / Gemini CLI**: abre este repo en la herramienta. Leen solas su archivo de entrada y siguen el contrato.
 - **Grok / Perplexity / Gemini web**: pídele a Claude "prepara el mensaje para <IA> sobre <proyecto>". Lo pegas allá; la respuesta trae su entrada de bitácora y se la pegas a Claude para que la suba.
 - **Aprobar**: dile a Claude "apruebo la propuesta de <IA> sobre <tema>" y queda marcado en la bitácora.
+
+## Crear una skill nueva
+
+1. Pedirle a Claude la skill (el `router-ing` revisa que no exista ya).
+2. Escribirla con `shared/PLANTILLA-SKILL.md`.
+3. Probarla con un caso real antes de marcarla activa.
+4. En el mismo commit: actualizar `registry/CAPACIDADES.yml` y `skills/router-ing/references/catalogo.md`.
 
 ## Instalar la skill en Claude
 
