@@ -82,7 +82,17 @@ def main():
 
     repo = os.path.abspath(a.repo)
     en_repo = skills_en(os.path.join(repo, "skills"))
-    instaladas = {k: v for k, v in skills_en(a.instaladas).items() if k not in SKILLS_SISTEMA}
+    instaladas = skills_en(a.instaladas)
+    man = os.path.join(a.instaladas, "manifest.json")
+    propias = None
+    if os.path.isfile(man):
+        try:
+            propias = {s["name"] for s in json.load(open(man, encoding="utf-8")).get("skills", [])
+                       if s.get("source") == "plugin"}
+        except Exception:
+            propias = None
+    instaladas = {k: v for k, v in instaladas.items()
+                  if (k in propias if propias is not None else k not in SKILLS_SISTEMA)}
 
     cap_path = os.path.join(repo, "registry", "CAPACIDADES.yml")
     capacidades = {}

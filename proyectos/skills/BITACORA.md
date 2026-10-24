@@ -9,7 +9,6 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 ## Propuestas sin respuesta
 - 2026-10-24 17:41 — Claude — Cambiar la regla "todo en SI" del contrato operativo a "SI por defecto, salvo que el libro o el enunciado use otro sistema".
 - 2026-10-24 18:04 — Claude — Agregar depurador-recursos a la sección 8 del contrato operativo.
-- 2026-10-24 18:22 — Claude — (monitor) Subir panel-asesores y presentaciones-universidad al repo y registrarlas.
 - 2026-10-24 18:22 — Claude — (monitor) Crear voz-nick (activar la pendiente).
 - 2026-10-24 18:22 — Claude — (monitor) Crear calculo-trazable (activar la pendiente).
 - 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
@@ -17,6 +16,22 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 ---
 
 ## Entradas
+
+### 2026-10-24 18:30 — Claude Opus 5.5 — HECHO
+**Qué:** Sincronización 2026-10-24. Subidas: panel-asesores y presentaciones-universidad (nuevas; registradas en CAPACIDADES como en-prueba, etapa por-definir, y en el catálogo). Reinstalar: monitor-skills y router-ing (el repo va adelante). Bloqueadas o en conflicto: ninguna.
+**Archivos:** skills/panel-asesores/, skills/presentaciones-universidad/, registry/CAPACIDADES.yml, skills/router-ing/references/catalogo.md
+**Fuentes:** skills instaladas en Claude (manifest.json, origen plugin).
+**Verificado:** sincronizar.py sin pendientes después de aplicar; CAPACIDADES.yml carga como YAML.
+**Para Nick:** reinstalar monitor-skills.skill y router-ing.skill.
+**Para la siguiente IA:** revisar etapa y caso de prueba de panel-asesores y presentaciones-universidad en CAPACIDADES.
+
+### 2026-10-24 18:30 — Claude Opus 5.5 — HECHO
+**Qué:** monitor-skills ahora sincroniza solo con GitHub: detecta las skills que Nick creó o cambió en Claude y las sube al repo sin pedir permiso (decisión de Nick del 2026-10-24 18:27). Compara con el historial de git para no pisar el repo cuando va más nuevo (en ese caso pide reinstalar), no sube archivos con posibles claves y nunca borra nada del repo. Corre a diario como tarea programada y al empezar cada revisión.
+**Archivos:** skills/monitor-skills/SKILL.md, skills/monitor-skills/scripts/sincronizar.py, skills/monitor-skills/scripts/inventario.py
+**Fuentes:** pedido de Nick en el chat del 2026-10-24 18:27.
+**Verificado:** sincronizar.py probado con casos simulados (skill nueva, cambiada en Claude, repo más nuevo, posible clave): los cuatro dieron el resultado esperado. monitor-skills pasa quick_validate.
+**Para Nick:** reinstalar monitor-skills.skill.
+**Para la siguiente IA:** subir skills al repo es automático; crear, mejorar o retirar sigue necesitando aprobación de Nick.
 
 ### 2026-10-24 18:40 — Claude Opus 5.5 — HECHO
 **Qué:** Depuración de memoria, chats y hábitos (docs del proyecto no revisados: sin acceso desde el chat). Ahorro aprox. 150 tokens por chat.
@@ -33,6 +48,7 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 **Verificado:** n/a hasta ejecutar.
 **Para Nick:** aprobar o rechazar 1 a 4.
 **Para la siguiente IA:** no crear voz-nick ni calculo-trazable hasta que Nick apruebe.
+✅ Aprobado por Nick — 2026-10-24 18:27 — solo el punto (1): pidió que el monitor suba todo al repo automáticamente. (2), (3) y (4) siguen abiertos.
 
 ### 2026-10-24 18:22 — Claude Opus 5.5 — HECHO
 **Qué:** Revisión de skills 2026-10-24 (primera, 🟡). Sobra: ninguna. Actualizar: 2 (panel-asesores y presentaciones-universidad fuera del repo). Mejorar: 2 (panel-asesores, router-ing). Crear: 2 (voz-nick, calculo-trazable) + decidir system-oriented-design.

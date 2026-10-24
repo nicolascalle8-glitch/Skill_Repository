@@ -3,10 +3,12 @@ name: monitor-skills
 description: >-
   Revisa todas las skills de Nick y le dice cuál sobra, cuál hay que actualizar o mejorar
   y qué skill nueva le conviene crear según lo que ha venido haciendo en sus chats y
-  proyectos, con evidencia. También corre como revisión semanal. Úsala cuando Nick pida
-  revisar, auditar u ordenar sus skills, pregunte si alguna sobra, está vieja, choca con
-  otra o le falta algo, qué skill debería crear o mejorar, o diga "revisa mis skills",
-  aunque no nombre la skill. No sirve para elegir qué skill usar en una tarea concreta
+  proyectos, con evidencia. Además detecta las skills que Nick creó o cambió en Claude y
+  las sube solas al repo de GitHub. Corre a diario (sincronizar) y cada semana (revisión).
+  Úsala cuando Nick pida revisar, auditar u ordenar sus skills, pregunte si alguna sobra,
+  está vieja, choca con otra o le falta algo, qué skill debería crear o mejorar, o diga
+  "revisa mis skills", "sube mis skills", "sincroniza las skills con GitHub" o que guardó
+  o cambió una skill, aunque no nombre la skill. No sirve para elegir qué skill usar en una tarea concreta
   (eso es router-ing) ni para limpiar memoria o chats (eso es depurador-recursos).
 ---
 
@@ -16,7 +18,9 @@ Las skills se van acumulando: unas se quedan viejas, otras se pisan entre sí, y
 Nick repite en sus chats a veces nunca se vuelve skill. Esta skill mira el conjunto
 completo, cruza eso con lo que Nick realmente ha hecho y le entrega un reporte corto con
 cuatro respuestas: **qué sobra, qué actualizar, qué mejorar y qué crear**. Todo con
-evidencia, y nada se cambia sin su sí.
+evidencia, y nada se cambia sin su sí, con una excepción: **subir al repo lo que Nick ya
+guardó en Claude** se hace solo (lo decidió Nick el 2026-10-24), porque así el repo es
+siempre copia de lo que él usa.
 
 Escríbele a Nick en español simple y directo. El reporte es para leerlo en dos minutos.
 
@@ -33,8 +37,42 @@ Mandan `CONTRATO.md` (aprobaciones, historial que no se borra) y
    a proponer salvo que haya evidencia nueva; si la hay, dila.
 3. Lee el último reporte en `proyectos/skills/monitor/` (si existe). Su fecha marca desde
    cuándo buscar actividad nueva. Si no hay, mira los últimos 30 días.
-4. Si Nick pidió algo puntual ("¿selector-ia sirve?", "¿me falta una skill para X?"),
+4. **Sincroniza primero** (sección siguiente). Así la revisión mira las skills al día.
+5. Si Nick pidió algo puntual ("¿selector-ia sirve?", "¿me falta una skill para X?"),
    reduce el alcance a eso y salta los pasos que no apliquen.
+
+## Sincronizar con GitHub (automático)
+
+Corre al empezar cualquier revisión, cuando Nick dice "sube mis skills" o "guardé/cambié
+una skill", y a diario como tarea programada. No pide permiso: Nick ya lo autorizó.
+
+1. Trae historia al clon (el script la necesita para saber qué es más nuevo):
+   `git fetch --depth=200 origin main` y `git pull --rebase origin main`.
+2. Simula: `python3 skills/monitor-skills/scripts/sincronizar.py <ruta-repo>`.
+   Compara cada skill instalada (`/mnt/skills/plugins`, las de origen `plugin` en
+   `manifest.json`) con el historial del repo, archivo por archivo:
+   - **nueva** / **cambiada**: Nick la creó o la cambió en Claude → se sube.
+   - **reinstalar**: lo instalado es una versión vieja del repo → no se toca; Nick debe
+     reinstalar el `.skill`. Esto evita pisar mejoras hechas en el repo.
+   - **conflicto**: cambios en los dos lados → no se toca; va como PROPUESTA con lo que
+     cambió en cada lado.
+   - **bloqueada**: un archivo parece tener una clave o contraseña → no se sube; avísale a
+     Nick qué archivo y qué línea (sin repetir la clave).
+   - **solo-repo**: está en el repo y no instalada → no se borra nada; se avisa.
+3. Si hay **nueva** o **cambiada**, aplica: el mismo comando con `--aplicar`. Copia los
+   archivos y registra las nuevas en `registry/CAPACIDADES.yml` (estado `en-prueba`, etapa
+   `por-definir`) y en el catálogo del router.
+4. Revisa el diff (`git diff --stat` y el diff de cada `SKILL.md`): que no haya borrado de
+   contenido grande sin razón y que los YAML carguen. Si algo se ve raro, no hagas push:
+   déjalo como PROPUESTA.
+5. Entrada HECHO en `proyectos/skills/BITACORA.md` (y su copia en Drive):
+   "Sincronización <fecha>" con qué skills se subieron, cuáles hay que reinstalar y cuáles
+   quedaron bloqueadas o en conflicto.
+6. Commit y push: `sync(skills): <skills subidas>`. Antes, `git fetch origin main` y rebase.
+   Nunca `push --force`.
+7. Si no hubo nada que subir, no hagas commit ni entrada; en la tarea diaria, no avises.
+
+El repo nunca pierde archivos por la sincronización: el script solo agrega o actualiza.
 
 ## Cómo se hace
 
@@ -141,7 +179,8 @@ Lo que no apruebe ni rechace queda como **PROPUESTA** en la bitácora.
 
 Cuando corre como tarea programada nadie responde preguntas:
 
-- Haz los pasos 1 a 5 y 7. En el paso 6 no apliques nada: todo queda como PROPUESTA.
+- Primero sincroniza (eso sí se aplica solo). Luego haz los pasos 1 a 5 y 7. En el paso 6
+  no apliques nada: todo queda como PROPUESTA.
 - Si desde el último reporte no hubo chats nuevos ni cambios en el repo, no hagas
   reporte: deja solo una línea en la bitácora ("Revisión semanal: sin actividad nueva").
 - Al final manda con `SendUserMessage` el resumen corto del reporte (las 4 respuestas y
@@ -154,6 +193,8 @@ Cuando corre como tarea programada nadie responde preguntas:
   de tu opinión.
 - No propusiste algo que Nick ya rechazó sin decir qué evidencia nueva hay.
 - Antes de decir que una skill "no se usa", buscaste su nombre en los chats.
+- La sincronización corrió y su resultado está en el reporte (subidas, reinstalar,
+  bloqueadas, conflictos).
 - Si cambiaste skills: pasan `quick_validate` de `skill-creator`, `CAPACIDADES.yml` carga
   como YAML y vuelves a correr `inventario.py` sin hallazgos nuevos.
 
@@ -165,5 +206,8 @@ Cuando corre como tarea programada nadie responde preguntas:
   ves es ese, recomiéndala en una línea.
 - No revisa ni cambia las skills de Anthropic que vienen con Claude; solo puede decir si
   una de Nick repite lo que ya hace una de ellas.
-- No borra skills ni archivos: marca, propone y le dice a Nick qué hacer a mano.
+- No borra skills ni archivos, ni en Claude ni en el repo: marca, propone y le dice a Nick
+  qué hacer a mano.
+- No instala ni reinstala skills en Claude: eso lo hace Nick con el `.skill`. Cuando el repo
+  va adelante, entrégale los `.skill` empaquetados.
 - No instala skills externas; para evaluar una de terceros, usa `router-ing`.

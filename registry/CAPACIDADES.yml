@@ -61,6 +61,20 @@ capacidades:
     estado: activa
     nota: No es una skill; es el procedimiento compartido shared/BITACORA-DRIVE.md que usan colaboracion-ias, auditor-handover y selector-ia. Mapa de ids en registry/DRIVE.yml.
 
+  panel-asesores:
+    skill: panel-asesores
+    etapa: por-definir
+    estado: en-prueba
+    ultima_revision: 2026-10-24
+    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
+
+  presentaciones-universidad:
+    skill: presentaciones-universidad
+    etapa: por-definir
+    estado: en-prueba
+    ultima_revision: 2026-10-24
+    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
+
   enmarcar-problema:
     skill: marco-problema-ing
     etapa: enmarcar
