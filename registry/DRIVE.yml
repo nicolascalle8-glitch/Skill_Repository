@@ -1,0 +1,25 @@
+# Mapa de Google Drive: dónde vive la bitácora de cada proyecto.
+# Lo mantienen las skills colaboracion-ias y auditor-handover. Nunca se borra una línea:
+# si un proyecto se cierra, se marca estado: cerrado.
+version: 1
+actualizado: 2026-10-24
+cuenta: Drive de Nick (Mi unidad)
+
+raiz:
+  nombre: Proyectos IA
+  folder_id: 1RFBfieScJcuinTXcvMr_QT1ZVcIjE1Um
+  url: https://drive.google.com/drive/folders/1RFBfieScJcuinTXcvMr_QT1ZVcIjE1Um
+
+proyectos:
+  engranajes-helicoidales:
+    folder_id: 18Ym93jsT1tNuvr1LsC3TJNzq65AH0Unv
+    bitacora_doc_id: 1N8LNvyekYiY0MUxwc6HrlEd4bTjfgJtktnYw4de1vfQ
+    bitacora_url: https://docs.google.com/document/d/1N8LNvyekYiY0MUxwc6HrlEd4bTjfgJtktnYw4de1vfQ/edit
+    estado: activo
+    nota: Los entregables del curso viven aparte, en "Helical Gears - Mechanical Design (EIA)" (1pi2Ol_GlQl70H1oVSDyNX0x68ZE4xR0R). No mover.
+
+  skills:
+    folder_id: 1_9DxRnuTRqduzD4ZluVg3LJKoHrDsySg
+    bitacora_doc_id: 18QtRuv0MvYGrumv7YzqNIKsTefi9423Fgm904UdUWeI
+    bitacora_url: https://docs.google.com/document/d/18QtRuv0MvYGrumv7YzqNIKsTefi9423Fgm904UdUWeI/edit
+    estado: activo

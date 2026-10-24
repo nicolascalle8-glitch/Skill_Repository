@@ -103,6 +103,7 @@ proyectos/<proyecto>/
    - Actualiza la línea `Última actualización:` del encabezado.
 5. Escribe `CONTEXTO.md` completo desde cero (si ya existía, se sobrescribe: su versión anterior queda en el historial de git y el HANDOVER guarda la trazabilidad). Revisa que no pase de ~1.500 palabras con `wc -w`; si pasa, comprime o mueve cosas a `archivos/`.
 6. Guarda en `archivos/` lo largo que el chat nuevo pueda necesitar y que no viva ya en otro lado.
+6b. **Bitácora del proyecto (GitHub y Google Drive).** Agrega una entrada HECHO arriba en `proyectos/<proyecto>/BITACORA.md` (créala con la plantilla de `skills/colaboracion-ias/references/plantilla-bitacora.md` si no existe): "Handover <fecha> — <semáforo> <puntaje>/100", qué cambió y la siguiente tarea. Copia la misma entrada al documento de Drive siguiendo `shared/BITACORA-DRIVE.md` (si el proyecto no tiene carpeta en Drive, créala ahí mismo y regístrala en `registry/DRIVE.yml`). Si Drive no responde, anota "Drive: pendiente de copiar" y sigue.
 7. Haz commit y push a `main`:
    - `git fetch origin main` y rebase si hace falta antes de empujar.
    - Mensaje: `handover(<proyecto>): <fecha> — <semáforo> <puntaje>/100`
@@ -112,6 +113,6 @@ proyectos/<proyecto>/
 
 En el chat entrega:
 1. El **Mensaje de arranque** en un bloque de código, listo para copiar. Debajo, dentro del mismo bloque, pega el CONTEXTO.md completo: así sirve aunque el chat nuevo no tenga acceso a GitHub.
-2. Una línea con dónde quedó archivado (ruta en GitHub), cuántas palabras tiene el CONTEXTO, o por qué no se pudo archivar.
+2. Una línea con dónde quedó archivado (ruta en GitHub y link de la bitácora en Drive), cuántas palabras tiene el CONTEXTO, o por qué no se pudo archivar.
 
 Nada más. No repitas el reporte ni el handover completo.

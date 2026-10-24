@@ -28,7 +28,7 @@ Recomienda la skill más temprana que destrabe el problema y después sus apoyos
 1. Consulta [el catálogo](references/catalogo.md).
 2. Si puedes leer el repositorio `Skill_Repository`, confirma con `registry/CAPACIDADES.yml`
    y la carpeta `skills/` que el catálogo sigue vigente antes de decir que una skill no existe.
-3. Una skill marcada `pendiente` no existe todavía: no la recomiendes como si existiera.
+3. Una skill `en-prueba` se puede usar; avisa que todavía está en prueba. Una skill marcada `pendiente` no existe todavía: no la recomiendes como si existiera.
    Haz el trabajo siguiendo el contrato operativo y dilo.
 4. No recomiendes una skill fuera de su límite de alcance.
 

@@ -10,6 +10,7 @@ Nick usa varias IAs en sus proyectos. Ninguna recuerda lo que hizo la otra, así
 - `CONTRATO.md` (raíz): las reglas de Nick para todas las IAs. Manda sobre todo lo demás, salvo lo que Nick pida en el chat.
 - `proyectos/<proyecto>/CONTEXTO.md`: estado actual del proyecto (lo arma la skill `auditor-handover`).
 - `proyectos/<proyecto>/BITACORA.md`: quién hizo qué, propuestas y aprobaciones. Solo crece.
+- **Copia en Google Drive** de esa misma bitácora: `Proyectos IA / <proyecto> / Bitácora — <proyecto>`. Los ids están en `registry/DRIVE.yml` y el cómo, en `shared/BITACORA-DRIVE.md`. **Toda entrada que escribas va a los dos lados, idéntica.** Gemini puede escribir directo en el Doc de Drive.
 - `proyectos/<proyecto>/HANDOVER.md`: historial largo. Solo se abre si hace falta.
 
 Repo: `nicolascalle8-glitch/Skill_Repository` (privado). Si no está en la sesión, agrégalo con `add_repo` (acceso `push`) y clónalo como diga el resultado. Si GitHub no está disponible, trabaja igual y al final entrega la entrada de bitácora en un bloque de código para que Nick la suba.
@@ -29,14 +30,14 @@ Escríbele a Nick en español simple y directo. Respuestas cortas: qué cambió 
 
 ## A. Trabajar en un proyecto
 
-1. `git pull` (o `git fetch` + rebase) para tener lo último que dejaron las otras IAs.
+1. `git pull` (o `git fetch` + rebase) para tener lo último que dejaron las otras IAs. Luego sincroniza con la bitácora de Drive (punto 5 de `shared/BITACORA-DRIVE.md`): lo que Gemini u otra IA escribió allá entra al repo.
 2. Lee `CONTRATO.md` completo.
 3. Lee `proyectos/<proyecto>/CONTEXTO.md` y, de `BITACORA.md`, la sección **En curso**, las **Propuestas sin respuesta** y las últimas 5 entradas. No leas toda la bitácora ni el HANDOVER salvo que haga falta.
 4. Si otra IA tiene algo **En curso** sobre lo mismo que te piden, para y avísale a Nick en una línea antes de seguir.
 5. Si hay entradas nuevas de otras IAs desde la última vez que trabajó Claude, díselo a Nick en 1–3 líneas (qué hicieron y si algo necesita su visto bueno). No repitas la bitácora.
 6. Anota tu línea en **En curso** y haz commit+push de esa línea sola si el trabajo va a ser largo (así otra IA que abra el repo mientras tanto lo ve).
 7. Haz el trabajo siguiendo el contrato. Lo que necesite aprobación (sección 5 del contrato) se deja como PROPUESTA, no se ejecuta.
-8. Al terminar: entrada nueva arriba en la bitácora (formato en `references/plantilla-bitacora.md`), quita tu línea de **En curso**, actualiza **Pendientes** del CONTEXTO si cambiaron. No toques **Decisiones vigentes** del CONTEXTO sin aprobación.
+8. Al terminar: entrada nueva arriba en la bitácora (formato en `references/plantilla-bitacora.md`) **en GitHub y en Drive**, quita tu línea de **En curso** en los dos, actualiza **Pendientes** del CONTEXTO si cambiaron. No toques **Decisiones vigentes** del CONTEXTO sin aprobación.
 9. Commit y push: `claude(<proyecto>): <qué hiciste>`. Antes de empujar, `git fetch origin main` y rebase. Si hay conflicto en la bitácora, conserva las entradas de los dos lados (nunca borres la de otra IA) y ordénalas por fecha.
 
 ## B. Recibir trabajo de otra IA
@@ -53,7 +54,8 @@ Nick pega una respuesta, un archivo o un link que hizo otra IA.
 
 1. Lee `references/mensaje-para-otra-ia.md` y arma el mensaje según la IA:
    - **Cursor / Copilot / Gemini con el repo abierto**: mensaje corto. Ellas leen `AGENTS.md`, `GEMINI.md` o `.github/copilot-instructions.md` solas, que apuntan al contrato.
-   - **Grok, Perplexity, Gemini web u otra sin acceso al repo**: mensaje completo con el resumen del contrato y el CONTEXTO pegados, y la orden de cerrar con su entrada de bitácora en un bloque de código.
+   - **Gemini en la web o en la app**: puede abrir el Doc de la bitácora en Drive. Mensaje corto con el link del Doc y del CONTEXTO, y la orden de escribir su entrada arriba, debajo de "Entradas", en el mismo formato.
+   - **Grok, Perplexity u otra sin acceso al repo ni a Drive**: mensaje completo con el resumen del contrato y el CONTEXTO pegados, y la orden de cerrar con su entrada de bitácora en un bloque de código.
 2. Entrégale a Nick el mensaje en un bloque de código listo para copiar.
 3. Anota en la bitácora una entrada **PREGUNTA** o **PROPUESTA** que diga a quién se le pasó qué y qué se espera de vuelta, y pon la tarea en **En curso** a nombre de esa IA.
 
@@ -61,6 +63,7 @@ Nick pega una respuesta, un archivo o un link que hizo otra IA.
 
 1. Ubica la propuesta en la bitácora (si hay varias abiertas y no está claro cuál, pregunta).
 2. Debajo de esa entrada agrega `✅ Aprobado por Nick — AAAA-MM-DD HH:MM` o `❌ Rechazado por Nick — AAAA-MM-DD HH:MM — <razón que dio>`. No cambies el texto original de la propuesta.
+2b. Haz lo mismo en el documento de Drive (punto 4 de `shared/BITACORA-DRIVE.md`).
 3. Si se aprobó y era una decisión, pásala a **Decisiones vigentes** del CONTEXTO y quítala de **Propuestas sin respuesta**.
 4. Si Nick te pide ejecutarla, hazlo como en el flujo A.
 5. Commit: `claude(<proyecto>): aprobación de Nick — <tema>`.
@@ -68,7 +71,7 @@ Nick pega una respuesta, un archivo o un link que hizo otra IA.
 ## E. Proyecto nuevo
 
 1. Propón un nombre corto en minúsculas con guiones y confirma con Nick (puede existir con otro nombre: revisa `proyectos/`).
-2. Crea `proyectos/<proyecto>/BITACORA.md` con la plantilla. Si no hay CONTEXTO, crea uno mínimo con lo que Nick haya dicho (en una frase, siguiente tarea, pendientes). El CONTEXTO completo lo arma `auditor-handover` cuando haga falta.
+2. Crea `proyectos/<proyecto>/BITACORA.md` con la plantilla, y su carpeta y documento en Drive (punto 1 de `shared/BITACORA-DRIVE.md`), y regístralos en `registry/DRIVE.yml`. Si no hay CONTEXTO, crea uno mínimo con lo que Nick haya dicho (en una frase, siguiente tarea, pendientes). El CONTEXTO completo lo arma `auditor-handover` cuando haga falta.
 3. Commit: `claude(<proyecto>): crea el proyecto`.
 
 ## F. Cambiar el contrato

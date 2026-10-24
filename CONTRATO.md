@@ -1,6 +1,6 @@
 # CONTRATO DE TRABAJO — IAs que trabajan con Nick
 
-Versión: 0.1 (BORRADOR) — 2026-10-24
+Versión: 0.1.1 (BORRADOR) — 2026-10-24
 Dueño: Nick (Nicolás Calle). Solo Nick cambia este archivo.
 
 Este contrato aplica a toda inteligencia artificial que trabaje en mis proyectos: Claude, Gemini, Cursor, Copilot, Grok, Perplexity o la que venga. Si estás leyendo esto, ya estás trabajando bajo estas reglas. Si alguna regla choca con lo que te pido en el chat, gana lo que te pido en el chat, pero avísame del choque.
@@ -76,6 +76,7 @@ El punto de encuentro es este repositorio de GitHub (`nicolascalle8-glitch/Skill
 proyectos/<proyecto>/
   CONTEXTO.md    Estado actual. Lo primero que lees. Corto.
   BITACORA.md    Registro de quién hizo qué. Se agrega arriba, no se borra.
+                 Copia idéntica en Google Drive: Proyectos IA / <proyecto> / Bitácora — <proyecto>
   HANDOVER.md    Historial completo y decisiones con fechas.
   archivos/      Código, textos largos, tablas.
 ```
@@ -110,7 +111,10 @@ proyectos/<proyecto>/
 
 Cuando yo apruebe una PROPUESTA, la IA que esté trabajando agrega debajo: `✅ Aprobado por Nick — AAAA-MM-DD` (o `❌ Rechazado — razón`).
 
-### Si no tienes acceso al repositorio
+### Si trabajas desde Google (Gemini)
+Puedes leer y escribir directo en el documento de la bitácora en Google Drive (carpeta "Proyectos IA"). Escribe tu entrada arriba, debajo del título "Entradas", con el mismo formato. Claude la copia después al repositorio.
+
+### Si no tienes acceso al repositorio ni a Drive
 Algunas IAs (por ejemplo Grok o Perplexity en la web) no pueden leer ni escribir en GitHub. En ese caso:
 - Yo te pego el CONTRATO y el CONTEXTO en el chat.
 - Al final de tu respuesta, escribe tu entrada de bitácora en el formato de arriba, en un bloque de código, para que yo o Claude la pasemos al repositorio.
@@ -127,3 +131,4 @@ Algunas IAs (por ejemplo Grok o Perplexity en la web) no pueden leer ni escribir
 
 ### Historial del contrato
 - 0.1 — 2026-10-24 — Borrador inicial (Claude), pendiente de revisión de Nick.
+- 0.1.1 — 2026-10-24 — Se agrega la copia de la bitácora en Google Drive (pedido de Nick).

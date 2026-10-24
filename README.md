@@ -20,9 +20,12 @@ skills/            Skills de Claude (una carpeta por skill)
   router-ing/        Elige qué skill usar y detecta las que faltan
   auditor-handover/  Audita la saturación de un chat y arma handovers
   colaboracion-ias/  Coordina a Claude con las otras IAs (bitácora, propuestas)
+  selector-ia/       Dice qué IA, modelo y nivel usar para cada tarea
+shared/BITACORA-DRIVE.md   Cómo se copia la bitácora a Google Drive
+registry/DRIVE.yml         Ids de carpetas y bitácoras en Drive (carpeta "Proyectos IA")
 proyectos/<proyecto>/
   CONTEXTO.md      Estado actual. Lo primero que lee cualquier IA (corto, se reescribe)
-  BITACORA.md      Quién hizo qué, propuestas y aprobaciones (solo crece)
+  BITACORA.md      Quién hizo qué, propuestas y aprobaciones (solo crece). Copia en Drive.
   HANDOVER.md      Trazabilidad completa, con historial que nunca se borra
   archivos/        Código y textos largos que el CONTEXTO apunta
 ```

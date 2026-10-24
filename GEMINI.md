@@ -15,4 +15,6 @@ Resumen corto del contrato, por si no lo cargas completo:
 - El historial (BITACORA, HANDOVER, commits) nunca se borra.
 - Si otra IA tiene algo "En curso" sobre lo mismo, no lo toques: avisa a Nick.
 
+Si estás en la web o en la app de Gemini sin el repositorio: la bitácora de cada proyecto también está en Google Drive, carpeta "Proyectos IA / <proyecto> / Bitácora — <proyecto>". Escribe tu entrada ahí, arriba, debajo de "Entradas".
+
 Firma tus entradas como "Gemini" (y el modelo si lo sabes).

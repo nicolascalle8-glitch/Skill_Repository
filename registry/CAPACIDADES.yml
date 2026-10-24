@@ -6,6 +6,7 @@ contratos:
 
 # Estados:
 #   activa    -> existe, está probada con un caso real y se puede usar
+#   en-prueba -> existe y se puede usar, pero falta que Nick la revise con un caso real
 #   pendiente -> planeada; todavía no existe su SKILL.md
 #   hueco     -> se detectó la necesidad, pero no se crea hasta que un caso real lo pida
 
@@ -26,9 +27,23 @@ capacidades:
   colaboracion-entre-ias:
     skill: colaboracion-ias
     etapa: continuar
-    estado: activa
+    estado: en-prueba
     ultima_revision: 2026-10-24
     nota: Contrato de trabajo en borrador (v0.1); falta probarla con un intercambio real con otra IA.
+
+  seleccion-de-ia-y-modelo:
+    skill: selector-ia
+    etapa: todas
+    estado: en-prueba
+    ultima_revision: 2026-10-24
+    catalogo_revisado: 2026-10-24
+    nota: Probada en seco con 3 casos (artículo + Excel de engranajes, research de la fábrica de medias, arreglo en el tema de Shopify de Artequino). Falta que Nick confirme sus planes (Claude, Cursor o Copilot).
+
+  bitacora-en-drive:
+    skill: null
+    etapa: continuar
+    estado: activa
+    nota: No es una skill; es el procedimiento compartido shared/BITACORA-DRIVE.md que usan colaboracion-ias, auditor-handover y selector-ia. Mapa de ids en registry/DRIVE.yml.
 
   enmarcar-problema:
     skill: marco-problema-ing
