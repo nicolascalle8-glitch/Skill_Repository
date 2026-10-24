@@ -19,7 +19,7 @@ es un índice para elegir rápido; confírmalo cuando el entorno lo permita.
 | `ingenieria-inversa-cad` | diseñar | Pasar de una pieza física a un modelo CAD (Fusion 360): medición, incertidumbre, intención de diseño, tolerancias. | No certifica que la copia funcione igual que el original. | pendiente |
 | `puerta-fabricacion` | fabricar | Revisión antes de imprimir, maquinar o entregar: material, tolerancias, DFM, parámetros de impresión. Resultado: pasa / bloqueado / prueba limitada. | No aprueba por apariencia del modelo. | pendiente |
 | `entregables-ing` | comunicar | Estructura de informes, presentaciones, artículos y memorias de cálculo de la universidad. | No inventa referencias ni resultados. | pendiente |
-| `voz-nick` | comunicar | Que los textos que presento como míos suenen a mí: español simple y directo. | No cambia datos ni conclusiones técnicas. | pendiente |
+| `voz-nick` | comunicar | Que los textos que presento como míos suenen a mí, con un perfil sacado de mis textos reales y revisión automática. | No cambia datos ni conclusiones técnicas; no es para la voz de clientes. | en-prueba |
 
 ## Rutas típicas
 

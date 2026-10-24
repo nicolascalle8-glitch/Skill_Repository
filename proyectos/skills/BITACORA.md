@@ -9,13 +9,20 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 ## Propuestas sin respuesta
 - 2026-10-24 17:41 — Claude — Cambiar la regla "todo en SI" del contrato operativo a "SI por defecto, salvo que el libro o el enunciado use otro sistema".
 - 2026-10-24 18:04 — Claude — Agregar depurador-recursos a la sección 8 del contrato operativo.
-- 2026-10-24 18:22 — Claude — (monitor) Crear voz-nick (activar la pendiente).
 - 2026-10-24 18:22 — Claude — (monitor) Crear calculo-trazable (activar la pendiente).
 - 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
 
 ---
 
 ## Entradas
+
+### 2026-10-24 18:45 — Claude Opus 5.5 — HECHO
+**Qué:** Se crea la skill voz-nick con el perfil de escritura sacado de textos reales de Nick en Drive (chat de presentaciones del 2026-10-24): rasgos suyos, lo que no es Nick, calibración por tipo de texto y una sección de correcciones que crece cuando él corrige. Incluye revisar_voz.py, que marca muletillas, lenguaje inflado, guiones largos, cierres tipo eslogan, tríos de adjetivos y frases muy largas. presentaciones-universidad y panel-asesores ahora la llaman en vez de repetir reglas de estilo.
+**Archivos:** skills/voz-nick/ (SKILL.md, references/perfil.md, scripts/revisar_voz.py), skills/presentaciones-universidad/SKILL.md, skills/panel-asesores/SKILL.md, registry/CAPACIDADES.yml, skills/router-ing/references/catalogo.md, README.md
+**Fuentes:** perfil de la tarjeta de presentaciones-universidad (chat "Presentaciones universitarias bien hechas", 2026-10-24).
+**Verificado:** prueba con un texto de IA sobre las conclusiones de engranajes: revisar_voz.py marcó 20 hallazgos en el original y 0 en la versión final; todos los números, materiales y conclusiones quedaron iguales (comparados con script). Un texto en su estilo no dio falsos positivos. voz-nick pasa quick_validate.
+**Para Nick:** instalar voz-nick.skill y reinstalar presentaciones-universidad, panel-asesores y router-ing. Confirmar si las plantillas de WhatsApp del consultorio y los apuntes de marketing los escribiste tú, y si en notas prefieres frases medianas con punto y coma o cortas.
+**Para la siguiente IA:** todo texto que Nick presente como suyo pasa por voz-nick. El perfil es la fuente única de su estilo.
 
 ### 2026-10-24 18:30 — Claude Opus 5.5 — HECHO
 **Qué:** Sincronización 2026-10-24. Subidas: panel-asesores y presentaciones-universidad (nuevas; registradas en CAPACIDADES como en-prueba, etapa por-definir, y en el catálogo). Reinstalar: monitor-skills y router-ing (el repo va adelante). Bloqueadas o en conflicto: ninguna.
@@ -49,6 +56,7 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 **Para Nick:** aprobar o rechazar 1 a 4.
 **Para la siguiente IA:** no crear voz-nick ni calculo-trazable hasta que Nick apruebe.
 ✅ Aprobado por Nick — 2026-10-24 18:27 — solo el punto (1): pidió que el monitor suba todo al repo automáticamente. (2), (3) y (4) siguen abiertos.
+✅ Aprobado por Nick — 2026-10-24 18:36 — punto (2): crear voz-nick.
 
 ### 2026-10-24 18:22 — Claude Opus 5.5 — HECHO
 **Qué:** Revisión de skills 2026-10-24 (primera, 🟡). Sobra: ninguna. Actualizar: 2 (panel-asesores y presentaciones-universidad fuera del repo). Mejorar: 2 (panel-asesores, router-ing). Crear: 2 (voz-nick, calculo-trazable) + decidir system-oriented-design.

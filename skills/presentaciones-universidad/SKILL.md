@@ -83,18 +83,14 @@ Prueba rápida: si Nick tendría que leer la slide para sustentarla, tiene demas
 
 ## 5. Que suene a Nick
 
-Todo texto que Nick va a decir o firmar se escribe como él escribe.
+Todo texto que Nick va a decir o firmar (títulos, frases en slides, notas, respuestas a
+preguntas, documento escrito) pasa por la skill `voz-nick`: ahí está su perfil de escritura
+y la revisión automática. No repitas aquí sus reglas.
 
-- Si existe `estilo-nick.md` en esta skill, leerlo y seguirlo.
-- Si no existe, pedirle 2–3 textos suyos, sacar cómo escribe y proponer guardarlo como `estilo-nick.md`.
-
-Reglas mínimas mientras tanto:
-- Español simple y directo, como explica un estudiante a sus compañeros. Frases cortas.
-- Nada de: "cabe destacar", "es importante mencionar", "en este sentido", "en conclusión", "a continuación se presenta", "juega un papel fundamental", "robusto", "integral".
-- Nada de tríos de adjetivos, guiones largos (—) ni frases de cierre que repiten lo dicho.
-- Releer: ¿esto lo diría Nick frente al salón? Si no, reescribir.
-
-Sonar natural nunca justifica cambiar el sentido técnico de lo que dice la fuente.
+Lo propio de las presentaciones:
+- En slides, texto mínimo: una pregunta o una frase corta. Una pregunta sirve como título.
+- En notas, su voz completa: primera persona, preguntas que abren cada idea.
+- Sonar natural nunca justifica cambiar el sentido técnico de lo que dice la fuente.
 
 ## 6. Notas para sustentar
 
@@ -115,7 +111,7 @@ Mirar la presentación slide por slide (capturas con `artifact-emulator` o rende
 - [ ] Ningún video usado sin aprobación de Nick; todos con minuto citado.
 - [ ] Ninguna imagen inventada o decorativa; todas con fuente.
 - [ ] Ninguna slide con más de ~20 palabras ni párrafos; layouts variados.
-- [ ] Textos y notas suenan a Nick.
+- [ ] Textos y notas pasaron por `voz-nick` (revisión automática sin hallazgos).
 - [ ] Números calculados con código/Excel, unidades correctas.
 - [ ] Cumple la rúbrica y el tiempo.
 

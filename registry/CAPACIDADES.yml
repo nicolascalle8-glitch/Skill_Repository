@@ -110,7 +110,10 @@ capacidades:
   voz-propia:
     skill: voz-nick
     etapa: comunicar
-    estado: pendiente
+    estado: en-prueba
+    ultima_revision: 2026-10-24
+    caso_de_prueba: Notas de la slide de conclusiones de engranajes helicoidales (texto de IA pasado a su voz; todos los datos se mantuvieron).
+    nota: Perfil en skills/voz-nick/references/perfil.md, sacado de textos reales de Nick en Drive. presentaciones-universidad y panel-asesores la usan. Falta que Nick revise un texto real.
 
   simulacion-fea:
     skill: null

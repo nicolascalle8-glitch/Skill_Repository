@@ -19,6 +19,7 @@ registry/CAPACIDADES.yml Qué skills están activas, pendientes o son huecos
 skills/            Skills de Claude (una carpeta por skill)
   router-ing/        Elige qué skill usar para una tarea
   monitor-skills/    Revisa todas las skills: qué sobra, actualizar, mejorar o crear
+  voz-nick/          Hace que los textos que presento como míos suenen a mí
   auditor-handover/  Audita la saturación de un chat y arma handovers
   colaboracion-ias/  Coordina a Claude con las otras IAs (bitácora, propuestas)
   selector-ia/       Dice qué IA, modelo y nivel usar para cada tarea
