@@ -1,6 +1,6 @@
 ---
 name: auditor-handover
-description: Audita si un chat (o un proyecto completo) ya está saturado y perdiendo calidad, da un reporte con puntaje y semáforo, y si el usuario quiere, arma un handover con decisiones, hitos, trazabilidad, tiempos y pendientes para que un chat nuevo continúe el trabajo; lo archiva en GitHub por proyecto sin borrar versiones anteriores. Úsala siempre que el usuario diga que las respuestas están empeorando, que el chat está "tonto", lento, repetitivo u olvidadizo, que pida auditar el chat o la memoria, revisar la capacidad o el límite del chat, hacer un handover, un traspaso, un resumen para pasar a otro chat, "empezar un chat nuevo sin perder nada", o actualizar el HANDOVER de un proyecto, aunque no nombre la skill.
+description: Audita si un chat (o un proyecto completo) ya está saturado y perdiendo calidad, da un reporte con puntaje y semáforo, y si el usuario quiere, arma un handover con decisiones, hitos, trazabilidad, tiempos y pendientes, más un CONTEXTO compacto para que un chat nuevo continúe el trabajo sin releer el chat viejo ni gastar tokens; lo archiva en GitHub por proyecto sin borrar versiones anteriores. Úsala siempre que el usuario diga que las respuestas están empeorando, que el chat está "tonto", lento, repetitivo u olvidadizo, que pida auditar el chat o la memoria, revisar la capacidad o el límite del chat, hacer un handover, un traspaso, un resumen para pasar a otro chat, "empezar un chat nuevo sin perder nada", o actualizar el HANDOVER de un proyecto, aunque no nombre la skill.
 ---
 
 # Auditor de chat + Handover
@@ -8,7 +8,9 @@ description: Audita si un chat (o un proyecto completo) ya está saturado y perd
 Un chat largo se degrada: entre más texto acumula, más se diluyen las instrucciones del inicio, se mezclan temas, se olvidan decisiones y las respuestas se vuelven genéricas. Esta skill hace dos cosas:
 
 1. **Auditoría**: mide qué tan degradado está el chat (o el proyecto) y da un veredicto honesto.
-2. **Handover**: si el usuario quiere, deja un traspaso completo para que un chat nuevo arranque sin perder nada, y lo archiva en GitHub con historial.
+2. **Handover**: si el usuario quiere, deja dos archivos por proyecto en GitHub:
+   - `CONTEXTO.md` — corto (~1.500 palabras), se reescribe cada vez. Es lo **único** que el chat nuevo lee para arrancar, así no tiene que releer el chat viejo ni el historial completo y no gasta tokens en eso.
+   - `HANDOVER.md` — la trazabilidad completa: decisiones, hitos, tiempos, pendientes e historial con fechas que nunca se borra. Se consulta solo si hace falta saber cuándo o por qué cambió algo.
 
 El usuario es Nick. Escríbele en español simple y directo. El handover también va en español simple: lo va a leer él y otro chat, no un comité.
 
@@ -65,22 +67,33 @@ Si recomiendas dividir, di en qué chats (ej. "uno para la web, otro para la cot
 
 No lo armes solo. Pregunta: "¿Armo el handover?" con opciones claras (sí / no / sí, pero solo de un tema). Si el semáforo es verde, igual pregunta, pero dile que no es urgente.
 
-## Paso 6 — Armar el handover
+## Paso 6 — Armar el handover y el contexto
 
-Lee `references/plantilla-handover.md` y llena la plantilla con la evidencia del Paso 2. Reglas:
+Lee `references/plantilla-handover.md` y `references/plantilla-contexto.md`. Primero llena el HANDOVER (es el registro completo) y después destila de ahí el CONTEXTO (es lo que el chat nuevo realmente carga). La razón de separarlos: el HANDOVER crece con cada actualización y leerlo entero al arrancar volvería a llenar el chat nuevo; el CONTEXTO se mantiene del mismo tamaño siempre.
+
+Para el CONTEXTO, pregúntate en cada línea: "¿el chat nuevo necesita esto para hacer la siguiente tarea sin preguntarle a Nick?". Si no, va solo en el HANDOVER. Pon los datos exactos (cifras, nombres, URLs, versiones), no resúmenes vagos, porque un resumen vago obliga al chat nuevo a volver a preguntar. Lo largo (código, textos aprobados extensos, tablas) va a `proyectos/<proyecto>/archivos/` y el CONTEXTO solo lo apunta con cuándo abrirlo.
+
+Reglas para los dos:
 
 - **Solo hechos del chat.** Si algo no se decidió, va en "Pendientes" o "Preguntas abiertas", no en "Decisiones".
 - **Distingue quién dijo qué.** Una propuesta tuya que el usuario no aceptó explícitamente no es una decisión.
 - **Fechas reales.** Usa las fechas/horas de los mensajes cuando se vean; si no, pon "aprox." Usa la hora de Bogotá (UTC-5).
 - **Incluye "No volver a discutir"**: lo que ya se cerró, para que el chat nuevo no reabra temas resueltos.
-- **Incluye el "Mensaje de arranque"**: un bloque corto que el usuario pega como primer mensaje del chat nuevo.
+- **Incluye el "Mensaje de arranque"**: un bloque corto que el usuario pega como primer mensaje del chat nuevo. Le dice al chat nuevo que lea **solo el CONTEXTO.md**, no el HANDOVER ni el chat viejo.
 - Sin datos sensibles innecesarios: nada de contraseñas, tokens, números de cuenta o documentos de identidad, aunque aparezcan en el chat. Si son necesarios para el trabajo, escribe "(ver en <dónde>)".
 
 ## Paso 7 — Archivar en GitHub (sin borrar lo anterior)
 
-Repositorio: `nicolascalle8-glitch/Skill_Repository` (privado). Archivo: `proyectos/<proyecto>/HANDOVER.md`.
+Repositorio: `nicolascalle8-glitch/Skill_Repository` (privado). Por proyecto:
 
-1. Si el repo no está en la sesión, agrégalo con `add_repo` (acceso `push`) y clónalo como diga el resultado. Si GitHub no está disponible, salta al paso 6 de esta lista.
+```
+proyectos/<proyecto>/
+  CONTEXTO.md    se reescribe completo cada vez (no crece)
+  HANDOVER.md    se actualiza sin borrar (crece con el historial)
+  archivos/      código, textos largos, tablas que el CONTEXTO apunta
+```
+
+1. Si el repo no está en la sesión, agrégalo con `add_repo` (acceso `push`) y clónalo como diga el resultado. Si GitHub no está disponible, salta al paso 8 de esta lista.
 2. Si la carpeta `proyectos/<proyecto>/` no existe, **pregunta antes de crearla** (puede que el proyecto tenga otro nombre ya).
 3. Si `HANDOVER.md` **no existe**: créalo con la plantilla completa y una primera entrada en el historial.
 4. Si **ya existe**: léelo completo y actualízalo así, nunca borrando:
@@ -88,15 +101,17 @@ Repositorio: `nicolascalle8-glitch/Skill_Repository` (privado). Archivo: `proyec
    - Lo que ya no aplica no se borra: pásalo al historial marcado como `~~cerrado~~` o `reemplazado por: ...`.
    - Agrega una **entrada nueva al inicio del "Historial de actualizaciones"** con fecha y hora, puntaje de la auditoría y qué cambió desde la entrada anterior (decisiones nuevas, hitos cumplidos, pendientes cerrados y abiertos).
    - Actualiza la línea `Última actualización:` del encabezado.
-5. Haz commit y push a `main`:
+5. Escribe `CONTEXTO.md` completo desde cero (si ya existía, se sobrescribe: su versión anterior queda en el historial de git y el HANDOVER guarda la trazabilidad). Revisa que no pase de ~1.500 palabras con `wc -w`; si pasa, comprime o mueve cosas a `archivos/`.
+6. Guarda en `archivos/` lo largo que el chat nuevo pueda necesitar y que no viva ya en otro lado.
+7. Haz commit y push a `main`:
    - `git fetch origin main` y rebase si hace falta antes de empujar.
    - Mensaje: `handover(<proyecto>): <fecha> — <semáforo> <puntaje>/100`
-6. Si no se pudo empujar a GitHub, entrega el archivo con SendUserFile y di en una línea por qué no quedó en GitHub.
+8. Si no se pudo empujar a GitHub, entrega los archivos con SendUserFile y di en una línea por qué no quedó en GitHub.
 
 ## Paso 8 — Cerrar
 
 En el chat entrega:
-1. El **Mensaje de arranque** en un bloque de código, listo para copiar.
-2. Una línea con dónde quedó archivado (ruta en GitHub) o por qué no.
+1. El **Mensaje de arranque** en un bloque de código, listo para copiar. Debajo, dentro del mismo bloque, pega el CONTEXTO.md completo: así sirve aunque el chat nuevo no tenga acceso a GitHub.
+2. Una línea con dónde quedó archivado (ruta en GitHub), cuántas palabras tiene el CONTEXTO, o por qué no se pudo archivar.
 
 Nada más. No repitas el reporte ni el handover completo.

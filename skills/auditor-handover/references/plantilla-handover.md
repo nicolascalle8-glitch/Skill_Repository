@@ -1,6 +1,6 @@
 # Plantilla del HANDOVER.md
 
-Copia esta estructura. Las secciones de "Estado actual" se reescriben en cada actualización; el "Historial de actualizaciones" solo crece (entradas nuevas arriba, nunca se borran las viejas).
+Copia esta estructura. El HANDOVER es el registro completo para trazabilidad; lo que el chat nuevo lee al arrancar es el CONTEXTO.md (ver `plantilla-contexto.md`), que se destila de aquí. Las secciones de "Estado actual" se reescriben en cada actualización; el "Historial de actualizaciones" solo crece (entradas nuevas arriba, nunca se borran las viejas).
 
 Escribe en español simple y directo. Frases cortas. Nada de relleno.
 
@@ -57,7 +57,9 @@ Cómo quiere Nick que se trabaje aquí (formato, tono, lo que no le gusta).
 
 (Bloque corto que se pega como primer mensaje.)
 
-> Vengo de un chat anterior sobre <proyecto>. Lee el HANDOVER en `proyectos/<proyecto>/HANDOVER.md` del repo `nicolascalle8-glitch/Skill_Repository` (o el texto que pego abajo). Estado: <1 frase>. Lo siguiente que necesito: <tarea concreta>. No reabras lo que está en "No volver a discutir".
+> Vengo de un chat anterior sobre <proyecto>. Para arrancar lee **solo** `proyectos/<proyecto>/CONTEXTO.md` del repo `nicolascalle8-glitch/Skill_Repository` (o el contexto que pego abajo). No releas el chat viejo ni el HANDOVER completo; abre el HANDOVER o los `archivos/` solo si la tarea lo pide o yo pregunto por algo del pasado. Lo siguiente que necesito: <tarea concreta>. No reabras las decisiones vigentes.
+>
+> <aquí va pegado el CONTEXTO.md completo>
 
 ---
 
