@@ -9,6 +9,7 @@ contratos:
 #   en-prueba -> existe y se puede usar, pero falta que Nick la revise con un caso real
 #   pendiente -> planeada; todavía no existe su SKILL.md
 #   hueco     -> se detectó la necesidad, pero no se crea hasta que un caso real lo pida
+#   retirada  -> ya no se usa; se conserva el registro con la razón y la fecha (no se borra)
 
 capacidades:
   enrutamiento:
@@ -16,6 +17,14 @@ capacidades:
     etapa: todas
     estado: activa
     ultima_revision: 2026-10-24
+
+  monitoreo-de-skills:
+    skill: monitor-skills
+    etapa: todas
+    estado: en-prueba
+    ultima_revision: 2026-10-24
+    caso_de_prueba: Primera revisión del conjunto (proyectos/skills/monitor/2026-10-24.md).
+    nota: Decide qué skills sobran, actualizar, mejorar o crear. router-ing ya no propone skills nuevas.
 
   continuidad-entre-chats:
     skill: auditor-handover

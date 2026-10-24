@@ -1,12 +1,12 @@
 ---
 name: router-ing
-description: Decide qué skill de ingeniería de Nick usar para una tarea, en qué orden combinarlas, o detecta que falta una y propone crearla. Úsala cuando Nick pregunte qué skill usar, cuando una tarea de ingeniería mecánica cruce varias etapas (cálculo, CAD, fabricación, informe), cuando quiera crear una skill nueva o evaluar una skill externa sin instalarla. No hace el trabajo final.
+description: Decide qué skill de ingeniería de Nick usar para una tarea concreta y en qué orden combinarlas, o evalúa una skill externa sin instalarla. Úsala cuando Nick pregunte qué skill usar, cuando una tarea de ingeniería mecánica cruce varias etapas (cálculo, CAD, fabricación, informe) o cuando quiera evaluar una skill de terceros. No hace el trabajo final, y no decide qué skills crear, mejorar o retirar (eso es monitor-skills).
 ---
 
 # Router de skills de ingeniería
 
 Encuentra el camino más corto y seguro para la tarea. Esta skill no calcula, no modela
-ni redacta: elige la skill, detecta huecos y deja lista la decisión.
+ni redacta: elige la skill y deja lista la decisión.
 
 ## Primero ubica la etapa
 
@@ -46,9 +46,9 @@ No inventes capacidades que no estén escritas en el `SKILL.md` de cada skill.
 
 ## Cuando falta una skill
 
-Dilo claro. Propón un brief corto: nombre, problema que resuelve, disparadores, límites,
-datos de entrada, salida y relación con las skills que ya existen. No la crees sin que
-Nick lo pida. Si la pide, usa `shared/PLANTILLA-SKILL.md`.
+Dilo en una línea y haz el trabajo siguiendo el contrato operativo. No propongas la skill
+nueva aquí: eso lo decide `monitor-skills`, que mira si el hueco se repite en varios chats
+antes de proponer crearla. Si Nick quiere crearla ya, remítelo a `monitor-skills`.
 
 ## Skills externas: solo si Nick lo pide
 

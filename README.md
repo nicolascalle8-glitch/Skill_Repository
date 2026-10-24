@@ -17,7 +17,8 @@ shared/
   PLANTILLA-SKILL.md     Formato para crear una skill nueva
 registry/CAPACIDADES.yml Qué skills están activas, pendientes o son huecos
 skills/            Skills de Claude (una carpeta por skill)
-  router-ing/        Elige qué skill usar y detecta las que faltan
+  router-ing/        Elige qué skill usar para una tarea
+  monitor-skills/    Revisa todas las skills: qué sobra, actualizar, mejorar o crear
   auditor-handover/  Audita la saturación de un chat y arma handovers
   colaboracion-ias/  Coordina a Claude con las otras IAs (bitácora, propuestas)
   selector-ia/       Dice qué IA, modelo y nivel usar para cada tarea
@@ -47,7 +48,7 @@ proyectos/<proyecto>/
 
 ## Crear una skill nueva
 
-1. Pedirle a Claude la skill (el `router-ing` revisa que no exista ya).
+1. Pedirle a Claude la skill (el `monitor-skills` revisa que no exista ya o que no quepa en otra).
 2. Escribirla con `shared/PLANTILLA-SKILL.md`.
 3. Probarla con un caso real antes de marcarla activa.
 4. En el mismo commit: actualizar `registry/CAPACIDADES.yml` y `skills/router-ing/references/catalogo.md`.

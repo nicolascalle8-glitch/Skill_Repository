@@ -5,7 +5,8 @@ es un índice para elegir rápido; confírmalo cuando el entorno lo permita.
 
 | Skill | Etapa | Uso principal | Límite importante | Estado |
 |---|---|---|---|---|
-| `router-ing` | todas | Elegir skill, combinarlas o detectar huecos. | No hace el trabajo final. | activa |
+| `router-ing` | todas | Elegir skill para una tarea y combinarlas; evaluar skills externas. | No hace el trabajo final; no decide qué skills crear. | activa |
+| `monitor-skills` | todas | Revisar el conjunto de skills: cuál sobra, cuál actualizar o mejorar y cuál crear según el uso real. Revisión semanal. | No elige skill para una tarea; no borra skills. | en-prueba |
 | `auditor-handover` | continuar | Auditar si un chat o proyecto perdió calidad y armar el relevo (CONTEXTO + HANDOVER). | No reemplaza las fuentes del proyecto. | activa |
 | `colaboracion-ias` | continuar | Coordinar a Claude con Gemini, Cursor, Copilot, Grok y Perplexity por la bitácora del proyecto (GitHub + Google Drive). | No toma decisiones por Nick; solo deja propuestas. | en-prueba |
 | `depurador-recursos` | continuar | Limpiar memoria de Claude, docs del proyecto y chats viejos para gastar menos tokens, guardando antes cálculos e investigaciones en el repo. | No borra chats ni archivos subidos (da la lista); no hace handovers. | en-prueba |
@@ -28,6 +29,7 @@ es un índice para elegir rápido; confírmalo cuando el entorno lo permita.
 - **Memoria, proyecto o chats cargados / ahorrar tokens:** `depurador-recursos` → (`auditor-handover` para los chats que haya que guardar antes de borrar).
 - **Investigación terminada (research, M&A, sector):** `depurador-recursos` (ficha de investigación) y cerrar el chat.
 - **Pasarle o recibir trabajo de otra IA:** `colaboracion-ias`.
+- **¿Me sobra o me falta alguna skill? / revisar mis skills:** `monitor-skills`.
 - **No sé dónde hacer esto / qué modelo usar:** `selector-ia` → (`colaboracion-ias` si va a otra IA).
 
 ## Huecos que no se crean todavía

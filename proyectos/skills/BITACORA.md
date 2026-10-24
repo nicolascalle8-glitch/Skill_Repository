@@ -9,10 +9,38 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 ## Propuestas sin respuesta
 - 2026-10-24 17:41 — Claude — Cambiar la regla "todo en SI" del contrato operativo a "SI por defecto, salvo que el libro o el enunciado use otro sistema".
 - 2026-10-24 18:04 — Claude — Agregar depurador-recursos a la sección 8 del contrato operativo.
+- 2026-10-24 18:22 — Claude — (monitor) Subir panel-asesores y presentaciones-universidad al repo y registrarlas.
+- 2026-10-24 18:22 — Claude — (monitor) Crear voz-nick (activar la pendiente).
+- 2026-10-24 18:22 — Claude — (monitor) Crear calculo-trazable (activar la pendiente).
+- 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
 
 ---
 
 ## Entradas
+
+### 2026-10-24 18:22 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Salen de la revisión de skills de hoy (proyectos/skills/monitor/2026-10-24.md). Aprobar cada una por separado: (1) subir panel-asesores y presentaciones-universidad al repo y registrarlas en CAPACIDADES y en el catálogo (hoy solo están instaladas en Claude); (2) crear voz-nick con el perfil de escritura que salió en el chat de presentaciones, y que presentaciones-universidad y panel-asesores la llamen en vez de repetir reglas; (3) crear calculo-trazable con el caso Mott 10-2; (4) system-oriented-design: usarla como base de marco-problema-ing, guardarla aparte o descartarla.
+**Archivos:** ninguno todavía.
+**Fuentes:** proyectos/skills/monitor/2026-10-24.md (evidencia de cada una).
+**Verificado:** n/a hasta ejecutar.
+**Para Nick:** aprobar o rechazar 1 a 4.
+**Para la siguiente IA:** no crear voz-nick ni calculo-trazable hasta que Nick apruebe.
+
+### 2026-10-24 18:22 — Claude Opus 5.5 — HECHO
+**Qué:** Revisión de skills 2026-10-24 (primera, 🟡). Sobra: ninguna. Actualizar: 2 (panel-asesores y presentaciones-universidad fuera del repo). Mejorar: 2 (panel-asesores, router-ing). Crear: 2 (voz-nick, calculo-trazable) + decidir system-oriented-design.
+**Archivos:** proyectos/skills/monitor/2026-10-24.md
+**Fuentes:** inventario.py; 7 chats del proyecto Skills; bitácoras de skills y engranajes.
+**Verificado:** inventario.py corrido sobre el repo y las skills instaladas.
+**Para Nick:** ver propuestas arriba.
+**Para la siguiente IA:** la próxima revisión arranca desde esta fecha.
+
+### 2026-10-24 18:22 — Claude Opus 5.5 — HECHO
+**Qué:** Se crea la skill monitor-skills: revisa todas las skills y dice cuál sobra, cuál actualizar o mejorar y qué crear según el uso real (chats y bitácoras), con evidencia; solo propone, Nick aprueba. Corre también como revisión semanal. router-ing ya no propone skills nuevas: lo remite al monitor. Se agrega el estado `retirada` a CAPACIDADES.
+**Archivos:** skills/monitor-skills/ (SKILL.md, references/criterios.md, references/plantilla-reporte.md, scripts/inventario.py), skills/router-ing/SKILL.md, skills/router-ing/references/catalogo.md, registry/CAPACIDADES.yml, README.md
+**Fuentes:** pedido de Nick en el chat del 2026-10-24 (revisión semanal; monitor se queda con crear/mejorar/sobra; propone y él aprueba).
+**Verificado:** monitor-skills y router-ing pasan quick_validate; CAPACIDADES.yml carga como YAML; inventario.py corrido sin falsos positivos.
+**Para Nick:** instalar monitor-skills.skill y reinstalar router-ing.skill.
+**Para la siguiente IA:** para crear o retirar skills, pasar por monitor-skills.
 
 ### 2026-10-24 18:04 — Claude Opus 5.5 — HECHO
 **Qué:** Se crea la skill depurador-recursos: limpia memoria de Claude, docs del proyecto y chats viejos para gastar menos tokens, sin perder datos técnicos (etiquetas del contrato operativo) ni investigaciones (fichas con fecha y vigencia). Se registra en CAPACIDADES y en el catálogo del router, y las otras 4 skills la nombran. auditor-handover ya no se dispara con "auditar la memoria" para no chocar con la nueva.
