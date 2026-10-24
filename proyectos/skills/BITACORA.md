@@ -18,6 +18,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-10-24 18:40 — Claude Opus 5.5 — HECHO
+**Qué:** Depuración de memoria, chats y hábitos (docs del proyecto no revisados: sin acceso desde el chat). Ahorro aprox. 150 tokens por chat.
+**Archivos:** proyectos/skills/archivos/investigaciones/fotosintesis-cuantica-2026-05.md (nuevo). Memoria: presentacion-engranajes-helicoidales (corregido: ejercicio Mott, no el video), brake-lever (recibe las 2 líneas de Ashby), recent-work (acortado), coursework (recibe Térmicas), interests (acortado), descripción de trading-memecoins (acortada), computer-setup (sin el dato de financiación).
+**Fuentes:** chat de engranajes helicoidales; recent_chats (40 chats, 2 páginas); chat de fotosíntesis para la ficha.
+**Verificado:** cada escritura de memoria devolvió versión nueva; las 2 líneas de Ashby se copiaron exactas a brake-lever antes de quitarlas de recent-work; las de Térmicas se copiaron a coursework (el archivo viejo sigue); la ficha existe en el repo.
+**Para Nick:** borrar a mano los chats de la lista del reporte; decidir si se borra /areas/thermal-systems-design.md (ya está copiado en coursework); revisar los docs del proyecto de claude.ai.
+**Para la siguiente IA:** las cifras de la ficha de fotosíntesis están [Por validar] contra el artículo.
+
 ### 2026-10-24 18:22 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Salen de la revisión de skills de hoy (proyectos/skills/monitor/2026-10-24.md). Aprobar cada una por separado: (1) subir panel-asesores y presentaciones-universidad al repo y registrarlas en CAPACIDADES y en el catálogo (hoy solo están instaladas en Claude); (2) crear voz-nick con el perfil de escritura que salió en el chat de presentaciones, y que presentaciones-universidad y panel-asesores la llamen en vez de repetir reglas; (3) crear calculo-trazable con el caso Mott 10-2; (4) system-oriented-design: usarla como base de marco-problema-ing, guardarla aparte o descartarla.
 **Archivos:** ninguno todavía.
