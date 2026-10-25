@@ -49,8 +49,11 @@ una skill", y a diario como tarea programada. No pide permiso: Nick ya lo autori
 1. Trae historia al clon (el script la necesita para saber qué es más nuevo):
    `git fetch --depth=200 origin main` y `git pull --rebase origin main`.
 2. Simula: `python3 skills/monitor-skills/scripts/sincronizar.py <ruta-repo>`.
-   Compara cada skill instalada (`/mnt/skills/plugins`, las de origen `plugin` en
-   `manifest.json`) con el historial del repo, archivo por archivo:
+   El script busca solo la carpeta de skills instaladas (cambia según la sesión:
+   `/mnt/skills/plugins`, `/mnt/skills/user`, `~/.claude/skills/synced/<id>`…) y usa las de
+   origen `plugin` en su `manifest.json`. Si no la encuentra, el error dice cómo buscarla y
+   se pasa con `--instaladas`. Compara cada skill con el historial del repo, archivo por
+   archivo:
    - **nueva** / **cambiada**: Nick la creó o la cambió en Claude → se sube.
    - **reinstalar**: lo instalado es una versión vieja del repo → no se toca; Nick debe
      reinstalar el `.skill`. Esto evita pisar mejoras hechas en el repo.
@@ -61,12 +64,16 @@ una skill", y a diario como tarea programada. No pide permiso: Nick ya lo autori
    - **solo-repo**: está en el repo y no instalada → no se borra nada; se avisa.
 3. Si hay **nueva** o **cambiada**, aplica: el mismo comando con `--aplicar`. Copia los
    archivos y registra las nuevas en `registry/CAPACIDADES.yml` (estado `en-prueba`, etapa
-   `por-definir`) y en el catálogo del router.
+   `por-definir`) y en el catálogo de **su** router: las de otra familia (por ejemplo las de
+   física, que tienen `router-fisica`) van al catálogo de ese router, no al de `router-ing`.
+   Si el nombre ya lo usa otra capacidad en el registro, la registra con otro nombre para
+   no pisarla.
 4. Revisa el diff (`git diff --stat` y el diff de cada `SKILL.md`): que no haya borrado de
-   contenido grande sin razón y que los YAML carguen. Si algo se ve raro, no hagas push:
-   déjalo como PROPUESTA.
-5. Entrada HECHO en `proyectos/skills/BITACORA.md` (y su copia en Drive):
-   "Sincronización <fecha>" con qué skills se subieron, cuáles hay que reinstalar y cuáles
+   contenido grande sin razón y que los YAML carguen. Corre `inventario.py`: no debe dar
+   hallazgos de `registro` nuevos (nombres repetidos, skill en el catálogo equivocado).
+   Si algo se ve raro, no hagas push: déjalo como PROPUESTA.
+5. Entrada HECHO en `proyectos/skills/BITACORA.md` (y su copia en Drive), con fecha y hora
+   de Bogotá: "Sincronización <fecha>" con qué skills se subieron, cuáles hay que reinstalar y cuáles
    quedaron bloqueadas o en conflicto.
 6. Commit y push: `sync(skills): <skills subidas>`. Antes, `git fetch origin main` y rebase.
    Nunca `push --force`.

@@ -78,51 +78,58 @@ capacidades:
   articulos-exposiciones:
     skill: articulos-exposiciones
     etapa: por-definir
+    router: router-fisica
     estado: en-prueba
-    ultima_revision: 2026-10-25
+    ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
   ejercicios-fisica:
     skill: ejercicios-fisica
     etapa: por-definir
+    router: router-fisica
     estado: en-prueba
-    ultima_revision: 2026-10-25
+    ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
   informe-laboratorio:
     skill: informe-laboratorio
     etapa: por-definir
+    router: router-fisica
     estado: en-prueba
-    ultima_revision: 2026-10-25
+    ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
   panel-asesores-fisica:
     skill: panel-asesores-fisica
     etapa: por-definir
+    router: router-fisica
     estado: en-prueba
-    ultima_revision: 2026-10-25
+    ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
   router-fisica:
     skill: router-fisica
     etapa: por-definir
+    router: router-fisica
     estado: en-prueba
-    ultima_revision: 2026-10-25
+    ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
   simulacion-fisica:
     skill: simulacion-fisica
     etapa: por-definir
+    router: router-fisica
     estado: en-prueba
-    ultima_revision: 2026-10-25
+    ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
-  voz-propia:
+  voz-fisica:
     skill: voz-propia
     etapa: por-definir
+    router: router-fisica
     estado: en-prueba
-    ultima_revision: 2026-10-25
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
+    ultima_revision: 2026-10-24
+    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba. Su perfil todavía no tiene muestras de textos de ella (router-fisica la marca como pendiente).
 
   enmarcar-problema:
     skill: marco-problema-ing

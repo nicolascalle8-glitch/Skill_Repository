@@ -2,7 +2,9 @@
 """Inventario y chequeos automáticos de las skills de Nick.
 
 Uso:
-    python inventario.py <ruta-repo> [--instaladas /mnt/skills/plugins] [--json]
+    python inventario.py <ruta-repo> [--instaladas <carpeta>] [--json]
+
+La carpeta de skills instaladas se busca sola; --instaladas solo si no la encuentra.
 
 Revisa lo que se puede revisar sin criterio humano:
 - Skills en el repo vs. instaladas en Claude (falta en un lado, cuerpo distinto).
@@ -22,6 +24,9 @@ import subprocess
 import sys
 
 import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from comun import buscar_instaladas, catalogos, router_de  # noqa: E402
 
 NOMBRE_OK = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 # Skills de Anthropic que vienen con Claude; no son de Nick.
@@ -76,11 +81,12 @@ def normalizar(cuerpo):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("repo")
-    ap.add_argument("--instaladas", default="/mnt/skills/plugins")
+    ap.add_argument("--instaladas", default=None)
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
 
     repo = os.path.abspath(a.repo)
+    a.instaladas = buscar_instaladas(a.instaladas)
     en_repo = skills_en(os.path.join(repo, "skills"))
     instaladas = skills_en(a.instaladas)
     man = os.path.join(a.instaladas, "manifest.json")
@@ -94,25 +100,26 @@ def main():
     instaladas = {k: v for k, v in instaladas.items()
                   if (k in propias if propias is not None else k not in SKILLS_SISTEMA)}
 
+    hallazgos_previos = []
     cap_path = os.path.join(repo, "registry", "CAPACIDADES.yml")
     capacidades = {}
     if os.path.isfile(cap_path):
         with open(cap_path, encoding="utf-8") as f:
             capacidades = (yaml.safe_load(f) or {}).get("capacidades", {}) or {}
+    if os.path.isfile(cap_path):
+        claves = re.findall(r"^  ([a-z0-9-]+):\s*$", open(cap_path, encoding="utf-8").read(), re.M)
+        for k in sorted({k for k in claves if claves.count(k) > 1}):
+            hallazgos_previos.append({"skill": k, "tipo": "registro",
+                                      "detalle": "nombre repetido en CAPACIDADES.yml (una entrada pisa a la otra)"})
     registradas = {v.get("skill"): {"capacidad": k, **v} for k, v in capacidades.items() if v.get("skill")}
 
-    cat_path = os.path.join(repo, "skills", "router-ing", "references", "catalogo.md")
-    catalogo = set()
-    if os.path.isfile(cat_path):
-        with open(cat_path, encoding="utf-8") as f:
-            for l in f:
-                m = re.match(r"^\|\s*`([a-z0-9-]+)`", l)
-                if m:
-                    catalogo.add(m.group(1))
+    cats = catalogos(repo)
+    catalogo = set().union(*(l for _, l in cats.values())) if cats else set()
+    cat_ing = cats.get("router-ing", (None, set()))[1]
 
     conocidas = set(en_repo) | set(instaladas) | set(registradas) | catalogo | SKILLS_SISTEMA
     todas = sorted(set(en_repo) | set(instaladas))
-    filas, hallazgos = [], []
+    filas, hallazgos = [], list(hallazgos_previos)
 
     for s in todas:
         fuente = en_repo.get(s) or instaladas.get(s)
@@ -156,15 +163,18 @@ def main():
             for sub in ("references", "scripts"):
                 r = os.path.join(os.path.dirname(en_repo[s]), sub)
                 i = os.path.join(os.path.dirname(instaladas[s]), sub)
-                ra = set(os.listdir(r)) if os.path.isdir(r) else set()
-                ia = set(os.listdir(i)) if os.path.isdir(i) else set()
+                ra = {x for x in os.listdir(r) if x != "__pycache__"} if os.path.isdir(r) else set()
+                ia = {x for x in os.listdir(i) if x != "__pycache__"} if os.path.isdir(i) else set()
                 if ra != ia:
                     hallazgos.append({"skill": s, "tipo": "sincronía", "detalle": f"{sub}/ distinto: solo repo {sorted(ra - ia)}, solo instalada {sorted(ia - ra)}"})
 
         if s not in registradas:
             hallazgos.append({"skill": s, "tipo": "registro", "detalle": "no está en registry/CAPACIDADES.yml"})
-        if s not in catalogo:
-            hallazgos.append({"skill": s, "tipo": "registro", "detalle": "no está en el catálogo del router"})
+        router = router_de(repo, s, cuerpo)
+        if router != s and s not in cats.get(router, (None, set()))[1]:
+            hallazgos.append({"skill": s, "tipo": "registro", "detalle": f"no está en el catálogo de {router}"})
+        if router != "router-ing" and s in cat_ing:
+            hallazgos.append({"skill": s, "tipo": "registro", "detalle": f"es de {router} pero está en el catálogo de router-ing"})
 
         base = os.path.dirname(fuente)
         for ref in sorted(set(re.findall(r"`((?:references|scripts|assets)/[^`\s]+)`", cuerpo))):

@@ -2,7 +2,10 @@
 """Sube al repo las skills que Nick creó o cambió en Claude.
 
 Uso:
-    python sincronizar.py <ruta-repo> [--instaladas /mnt/skills/plugins] [--aplicar] [--json]
+    python sincronizar.py <ruta-repo> [--instaladas <carpeta>] [--aplicar] [--json]
+
+La carpeta de skills instaladas se busca sola (ver comun.CANDIDATAS); --instaladas solo
+hace falta si no la encuentra.
 
 Sin --aplicar solo dice qué haría. Con --aplicar copia los archivos al repo y registra las
 skills nuevas en CAPACIDADES.yml y en el catálogo del router (no hace commit).
@@ -34,6 +37,9 @@ import subprocess
 import sys
 
 import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from comun import buscar_instaladas, catalogos, hoy_bogota, router_de  # noqa: E402
 
 SKILLS_SISTEMA = {
     "artifact-emulator", "built-in-browser", "chrome-browser", "computer-use",
@@ -194,21 +200,48 @@ def escribir(repo, skill, inst_dir, cambios):
 
 
 def registrar(repo, skill, inst_dir, hoy):
-    """Agrega la skill nueva a CAPACIDADES.yml y al catálogo del router, si no está."""
-    _, meta, _ = partir_skill(open(os.path.join(inst_dir, "SKILL.md"), encoding="utf-8").read())
+    """Agrega la skill nueva a CAPACIDADES.yml y al catálogo de SU router, si no está.
+
+    Si la skill es de otra familia (tiene su propio router-x), no se toca el catálogo de
+    router-ing: se agrega al de ese router si existe, o se deja anotado.
+    """
+    texto = open(os.path.join(inst_dir, "SKILL.md"), encoding="utf-8").read()
+    _, meta, _ = partir_skill(texto)
+    router = router_de(repo, skill, texto)
     desc = " ".join(str((meta or {}).get("description", "")).split())
     uso = re.split(r"(?<=[.:])\s", desc, maxsplit=1)[0].rstrip(".:")
     cap = os.path.join(repo, "registry", "CAPACIDADES.yml")
     t = open(cap, encoding="utf-8").read()
     if f"skill: {skill}\n" not in t:
-        bloque = (f"\n  {skill}:\n    skill: {skill}\n    etapa: por-definir\n    estado: en-prueba\n"
+        clave = skill
+        n = 2
+        while re.search(rf"^  {re.escape(clave)}:\s*$", t, re.M):
+            clave = f"{skill}-{n}"  # ese nombre ya lo usa otra capacidad
+            n += 1
+        linea_router = f"    router: {router}\n" if router != "router-ing" else ""
+        bloque = (f"\n  {clave}:\n    skill: {skill}\n    etapa: por-definir\n{linea_router}    estado: en-prueba\n"
                   f"    ultima_revision: {hoy}\n    nota: Subida automáticamente por monitor-skills desde lo "
                   f"instalado en Claude. Falta revisar etapa y caso de prueba.\n")
         t = t.replace("\n  enmarcar-problema:", bloque + "\n  enmarcar-problema:", 1) \
             if "\n  enmarcar-problema:" in t else t.rstrip("\n") + "\n" + bloque
         open(cap, "w", encoding="utf-8").write(t)
         yaml.safe_load(open(cap, encoding="utf-8"))
-    cat = os.path.join(repo, "skills", "router-ing", "references", "catalogo.md")
+    if router == skill:
+        return  # es un router: no se lista en el catálogo de otro router
+    cats = catalogos(repo)
+    if router not in cats:
+        return  # su router todavía no tiene catálogo en el repo
+    cat, listadas = cats[router]
+    if skill in listadas:
+        return
+    if router != "router-ing":
+        c = open(cat, encoding="utf-8").read().rstrip("\n")
+        filas = [l for l in c.splitlines() if l.startswith("| `")]
+        fila = f"| `{skill}` | en-prueba | {uso}. | Ver su SKILL.md. |"
+        if filas and filas[-1].count("|") == fila.count("|"):
+            c = c.replace(filas[-1], filas[-1] + "\n" + fila, 1)
+            open(cat, "w", encoding="utf-8").write(c + "\n")
+        return
     if os.path.isfile(cat):
         c = open(cat, encoding="utf-8").read()
         if f"| `{skill}` |" not in c:
@@ -221,13 +254,14 @@ def registrar(repo, skill, inst_dir, hoy):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("repo")
-    ap.add_argument("--instaladas", default="/mnt/skills/plugins")
+    ap.add_argument("--instaladas", default=None)
     ap.add_argument("--aplicar", action="store_true")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--hoy", default=None)
     a = ap.parse_args()
     repo = os.path.abspath(a.repo)
-    hoy = a.hoy or subprocess.run(["date", "+%F"], capture_output=True, text=True).stdout.strip()
+    hoy = a.hoy or hoy_bogota()
+    a.instaladas = buscar_instaladas(a.instaladas)
 
     propias = skills_propias(a.instaladas)
     en_repo = {d for d in os.listdir(os.path.join(repo, "skills"))
