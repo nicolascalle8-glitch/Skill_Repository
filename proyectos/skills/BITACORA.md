@@ -17,6 +17,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-10-24 22:34 — Claude Opus 5.5 — HECHO
+**Qué:** Sincronización 2026-10-24 (tarea diaria). Subidas: articulos-exposiciones, ejercicios-fisica, informe-laboratorio, panel-asesores-fisica, router-fisica, simulacion-fisica y voz-propia (nuevas, skills de física para la estudiante de la EIA; registradas en CAPACIDADES como en-prueba, etapa por-definir, y en el catálogo de router-ing). Reinstalar: auditor-handover y router-ing (el repo va adelante). Bloqueadas o en conflicto: ninguna.
+**Archivos:** skills/articulos-exposiciones/, skills/ejercicios-fisica/, skills/informe-laboratorio/, skills/panel-asesores-fisica/, skills/router-fisica/, skills/simulacion-fisica/, skills/voz-propia/, registry/CAPACIDADES.yml, skills/router-ing/references/catalogo.md
+**Fuentes:** skills instaladas en Claude (manifest.json, origen plugin).
+**Verificado:** sincronizar.py sin nuevas ni cambiadas después de aplicar; CAPACIDADES.yml carga como YAML; búsqueda de claves en los archivos subidos sin hallazgos.
+**Para Nick:** reinstalar auditor-handover.skill y router-ing.skill. Ojo: sincronizar.py busca las skills en /mnt/skills/plugins y en esta sesión estaban en otra ruta; se corrió con --instaladas.
+**Para la siguiente IA:** las 7 de física están en el catálogo de router-ing, pero su router propio es router-fisica; revisar si deben salir de ese catálogo.
+
 ### 2026-10-24 20:48 — Claude Opus 5.5 — HECHO
 **Qué:** Se ordenó D:\Personal\Claude por proyecto (aprobado por Nick): proyectos\banco-pruebas-fz15\ y proyectos\taller-final-mecanismos\ con fuentes/trabajo/entregables/anterior, y _entrada\ con el archivo de Gemini. Solo se movió y copió, nada se borró. En taller-final, entregables\ y anterior\ son copias (los originales siguen en trabajo\Soluciones\).
 **Archivos:** proyectos/README.md (rutas nuevas). En el computador: D:\Personal\Claude\proyectos\, D:\Personal\Claude\_entrada\
