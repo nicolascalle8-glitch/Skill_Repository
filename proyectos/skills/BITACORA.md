@@ -12,10 +12,27 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 - 2026-10-24 18:22 — Claude — (monitor) Crear calculo-trazable (activar la pendiente).
 - 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
 - 2026-10-24 20:50 — Claude — Integración del sistema de Gemini: 3 reglas al contrato, ordenar D:\Personal\Claude por proyecto, guion cronometrado en presentaciones-universidad, confirmar perfil.
+- 2026-10-25 18:38 — Claude — (monitor) Agregar "no es para la estudiante de Física" a la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing.
 
 ---
 
 ## Entradas
+
+### 2026-10-25 18:38 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Sale de la revisión semanal (proyectos/skills/monitor/2026-10-25.md). Agregar al final de la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing una línea "No es para la estudiante de Física (usa <skill de física>)". Las 7 de física están en la misma cuenta y sí excluyen a las de Nick, pero las de Nick no las excluyen; frases que chocan: "que suene a mí", "esto suena a ChatGPT" (voz-nick / voz-propia), "slides", "exposición" (presentaciones-universidad / articulos-exposiciones), "evaluar, revisar, decidir" (panel-asesores / panel-asesores-fisica).
+**Archivos:** ninguno todavía.
+**Fuentes:** descripciones de las skills instaladas (2026-10-25); registry/REPOS.yml.
+**Verificado:** n/a hasta ejecutar.
+**Para Nick:** aprobar o rechazar.
+**Para la siguiente IA:** no cambiar las descripciones hasta que Nick apruebe; después, reinstalar las 4.
+
+### 2026-10-25 18:38 — Claude Opus 5.5 — HECHO
+**Qué:** Revisión de skills 2026-10-25 (semanal, 🟡). Sincronización antes: Skill_Repository sin nada que subir (9 skills iguales; auditor-handover y monitor-skills ya reinstaladas); Skills_Fisica no se pudo sincronizar (no se pudo agregar a la sesión). Sobra: ninguna. Actualizar: 2 (colaboracion-ias y auditor-handover: tarjetas del 2026-10-24 20:50 sin guardar). Mejorar: 4 descripciones sin exclusión de física (1 propuesta). Crear: calculo-trazable sigue abierta (tarjeta sin guardar).
+**Archivos:** proyectos/skills/monitor/2026-10-25.md
+**Fuentes:** sincronizar.py e inventario.py (0 hallazgos); bitácoras de skills y engranajes; 13 commits desde 2026-10-24 18:22. Chats: no revisados (la tarea programada no tiene herramienta de chats).
+**Verificado:** inventario.py y sincronizar.py corridos sobre el repo y las skills instaladas; bitácora de Drive comparada con la de GitHub (iguales antes de esta entrada).
+**Para Nick:** aprobar o rechazar la propuesta de arriba; guardar las tarjetas de calculo-trazable, colaboracion-ias y auditor-handover si sigues de acuerdo; dar acceso a Skills_Fisica en la tarea programada.
+**Para la siguiente IA:** la próxima revisión arranca desde 2026-10-25 18:38.
 
 ### 2026-10-25 14:40 — Claude Opus 5.5 — HECHO
 **Qué:** Las 7 skills de física salen de este repo: ya vivían en nicolascalle8-glitch/Skills_Fisica (repo de Valeria) con el mismo contenido que está instalado, y la sincronización del 2026-10-24 22:34 las había copiado aquí por error. Se quitan sus carpetas y sus entradas de CAPACIDADES (el historial de git las conserva, commit bff1c79). Nuevo registry/REPOS.yml: dice qué repo guarda cada skill (por nombre o por patrón; lo que no reconoce va a Skill_Repository). sincronizar.py e inventario.py lo usan: cada repo recibe solo sus skills y las demás salen como "va en otro repo". La sincronización diaria ahora corre sobre los dos repos.
