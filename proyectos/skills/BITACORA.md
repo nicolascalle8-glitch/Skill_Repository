@@ -17,6 +17,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-10-24 20:48 — Claude Opus 5.5 — HECHO
+**Qué:** Se ordenó D:\Personal\Claude por proyecto (aprobado por Nick): proyectos\banco-pruebas-fz15\ y proyectos\taller-final-mecanismos\ con fuentes/trabajo/entregables/anterior, y _entrada\ con el archivo de Gemini. Solo se movió y copió, nada se borró. En taller-final, entregables\ y anterior\ son copias (los originales siguen en trabajo\Soluciones\).
+**Archivos:** proyectos/README.md (rutas nuevas). En el computador: D:\Personal\Claude\proyectos\, D:\Personal\Claude\_entrada\
+**Fuentes:** —
+**Verificado:** listado de la carpeta después de mover: no quedó nada en Yamaha_banco_pruebas\ (la carpeta vacía sigue porque no hay permiso de borrar).
+**Para Nick:** borrar a mano la carpeta vacía Yamaha_banco_pruebas\. extract_imgs.m y build_report.py tienen la ruta vieja D:/Personal/Claude escrita; si los vuelves a correr, hay que cambiarla.
+**Para la siguiente IA:** los archivos de trabajo de cada proyecto están en D:\Personal\Claude\proyectos\<proyecto>\.
+
 ### 2026-10-24 20:50 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Lo que sale de la revisión del sistema de Gemini y necesita a Nick: (1) agregar al CONTRATO, sección 4: "no leer libros ni PDFs largos completos sin permiso", "lo viejo se mueve a anterior/, no se borra" y "lo que está en Excel se verifica con un script aparte"; (2) ordenar D:\Personal\Claude con la estructura nueva (proyectos\banco-pruebas-fz15\ y proyectos\taller-final-mecanismos\ con fuentes/trabajo/entregables/anterior, y _entrada\ para el archivo de Gemini); (3) agregar a presentaciones-universidad el guion cronometrado (palabras y tiempo por slide con acumulado, 2 primeras frases con la idea, bloques [RECORTABLE]); (4) confirmar si el perfil que puso Gemini es cierto ("Ingeniería Mecánica y Economía", Mede3DLab, consultor SEO/GEO).
 **Archivos:** ninguno todavía.
@@ -24,6 +32,7 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 **Verificado:** n/a hasta ejecutar.
 **Para Nick:** aprobar o rechazar 1 a 4.
 **Para la siguiente IA:** no mover nada en el computador de Nick ni tocar el contrato hasta que Nick apruebe.
+✅ Aprobado por Nick — 2026-10-24 20:48 — punto (2): ordenar D:\Personal\Claude. (1), (3) y (4) siguen abiertos.
 
 ### 2026-10-24 20:50 — Claude Opus 5.5 — HECHO
 **Qué:** Nueva estructura de proyectos: shared/PLANTILLA-PROYECTO.md (repo + computador con fuentes/trabajo/entregables/anterior, arranque con máx. 5 preguntas, criterio de cierre, estados) e índice proyectos/README.md con los 4 proyectos (skills, engranajes-helicoidales, y por confirmar banco-pruebas-fz15 y taller-final-mecanismos). La plantilla del CONTEXTO de auditor-handover tiene ahora "Criterio de cierre". Se dejaron listas para instalar (tarjetas en el chat): calculo-trazable (nueva, punto 3 de la propuesta del monitor de 18:22), y cambios a colaboracion-ias y auditor-handover para que usen la plantilla.
