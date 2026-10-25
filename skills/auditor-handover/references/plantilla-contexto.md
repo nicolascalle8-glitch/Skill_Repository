@@ -47,6 +47,9 @@ Actualizado: <AAAA-MM-DD HH:MM> (Bogotá). Lee solo esto para arrancar. El histo
 ## Pendientes abiertos
 - [ ] <pendiente> — <responsable> — <fecha límite>
 
+## Criterio de cierre
+- [ ] <qué archivo tiene que existir / qué revisión tiene que pasar> (ver shared/PLANTILLA-PROYECTO.md, punto 4)
+
 ## Preguntas abiertas
 - <lo que falta decidir>
 

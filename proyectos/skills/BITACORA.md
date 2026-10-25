@@ -11,10 +11,43 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 - 2026-10-24 18:04 — Claude — Agregar depurador-recursos a la sección 8 del contrato operativo.
 - 2026-10-24 18:22 — Claude — (monitor) Crear calculo-trazable (activar la pendiente).
 - 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
+- 2026-10-24 20:50 — Claude — Integración del sistema de Gemini: 3 reglas al contrato, ordenar D:\Personal\Claude por proyecto, guion cronometrado en presentaciones-universidad, confirmar perfil.
 
 ---
 
 ## Entradas
+
+### 2026-10-24 20:50 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Lo que sale de la revisión del sistema de Gemini y necesita a Nick: (1) agregar al CONTRATO, sección 4: "no leer libros ni PDFs largos completos sin permiso", "lo viejo se mueve a anterior/, no se borra" y "lo que está en Excel se verifica con un script aparte"; (2) ordenar D:\Personal\Claude con la estructura nueva (proyectos\banco-pruebas-fz15\ y proyectos\taller-final-mecanismos\ con fuentes/trabajo/entregables/anterior, y _entrada\ para el archivo de Gemini); (3) agregar a presentaciones-universidad el guion cronometrado (palabras y tiempo por slide con acumulado, 2 primeras frases con la idea, bloques [RECORTABLE]); (4) confirmar si el perfil que puso Gemini es cierto ("Ingeniería Mecánica y Economía", Mede3DLab, consultor SEO/GEO).
+**Archivos:** ninguno todavía.
+**Fuentes:** proyectos/skills/archivos/gemini/revision-2026-10-24.md
+**Verificado:** n/a hasta ejecutar.
+**Para Nick:** aprobar o rechazar 1 a 4.
+**Para la siguiente IA:** no mover nada en el computador de Nick ni tocar el contrato hasta que Nick apruebe.
+
+### 2026-10-24 20:50 — Claude Opus 5.5 — HECHO
+**Qué:** Nueva estructura de proyectos: shared/PLANTILLA-PROYECTO.md (repo + computador con fuentes/trabajo/entregables/anterior, arranque con máx. 5 preguntas, criterio de cierre, estados) e índice proyectos/README.md con los 4 proyectos (skills, engranajes-helicoidales, y por confirmar banco-pruebas-fz15 y taller-final-mecanismos). La plantilla del CONTEXTO de auditor-handover tiene ahora "Criterio de cierre". Se dejaron listas para instalar (tarjetas en el chat): calculo-trazable (nueva, punto 3 de la propuesta del monitor de 18:22), y cambios a colaboracion-ias y auditor-handover para que usen la plantilla.
+**Archivos:** shared/PLANTILLA-PROYECTO.md, proyectos/README.md, skills/auditor-handover/references/plantilla-contexto.md, README.md, proyectos/skills/archivos/gemini/
+**Fuentes:** archivo de Gemini (proyectos/skills/archivos/gemini/sistema-skills-agentes-2026-10-24.md); pedido de Nick en el chat 2026-10-24 20:32.
+**Verificado:** rutas de la plantilla revisadas contra CONTRATO.md §7 y las skills que las usan (colaboracion-ias, auditor-handover, depurador-recursos): no se contradicen.
+**Para Nick:** guardar las 3 tarjetas de skills si estás de acuerdo (monitor-skills las sube al repo); calculo-trazable queda en-prueba con el caso Mott 10-2.
+**Para la siguiente IA:** la estructura de un proyecto ahora se lee en shared/PLANTILLA-PROYECTO.md.
+
+### 2026-10-24 20:45 — Claude Opus 5.5 — REVISIÓN
+**Qué:** Revisión del sistema de Gemini. Ya lo teníamos casi todo (context-handover = auditor-handover; arquitecto-proyecto ≈ colaboracion-ias flujo E). Sirve: caso base primero, fórmulas del Excel, break-even/tornado (→ calculo-trazable); revisión de consistencia entre archivos; carpeta anterior/ y criterio de cierre (→ estructura de proyectos); guion cronometrado (→ presentaciones-universidad). Fuera de este proyecto: digital-growth-geo y propuestas comerciales. No se copió el perfil de Gemini porque tiene datos sin confirmar.
+**Archivos:** proyectos/skills/archivos/gemini/revision-2026-10-24.md
+**Fuentes:** el archivo de Gemini, comparado con las skills del repo.
+**Verificado:** leído completo; cada pieza comparada con la skill que la cubre.
+**Para Nick:** confirmar el perfil (punto 4 de la propuesta).
+**Para la siguiente IA:** la tabla de qué se integra y qué no está en la revisión.
+
+### 2026-10-24 20:30 — Gemini — HECHO (subido por Claude desde el chat de Nick)
+**Qué:** Propuesta de "Sistema genérico de skills y agentes": CLAUDE.md global, 4 skills (context-handover, quant-verification, editorial-deliverables, digital-growth-geo) y 2 subagentes (auditor-consistencia, arquitecto-proyecto). Nick lo bajó a D:\Personal\Claude\claude_sistema_skills_agentes.md.
+**Archivos:** proyectos/skills/archivos/gemini/sistema-skills-agentes-2026-10-24.md (copia exacta)
+**Fuentes:** no indica.
+**Verificado:** no indica.
+**Para Nick:** —
+**Para la siguiente IA:** —
 
 ### 2026-10-24 18:45 — Claude Opus 5.5 — HECHO
 **Qué:** Se crea la skill voz-nick con el perfil de escritura sacado de textos reales de Nick en Drive (chat de presentaciones del 2026-10-24): rasgos suyos, lo que no es Nick, calibración por tipo de texto y una sección de correcciones que crece cuando él corrige. Incluye revisar_voz.py, que marca muletillas, lenguaje inflado, guiones largos, cierres tipo eslogan, tríos de adjetivos y frases muy largas. presentaciones-universidad y panel-asesores ahora la llaman en vez de repetir reglas de estilo.

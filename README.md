@@ -26,6 +26,8 @@ skills/            Skills de Claude (una carpeta por skill)
   depurador-recursos/ Limpia memoria, docs del proyecto y chats viejos sin perder datos
 shared/BITACORA-DRIVE.md   Cómo se copia la bitácora a Google Drive
 registry/DRIVE.yml         Ids de carpetas y bitácoras en Drive (carpeta "Proyectos IA")
+shared/PLANTILLA-PROYECTO.md Cómo se arma un proyecto (repo + computador, criterio de cierre)
+proyectos/README.md        Índice de todos los proyectos y su estado
 proyectos/<proyecto>/
   CONTEXTO.md      Estado actual. Lo primero que lee cualquier IA (corto, se reescribe)
   BITACORA.md      Quién hizo qué, propuestas y aprobaciones (solo crece). Copia en Drive.
