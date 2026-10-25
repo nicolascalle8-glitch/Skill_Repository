@@ -11,6 +11,9 @@ contratos:
 #   hueco     -> se detectó la necesidad, pero no se crea hasta que un caso real lo pida
 #   retirada  -> ya no se usa; se conserva el registro con la razón y la fecha (no se borra)
 
+# Las skills de física (de Valeria) viven en nicolascalle8-glitch/Skills_Fisica, con su propio
+# registro. Qué skill va a qué repo: registry/REPOS.yml.
+
 capacidades:
   enrutamiento:
     skill: router-ing
@@ -74,62 +77,6 @@ capacidades:
     estado: en-prueba
     ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
-
-  articulos-exposiciones:
-    skill: articulos-exposiciones
-    etapa: por-definir
-    router: router-fisica
-    estado: en-prueba
-    ultima_revision: 2026-10-24
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
-
-  ejercicios-fisica:
-    skill: ejercicios-fisica
-    etapa: por-definir
-    router: router-fisica
-    estado: en-prueba
-    ultima_revision: 2026-10-24
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
-
-  informe-laboratorio:
-    skill: informe-laboratorio
-    etapa: por-definir
-    router: router-fisica
-    estado: en-prueba
-    ultima_revision: 2026-10-24
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
-
-  panel-asesores-fisica:
-    skill: panel-asesores-fisica
-    etapa: por-definir
-    router: router-fisica
-    estado: en-prueba
-    ultima_revision: 2026-10-24
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
-
-  router-fisica:
-    skill: router-fisica
-    etapa: por-definir
-    router: router-fisica
-    estado: en-prueba
-    ultima_revision: 2026-10-24
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
-
-  simulacion-fisica:
-    skill: simulacion-fisica
-    etapa: por-definir
-    router: router-fisica
-    estado: en-prueba
-    ultima_revision: 2026-10-24
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
-
-  voz-fisica:
-    skill: voz-propia
-    etapa: por-definir
-    router: router-fisica
-    estado: en-prueba
-    ultima_revision: 2026-10-24
-    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba. Su perfil todavía no tiene muestras de textos de ella (router-fisica la marca como pendiente).
 
   enmarcar-problema:
     skill: marco-problema-ing

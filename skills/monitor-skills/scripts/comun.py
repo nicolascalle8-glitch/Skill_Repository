@@ -100,3 +100,46 @@ def router_de(repo, skill, texto_skill=""):
             if r != "router-ing" and nombradas & listadas:
                 return r
     return "router-ing"
+
+
+# ---------- Varios repos: qué skill va a qué repo (registry/REPOS.yml) ----------
+
+def ruta_mapa():
+    """REPOS.yml vive en el repo central (Skill_Repository), junto a este script."""
+    aqui = os.path.dirname(os.path.abspath(__file__))
+    return os.path.normpath(os.path.join(aqui, "..", "..", "..", "registry", "REPOS.yml"))
+
+
+def cargar_mapa(ruta=None):
+    import yaml
+    ruta = ruta or ruta_mapa()
+    if not os.path.isfile(ruta):
+        return []
+    return [r for r in (yaml.safe_load(open(ruta, encoding="utf-8")) or {}).get("repos", [])
+            if r.get("estado", "activo") != "cerrado"]
+
+
+def repo_de_skill(mapa, nombre, descripcion=""):
+    """Nombre del repo que guarda esta skill."""
+    for r in mapa:
+        if nombre in (r.get("skills") or []):
+            return r["nombre"]
+    for r in mapa:
+        for patron in r.get("reconocer") or []:
+            if re.search(patron, nombre) or re.search(patron, descripcion or ""):
+                return r["nombre"]
+    for r in mapa:
+        if r.get("por_defecto"):
+            return r["nombre"]
+    return None
+
+
+def repo_de_ruta(mapa, ruta):
+    """Qué repo del mapa es el clon que está en esta ruta (por su remote de git)."""
+    import subprocess
+    url = subprocess.run(["git", "-C", ruta, "remote", "get-url", "origin"],
+                         capture_output=True, text=True).stdout.strip().lower()
+    for r in mapa:
+        if r.get("github", "").lower().split("/")[-1] in url.rstrip("/").removesuffix(".git").split("/")[-1:]:
+            return r["nombre"]
+    return None

@@ -16,6 +16,7 @@ shared/
   CONTRATO-OPERATIVO.md  Reglas técnicas de ingeniería (etiquetas, unidades, puertas)
   PLANTILLA-SKILL.md     Formato para crear una skill nueva
 registry/CAPACIDADES.yml Qué skills están activas, pendientes o son huecos
+registry/REPOS.yml       Qué repo guarda cada skill (las de física van en Skills_Fisica)
 skills/            Skills de Claude (una carpeta por skill)
   router-ing/        Elige qué skill usar para una tarea
   monitor-skills/    Revisa todas las skills: qué sobra, actualizar, mejorar o crear

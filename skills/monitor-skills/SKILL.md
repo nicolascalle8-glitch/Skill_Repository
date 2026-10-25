@@ -46,9 +46,17 @@ Mandan `CONTRATO.md` (aprobaciones, historial que no se borra) y
 Corre al empezar cualquier revisión, cuando Nick dice "sube mis skills" o "guardé/cambié
 una skill", y a diario como tarea programada. No pide permiso: Nick ya lo autorizó.
 
-1. Trae historia al clon (el script la necesita para saber qué es más nuevo):
-   `git fetch --depth=200 origin main` y `git pull --rebase origin main`.
-2. Simula: `python3 skills/monitor-skills/scripts/sincronizar.py <ruta-repo>`.
+Las skills de la cuenta viven en **varios repos**. `registry/REPOS.yml` (en
+`Skill_Repository`) dice cuál va a cuál: hoy `Skill_Repository` para las de Nick (por
+defecto) y `Skills_Fisica` para las de Valeria (física). Los pasos de abajo se hacen **una
+vez por cada repo activo del mapa**, siempre con el script de `Skill_Repository`. El script
+solo toca las skills que el mapa le asigna al repo que le pasas; las demás salen como
+"va en otro repo".
+
+1. Agrega cada repo con `add_repo` (acceso `push`) y clónalo. Trae historia al clon (el
+   script la necesita para saber qué es más nuevo): `git fetch --depth=200 origin main` y
+   `git pull --rebase origin main`.
+2. Simula: `python3 <Skill_Repository>/skills/monitor-skills/scripts/sincronizar.py <ruta-del-repo>`.
    El script busca solo la carpeta de skills instaladas (cambia según la sesión:
    `/mnt/skills/plugins`, `/mnt/skills/user`, `~/.claude/skills/synced/<id>`…) y usa las de
    origen `plugin` en su `manifest.json`. Si no la encuentra, el error dice cómo buscarla y
@@ -72,12 +80,15 @@ una skill", y a diario como tarea programada. No pide permiso: Nick ya lo autori
    contenido grande sin razón y que los YAML carguen. Corre `inventario.py`: no debe dar
    hallazgos de `registro` nuevos (nombres repetidos, skill en el catálogo equivocado).
    Si algo se ve raro, no hagas push: déjalo como PROPUESTA.
-5. Entrada HECHO en `proyectos/skills/BITACORA.md` (y su copia en Drive), con fecha y hora
-   de Bogotá: "Sincronización <fecha>" con qué skills se subieron, cuáles hay que reinstalar y cuáles
+5. Entrada HECHO en `proyectos/skills/BITACORA.md` **del repo que cambió** (en
+   `Skill_Repository`, también su copia en Drive), con fecha y hora de Bogotá: "Sincronización <fecha>" con qué skills se subieron, cuáles hay que reinstalar y cuáles
    quedaron bloqueadas o en conflicto.
 6. Commit y push: `sync(skills): <skills subidas>`. Antes, `git fetch origin main` y rebase.
    Nunca `push --force`.
 7. Si no hubo nada que subir, no hagas commit ni entrada; en la tarea diaria, no avises.
+8. Si una skill nueva no la reconoce ningún repo y por su tema no parece de Nick (por
+   ejemplo, es para otra persona), no la subas al repo por defecto: avísale a Nick y
+   propón agregarla a `registry/REPOS.yml`.
 
 El repo nunca pierde archivos por la sincronización: el script solo agrega o actualiza.
 

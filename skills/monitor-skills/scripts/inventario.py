@@ -26,7 +26,7 @@ import sys
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from comun import buscar_instaladas, catalogos, router_de  # noqa: E402
+from comun import buscar_instaladas, cargar_mapa, catalogos, repo_de_ruta, repo_de_skill, router_de  # noqa: E402
 
 NOMBRE_OK = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 # Skills de Anthropic que vienen con Claude; no son de Nick.
@@ -99,6 +99,16 @@ def main():
             propias = None
     instaladas = {k: v for k, v in instaladas.items()
                   if (k in propias if propias is not None else k not in SKILLS_SISTEMA)}
+    mapa = cargar_mapa()
+    este = repo_de_ruta(mapa, repo) if mapa else None
+    otras = {}
+    if este:
+        for k in list(instaladas):
+            meta, _, _ = leer_skill(instaladas[k])
+            destino = repo_de_skill(mapa, k, " ".join(str((meta or {}).get("description", "")).split()))
+            if destino != este:
+                otras[k] = destino
+                del instaladas[k]
 
     hallazgos_previos = []
     cap_path = os.path.join(repo, "registry", "CAPACIDADES.yml")
@@ -209,6 +219,8 @@ def main():
         print(f"| {f['skill']} | {'sí' if f['en_repo'] else 'NO'} | {'sí' if f['instalada'] else 'NO'} | "
               f"{f['estado'] or '—'} | {f['ultima_revision'] or '—'} | {f['ultimo_commit'] or '—'} | "
               f"{f['lineas']} | {f['palabras']} | {f['largo_descripcion']} |")
+    if otras:
+        print("\nInstaladas que van en otro repo: " + ", ".join(f"{k} ({v})" for k, v in sorted(otras.items())))
     print(f"\nPendientes registradas (no existen aún): {', '.join(salida['pendientes']) or 'ninguna'}")
     print(f"\nHallazgos automáticos ({len(hallazgos)}):")
     for h in hallazgos:

@@ -4,6 +4,9 @@
 Uso:
     python sincronizar.py <ruta-repo> [--instaladas <carpeta>] [--aplicar] [--json]
 
+Sirve para cualquier repo de registry/REPOS.yml: solo mira las skills que ese mapa le asigna
+al repo de <ruta-repo> (las de otro repo salen como "otro-repo" y no se tocan).
+
 La carpeta de skills instaladas se busca sola (ver comun.CANDIDATAS); --instaladas solo
 hace falta si no la encuentra.
 
@@ -39,7 +42,8 @@ import sys
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from comun import buscar_instaladas, catalogos, hoy_bogota, router_de  # noqa: E402
+from comun import (buscar_instaladas, cargar_mapa, catalogos, hoy_bogota, repo_de_ruta,  # noqa: E402
+                   repo_de_skill, router_de)
 
 SKILLS_SISTEMA = {
     "artifact-emulator", "built-in-browser", "chrome-browser", "computer-use",
@@ -264,9 +268,27 @@ def main():
     a.instaladas = buscar_instaladas(a.instaladas)
 
     propias = skills_propias(a.instaladas)
+    mapa = cargar_mapa()
+    este = repo_de_ruta(mapa, repo) if mapa else None
+    if mapa and not este:
+        raise SystemExit(f"{repo} no está en registry/REPOS.yml: agrégalo antes de sincronizar.")
+    otro_repo = {}
+    if este:
+        for s in list(propias):
+            md = os.path.join(a.instaladas, s, "SKILL.md")
+            desc = ""
+            if os.path.isfile(md):
+                _, meta, _ = partir_skill(open(md, encoding="utf-8").read())
+                desc = " ".join(str((meta or {}).get("description", "")).split())
+            destino = repo_de_skill(mapa, s, desc)
+            if destino != este:
+                otro_repo[s] = destino
+                del propias[s]
     en_repo = {d for d in os.listdir(os.path.join(repo, "skills"))
                if os.path.isfile(os.path.join(repo, "skills", d, "SKILL.md"))}
     res = []
+    for s, destino in sorted(otro_repo.items()):
+        res.append({"skill": s, "estado": "otro-repo", "repo": destino})
     for s in sorted(set(propias) | en_repo):
         inst_dir = os.path.join(a.instaladas, s)
         if s not in propias or not os.path.isdir(inst_dir):
@@ -291,7 +313,8 @@ def main():
         return
     nombres = {"nueva": "NUEVA → se sube", "cambiada": "CAMBIADA en Claude → se sube",
                "reinstalar": "repo más nuevo → Nick debe reinstalar", "conflicto": "CONFLICTO → decide Nick",
-               "solo-repo": "solo en el repo (no instalada)", "igual": "igual", "bloqueada": "BLOQUEADA (posible secreto)"}
+               "solo-repo": "solo en el repo (no instalada)", "igual": "igual", "bloqueada": "BLOQUEADA (posible secreto)",
+               "otro-repo": "va en otro repo"}
     for f in res:
         extra = ""
         if f.get("archivos"):
@@ -300,6 +323,8 @@ def main():
             extra += " — " + "; ".join(f["secretos"])
         if f.get("aplicado"):
             extra += " [aplicado]"
+        if f["estado"] == "otro-repo":
+            extra = f" ({f['repo']})"
         print(f"- {f['skill']}: {nombres[f['estado']]}{extra}")
     if not a.aplicar and any(f["estado"] in ("nueva", "cambiada") for f in res):
         print("\n(Simulación. Corre con --aplicar para subirlas.)")

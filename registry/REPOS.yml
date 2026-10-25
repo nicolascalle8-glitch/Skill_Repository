@@ -1,0 +1,31 @@
+# Qué repo de GitHub guarda cada skill instalada en la cuenta de Claude de Nick.
+# Lo usa monitor-skills (sincronizar.py) para subir cada skill a su repo.
+# Una skill va al primer repo que la reconozca (por nombre exacto en "skills" o por un
+# patrón de "reconocer" sobre su nombre y su description). Si ninguno la reconoce, va al
+# repo por defecto. Nunca se borra un repo de esta lista: si deja de usarse, estado: cerrado.
+version: 1
+actualizado: 2026-10-25
+
+repos:
+  - nombre: Skills_Fisica
+    github: nicolascalle8-glitch/Skills_Fisica
+    para: Valeria, estudiante de Física de la EIA
+    estado: activo
+    skills:
+      - router-fisica
+      - ejercicios-fisica
+      - informe-laboratorio
+      - simulacion-fisica
+      - articulos-exposiciones
+      - panel-asesores-fisica
+      - voz-propia
+    reconocer:
+      - "(?i)estudiante de f[ií]sica"
+      - "(?i)\\brouter-fisica\\b"
+      - "^[a-z0-9-]*-fisica$"
+
+  - nombre: Skill_Repository
+    github: nicolascalle8-glitch/Skill_Repository
+    para: Nick (ingeniería mecánica, proyectos, skills generales)
+    estado: activo
+    por_defecto: true
