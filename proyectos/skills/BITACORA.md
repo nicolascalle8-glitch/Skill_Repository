@@ -18,6 +18,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-10-26 20:10 — Claude Sonnet 5.5 — HECHO
+**Qué:** Perfil de voz de Nick pasa a v2. Nick confirmó que los apuntes del parcial de Marketing Digital sí los escribió él (ahora son muestra) y que las plantillas de WhatsApp del consultorio no (quedan fuera). Se agrega el rasgo "apuntes de estudio telegráficos" (fragmentos con dos puntos, flechas, "ej.", etiquetas [NOTA DE CLASE] y [EXAMEN]) y una fila nueva en la tabla de calibración. Se cierra el punto "por confirmar" de las muestras; queda el de largo de frase.
+**Archivos:** skills/voz-nick/references/perfil.md
+**Fuentes:** respuesta de Nick en el chat (2026-10-26); apuntes "Parcial" de su Drive (id 1-bHL8XC23kT73x2tabROEsxG3TPFdnUxBZCGzJMiZzw).
+**Verificado:** se abrió el perfil después de editar y se comparó con la versión instalada (v1): solo cambian los 4 puntos descritos. No se corrió revisar_voz.py porque no cambió el script.
+**Para Nick:** reinstalar voz-nick para que el perfil v2 quede en Claude (la skill instalada todavía trae v1). Sigue pendiente que revises un texto real escrito con el perfil.
+**Para la siguiente IA:** las plantillas de WhatsApp del consultorio (doc "1812") no son de Nick; no usarlas como muestra.
+
 ### 2026-10-26 19:55 — Claude Opus 5.5 — HECHO
 **Qué:** Se clonó monitor-skills para las skills de física: monitor-skills-fisica (vive en Skills_Fisica). En este repo: monitor-skills ya no revisa las skills que REPOS.yml manda a otro repo (las sigue sincronizando y mirando choques), inventario.py cuenta como existentes las skills instaladas de otro repo (antes daba "nombra skill inexistente" falso) y REPOS.yml lista electronica-arduino y monitor-skills-fisica.
 **Archivos:** skills/monitor-skills/SKILL.md, skills/monitor-skills/scripts/inventario.py, registry/REPOS.yml

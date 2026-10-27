@@ -1,9 +1,14 @@
 # Perfil de escritura de Nick
 
-Versión 1 — 2026-10-24. Sale de textos reales suyos en Google Drive (reflexiones
-académicas, notas técnicas de proyecto, escritura personal), revisados en el chat
-"Presentaciones universitarias bien hechas" (2026-10-24). Los textos de Drive generados por
-IA (guías, handovers, bitácoras) se descartaron como muestra.
+Versión 2 — 2026-10-26. Sale de textos reales suyos en Google Drive (reflexiones
+académicas, notas técnicas de proyecto, apuntes de estudio, escritura personal), revisados
+en el chat "Presentaciones universitarias bien hechas" (2026-10-24). Los textos de Drive
+generados por IA (guías, handovers, bitácoras) se descartaron como muestra.
+
+Muestras confirmadas por Nick: el parcial de Liderazgo (reflexión), las notas del sistema
+de pirólisis (notas técnicas) y los apuntes para el parcial de Marketing Digital (apuntes de
+estudio, confirmado 2026-10-26). Las plantillas de WhatsApp del consultorio NO las escribió
+él: no son muestra de su voz.
 
 Este archivo es la fuente única de cómo escribe Nick. Si otra skill o el contrato dicen
 algo distinto, manda este archivo y se avisa la diferencia.
@@ -30,8 +35,14 @@ usaría un estudiante explicándole a sus compañeros. Lo muy "perfecto" no suen
 - **Notas técnicas secas**: listas cortas, unidades entre paréntesis, rangos ("entre 300 y
   450 kg/m^3"), lo que no se sabe marcado con "= ?". Cero prosa de relleno.
 - **Honesto y algo autocrítico**: reconoce límites y lo que falta; no vende ni exagera.
-- **Términos en inglés cuando son los del medio** (status quo, setup, journey, pitch) sin
-  forzar traducciones.
+- **Términos en inglés cuando son los del medio** (status quo, setup, journey, pitch,
+  awareness, retargeting) sin forzar traducciones.
+- **Apuntes de estudio telegráficos.** Fragmentos sin verbo con dos puntos ("Escuchar:
+  falta de awareness; respaldo."), flechas para secuencias ("Atracción -> Conexión ->
+  Conversión"), ejemplos entre paréntesis con "ej.", porcentajes y rangos sueltos
+  ("40-50%"). Marca lo que dijo el profesor con una etiqueta tipo "[NOTA DE CLASE]" y lo que
+  va al examen con "[EXAMEN]". Usa signos de exclamación solo para advertencias ("¡Cumplir
+  la Ley de protección de datos!").
 
 ## Lo que NO es Nick
 
@@ -56,6 +67,7 @@ Rasgos de textos de IA que él ha descartado:
 | Notas para exponer | Como lo diría frente al salón: primera persona, preguntas que abren la idea, punto y coma. |
 | Documento o informe | Su voz con más orden: preguntas como guía, define por contraste, postura propia en conclusiones. Los datos y ecuaciones no cambian. |
 | Notas técnicas | Secas: listas, unidades, "= ?" para lo que falta. |
+| Apuntes de estudio / hoja de repaso | Telegráficos: fragmentos con dos puntos, flechas, "(ej. …)", etiquetas [NOTA DE CLASE] y [EXAMEN]. |
 | Comentario o mensaje corto | Directo, sin saludo largo ni cierre de cortesía inflado. |
 
 ## Correcciones de Nick
@@ -67,8 +79,6 @@ qué texto era. Estas correcciones mandan sobre las reglas de arriba.
 
 ## Por confirmar con Nick
 
-- Si las plantillas de WhatsApp del consultorio y los apuntes del parcial de marketing que
-  están en su Drive los escribió él (si sí, sirven como muestra).
 - Largo de frase: en presentaciones se le pidió "frases cortas"; sus textos reales usan
   frases medianas con punto y coma. Por ahora: medianas en notas y documentos, cortas en
   slides.
