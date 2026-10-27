@@ -4,7 +4,7 @@
 # patrón de "reconocer" sobre su nombre y su description). Si ninguno la reconoce, va al
 # repo por defecto. Nunca se borra un repo de esta lista: si deja de usarse, estado: cerrado.
 version: 1
-actualizado: 2026-10-25
+actualizado: 2026-10-26
 
 repos:
   - nombre: Skills_Fisica
@@ -19,6 +19,8 @@ repos:
       - articulos-exposiciones
       - panel-asesores-fisica
       - voz-propia
+      - electronica-arduino
+      - monitor-skills-fisica
     reconocer:
       - "(?i)estudiante de f[ií]sica"
       - "(?i)\\brouter-fisica\\b"

@@ -9,7 +9,8 @@ description: >-
   está vieja, choca con otra o le falta algo, qué skill debería crear o mejorar, o diga
   "revisa mis skills", "sube mis skills", "sincroniza las skills con GitHub" o que guardó
   o cambió una skill, aunque no nombre la skill. No sirve para elegir qué skill usar en una tarea concreta
-  (eso es router-ing) ni para limpiar memoria o chats (eso es depurador-recursos).
+  (eso es router-ing), ni para limpiar memoria o chats (eso es depurador-recursos), ni para
+  revisar las skills de física de Valeria (eso es monitor-skills-fisica).
 ---
 
 # Monitor de skills
@@ -109,7 +110,9 @@ No los repitas uno por uno en el reporte: agrúpalos por skill.
 ### 2. Leer cada skill de Nick
 
 Lee el `SKILL.md` de cada skill propia (no las de Anthropic que vienen con Claude) y sus
-`references/` si hace falta para juzgar. Busca, con los criterios de
+`references/` si hace falta para juzgar. Las skills que `registry/REPOS.yml` manda a otro
+repo (hoy las de física de Valeria, en Skills_Fisica) no se revisan aquí: las revisa
+`monitor-skills-fisica`. Sí se sincronizan, y sí se miran sus choques con las de Nick. Busca, con los criterios de
 `references/criterios.md`:
 
 - **Choques**: dos descripciones que se disparan con las mismas frases, o dos skills que

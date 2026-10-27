@@ -18,6 +18,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-10-26 19:55 — Claude Opus 5.5 — HECHO
+**Qué:** Se clonó monitor-skills para las skills de física: monitor-skills-fisica (vive en Skills_Fisica). En este repo: monitor-skills ya no revisa las skills que REPOS.yml manda a otro repo (las sigue sincronizando y mirando choques), inventario.py cuenta como existentes las skills instaladas de otro repo (antes daba "nombra skill inexistente" falso) y REPOS.yml lista electronica-arduino y monitor-skills-fisica.
+**Archivos:** skills/monitor-skills/SKILL.md, skills/monitor-skills/scripts/inventario.py, registry/REPOS.yml
+**Fuentes:** pedido de Nick (2026-10-26).
+**Verificado:** inventario.py sobre Skill_Repository: 0 hallazgos; sobre Skills_Fisica: solo los 2 de sincronía esperados. quick_validate pasa en monitor-skills. REPOS.yml carga como YAML.
+**Para Nick:** reinstalar monitor-skills (.skill entregado en el chat).
+**Para la siguiente IA:** monitor-skills-fisica usa los scripts de este repo sin copiarlos; si cambias inventario.py o sincronizar.py, piensa en los dos repos.
+
 ### 2026-10-25 18:38 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Sale de la revisión semanal (proyectos/skills/monitor/2026-10-25.md). Agregar al final de la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing una línea "No es para la estudiante de Física (usa <skill de física>)". Las 7 de física están en la misma cuenta y sí excluyen a las de Nick, pero las de Nick no las excluyen; frases que chocan: "que suene a mí", "esto suena a ChatGPT" (voz-nick / voz-propia), "slides", "exposición" (presentaciones-universidad / articulos-exposiciones), "evaluar, revisar, decidir" (panel-asesores / panel-asesores-fisica).
 **Archivos:** ninguno todavía.

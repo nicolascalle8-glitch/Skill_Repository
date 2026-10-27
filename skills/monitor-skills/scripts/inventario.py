@@ -128,6 +128,7 @@ def main():
     cat_ing = cats.get("router-ing", (None, set()))[1]
 
     conocidas = set(en_repo) | set(instaladas) | set(registradas) | catalogo | SKILLS_SISTEMA
+    conocidas |= set(otras)  # skills de la misma cuenta que viven en otro repo de REPOS.yml
     todas = sorted(set(en_repo) | set(instaladas))
     filas, hallazgos = [], list(hallazgos_previos)
 
