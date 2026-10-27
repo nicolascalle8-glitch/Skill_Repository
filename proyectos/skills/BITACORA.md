@@ -26,6 +26,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 **Para Nick:** reinstalar monitor-skills (.skill entregado en el chat).
 **Para la siguiente IA:** monitor-skills-fisica usa los scripts de este repo sin copiarlos; si cambias inventario.py o sincronizar.py, piensa en los dos repos.
 
+### 2026-10-26 19:40 — Claude Opus 5.5 — HECHO
+**Qué:** Física pendiente 2026-10-26. Skills_Fisica sigue sin poderse abrir desde Claude (la sesión y las tareas solo tienen permiso sobre Skill_Repository; el clon pide usuario). Pendientes de subir a Skills_Fisica: electronica-arduino (nueva), ejercicios-fisica (SKILL.md + scripts/), simulacion-fisica (SKILL.md + scripts/caos.py) y router-fisica (SKILL.md + references/catalogo.md), comparadas con la versión del commit bff1c79. Sin cambios: articulos-exposiciones, informe-laboratorio, panel-asesores-fisica, voz-propia. Skill_Repository: las 9 de Nick iguales, nada que subir. La tarea diaria "Sincronizar skills con GitHub" ahora avisa a Nick si Skills_Fisica no abre y hay física pendiente (antes se quedaba callada). No se copió nada de física a este repo.
+**Archivos:** proyectos/skills/BITACORA.md.
+**Fuentes:** sincronizar.py (2026-10-26); diff de las instaladas contra git archive bff1c79.
+**Verificado:** acceso denegado a Skills_Fisica por GitHub desde esta sesión (get_file_contents y git clone). Ojo: la sesión de la entrada de las 19:55 sí corrió inventario.py sobre Skills_Fisica, así que desde allá hay acceso; no toqué nada de ese repo para no pisarla.
+**Para Nick:** instalar la app de Claude en Skills_Fisica (https://github.com/apps/claude/installations/select_target) y abrir un chat nuevo con los dos repos para subir lo pendiente.
+**Para la siguiente IA:** con acceso, correr sincronizar.py sobre el clon de Skills_Fisica con --aplicar y anotar aquí y en la bitácora de ese repo.
+
 ### 2026-10-25 18:38 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Sale de la revisión semanal (proyectos/skills/monitor/2026-10-25.md). Agregar al final de la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing una línea "No es para la estudiante de Física (usa <skill de física>)". Las 7 de física están en la misma cuenta y sí excluyen a las de Nick, pero las de Nick no las excluyen; frases que chocan: "que suene a mí", "esto suena a ChatGPT" (voz-nick / voz-propia), "slides", "exposición" (presentaciones-universidad / articulos-exposiciones), "evaluar, revisar, decidir" (panel-asesores / panel-asesores-fisica).
 **Archivos:** ninguno todavía.
