@@ -13,10 +13,36 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 - 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
 - 2026-10-24 20:50 — Claude — Integración del sistema de Gemini: 3 reglas al contrato, ordenar D:\Personal\Claude por proyecto, guion cronometrado en presentaciones-universidad, confirmar perfil.
 - 2026-10-25 18:38 — Claude — (monitor) Agregar "no es para la estudiante de Física" a la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing.
+- 2026-11-01 18:40 — Claude — (monitor) Decidir la versión de presentaciones-universidad (conflicto repo ↔ Claude por voz-nick).
+- 2026-11-01 18:40 — Claude — (monitor) Mejorar sincronizar.py para detectar conflicto cuando lo instalado parte de una versión vieja.
 
 ---
 
 ## Entradas
+
+### 2026-11-01 18:40 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Sale de la revisión semanal (proyectos/skills/monitor/2026-11-01.md), punto 1. presentaciones-universidad instalada (guardada en Claude 2026-10-26 20:00) parte de la versión del 2026-10-24 18:30: trae el perfil de voz copiado en la sección 5 y no usa voz-nick; también trae ajustes cortos de redacción. Opciones: (a) quedarse con la del repo y reinstalar; (b) subir la instalada; (c) mezclar ajustes cortos + sección 5 apuntando a voz-nick (recomendada).
+**Archivos:** ninguno todavía.
+**Fuentes:** sincronizar.py 2026-11-01; diff de la instalada contra 5f071bc y 56aaaec.
+**Verificado:** se probó --aplicar, se leyó el diff y se deshizo (git checkout) sin commit.
+**Para Nick:** elegir a, b o c.
+**Para la siguiente IA:** no subir presentaciones-universidad aunque el script diga "cambiada" hasta que Nick elija.
+
+### 2026-11-01 18:40 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Revisión semanal, punto 2. sincronizar.py marca "cambio-claude" todo archivo instalado que no coincide con ninguna versión del repo, aunque el repo haya cambiado después de la versión base. Proponer: buscar la versión más parecida como base y marcar "conflicto" si el repo cambió después.
+**Archivos:** ninguno todavía (sería skills/monitor-skills/scripts/sincronizar.py).
+**Fuentes:** caso presentaciones-universidad 2026-11-01.
+**Verificado:** n/a hasta ejecutar.
+**Para Nick:** aprobar o rechazar.
+**Para la siguiente IA:** mientras no se arregle, revisar a mano el diff de toda skill "cambiada" antes del push.
+
+### 2026-11-01 18:40 — Claude Opus 5.5 — HECHO
+**Qué:** Revisión de skills 2026-11-01 (semanal, 🟡). Sincronización: Skill_Repository sin subidas (8 iguales; voz-nick v2 y monitor-skills ya reinstaladas; presentaciones-universidad en conflicto, no se subió); Skills_Fisica sin acceso (no hay add_repo en la tarea, el clon pide usuario). Sobra: ninguna. Actualizar: 1 (presentaciones-universidad). Mejorar: 1 nueva (sincronizar.py) + exclusión de física sigue abierta. Crear: nada nuevo (calculo-trazable sigue abierta).
+**Archivos:** proyectos/skills/monitor/2026-11-01.md
+**Fuentes:** sincronizar.py e inventario.py (1 hallazgo de sincronía); bitácoras de skills y engranajes; 3 commits desde 2026-10-25 18:38. Chats: no revisados (la tarea programada no tiene herramienta de chats).
+**Verificado:** scripts corridos sobre el repo y las skills instaladas; diff revisado a mano.
+**Para Nick:** responder las 2 propuestas de arriba y la del 2026-10-25; dar acceso a Skills_Fisica (https://github.com/apps/claude/installations/select_target) y agregarlo a la tarea.
+**Para la siguiente IA:** la próxima revisión arranca desde 2026-11-01 18:40.
 
 ### 2026-10-26 20:10 — Claude Sonnet 5.5 — HECHO
 **Qué:** Perfil de voz de Nick pasa a v2. Nick confirmó que los apuntes del parcial de Marketing Digital sí los escribió él (ahora son muestra) y que las plantillas de WhatsApp del consultorio no (quedan fuera). Se agrega el rasgo "apuntes de estudio telegráficos" (fragmentos con dos puntos, flechas, "ej.", etiquetas [NOTA DE CLASE] y [EXAMEN]) y una fila nueva en la tabla de calibración. Se cierra el punto "por confirmar" de las muestras; queda el de largo de frase.
