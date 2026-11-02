@@ -21,20 +21,20 @@ Si algo de lo que vas a entregar rompe alguna, está mal, aunque se vea completo
 - Libros técnicos o normas que Nick no entregó: solo si él los aprueba.
 - **Videos de YouTube: solo con permiso previo de Nick, video por video.** Antes de usar uno, pedirle aprobación mostrando título, canal, link y para qué se usaría. Si Nick mismo comparte el video, cuenta como aprobado. Al usarlo:
   - Citar canal, título, año, URL y el minuto exacto del dato o la imagen.
-  - Claude no puede ver el video: solo puede usar lo que sea verificable (transcripción, descripción, o lo que Nick confirme que dice). Si no se puede verificar, Nick debe confirmar el dato antes de que entre.
+  - Claude no puede ver el video: solo puede usar lo verificable (transcripción, descripción, o lo que Nick confirme que dice). Si no se puede verificar, Nick confirma el dato antes de que entre.
   - Si el dato del video contradice una fuente indexada, gana la fuente indexada y se le avisa a Nick.
 
-**Fuentes NO válidas como respaldo de un dato**: Wikipedia, blogs, foros, páginas comerciales, videos sin aprobación de Nick, resúmenes de otras IAs y el conocimiento propio de Claude "de memoria". Pueden servir para orientarse y encontrar la fuente real, nunca como cita.
+**Fuentes NO válidas como respaldo de un dato**: Wikipedia, blogs, foros, páginas comerciales, videos sin aprobación de Nick, resúmenes de otras IAs y el conocimiento propio de Claude "de memoria". Sirven para orientarse y encontrar la fuente real, nunca como cita.
 
 **Cómo trabajar**
 - Cada dato, número, ecuación, propiedad de material, afirmación y figura tiene que poder rastrearse a una fuente concreta (autor, año, DOI o libro + página/figura/tabla, o video + minuto).
-- Verificar cada referencia abriéndola: el DOI resuelve, el artículo existe, los autores, año y título coinciden, y el dato está realmente ahí. Nunca escribir una referencia de memoria.
-- Si no se pudo leer el texto completo (solo el abstract), solo se usa lo que dice el abstract, y se le avisa a Nick.
+- Verificar cada referencia abriéndola: el DOI resuelve, el artículo existe, autores, año y título coinciden, y el dato está realmente ahí. Nunca escribir una referencia de memoria.
+- Si solo se pudo leer el abstract, solo se usa lo que dice el abstract, y se avisa.
 - Si no hay fuente válida para algo: **no se incluye**. Se le dice a Nick en una línea qué no se pudo verificar.
 - No completar, redondear ni "suponer valores típicos". Si un dato falta, se marca como faltante.
-- Los cálculos propios (ejemplo resuelto) se hacen con código o Excel a partir de datos con fuente, y se muestra de dónde salió cada dato de entrada.
+- Los cálculos propios se hacen con código o Excel a partir de datos con fuente, mostrando de dónde salió cada dato de entrada.
 
-**Tabla de trazabilidad** (se entrega con la presentación): slide → dato o figura → fuente exacta → DOI/página/minuto → verificado (sí/no). Ningún "no" puede quedar en la versión final sin que Nick lo sepa.
+**Tabla de trazabilidad** (se entrega con la presentación): slide → dato o figura → fuente exacta → DOI/página/minuto → verificado (sí/no). Ningún "no" queda en la versión final sin que Nick lo sepa.
 
 Referencias en el formato que pida el curso (IEEE por defecto en ingeniería), con DOI cuando exista.
 
@@ -44,7 +44,7 @@ Preguntar en un solo mensaje solo lo que falte:
 - Tema, curso, duración, idioma de slides y de exposición.
 - Rúbrica o enunciado (manda sobre la estructura).
 - Plantilla o formato exigido (.pptx, PDF).
-- **Fuentes**: PDFs, papers, libros, normas, videos, fotos propias, capturas de CAD o del laboratorio. Son la base del contenido y de los visuales.
+- **Fuentes**: PDFs, papers, libros, normas, videos, fotos propias, capturas de CAD o del laboratorio.
 
 Si las fuentes no alcanzan, buscar artículos indexados y mostrarle a Nick la lista (título, autores, año, revista, DOI, para qué sirve) antes de usarlos.
 
@@ -56,8 +56,8 @@ Nunca ilustraciones, íconos decorativos ni diagramas inventados para rellenar.
 
 - **PDFs**: extraer las imágenes embebidas (`pdfimages -png`) o, si la figura es vectorial, rasterizar la página (`pdftoppm -r 300`) y recortar solo la figura (Pillow). Revisar cada recorte visualmente.
 - **Fotos de Nick** (laboratorio, piezas, impresiones 3D, CAD): protagonistas. Recortar y enderezar, sin alterar el contenido.
-- **Videos aprobados**: si Nick pasa capturas del video, usarlas con la fuente y el minuto.
-- **Gráficas**: con matplotlib a partir de datos con fuente, estilo limpio, ejes con unidades, y la fuente de los datos debajo.
+- **Videos aprobados**: si Nick pasa capturas, usarlas con fuente y minuto.
+- **Gráficas**: con matplotlib a partir de datos con fuente, estilo limpio, ejes con unidades, fuente de los datos debajo.
 - **Diagramas propios** solo si no existe la figura en las fuentes y explica algo concreto (proceso, diagrama de cuerpo libre). Simples y basados en la fuente.
 
 Cada imagen ajena lleva su fuente abajo ("Fuente: Autor et al., 2021, fig. 4"). Si no hay buena imagen: no inventar; avisar qué foto o figura falta y dejar un marcador claro.
@@ -66,11 +66,11 @@ Cada imagen ajena lleva su fuente abajo ("Fuente: Autor et al., 2021, fig. 4"). 
 
 - Una idea por slide. La imagen ocupa la mayor parte (60–80 %).
 - Máximo ~15–20 palabras por slide. Sin párrafos, sin listas de más de 3 puntos.
-- El título dice la idea en corto, no el nombre del tema.
+- Título corto que dice la idea, no el nombre del tema. Una pregunta también sirve como título (ver sección 5).
 - Un número importante va grande, solo.
 - Solo ecuaciones clave, grandes, con variables señaladas. Deducciones largas al anexo o al documento escrito.
 - Ejemplo resuelto repartido en varias slides (datos → fórmula → resultado → qué significa).
-- Lo que no cabe va a las notas o a slides de anexo para preguntas.
+- Lo que no cabe va a las notas o a slides de anexo.
 
 Prueba rápida: si Nick tendría que leer la slide para sustentarla, tiene demasiado texto.
 
@@ -94,7 +94,7 @@ Lo propio de las presentaciones:
 
 ## 6. Notas para sustentar
 
-- Por slide: 2–4 frases en el tono de Nick, tiempo aproximado y transición.
+- Por slide: 2–4 frases en la voz de Nick, tiempo aproximado y transición (idealmente una pregunta que abre la siguiente slide).
 - Aparte, 8–10 preguntas probables del profesor con respuesta corta y su fuente. Las difíciles tienen slide de anexo.
 
 ## 7. Formato

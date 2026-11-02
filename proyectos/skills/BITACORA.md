@@ -13,12 +13,18 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 - 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
 - 2026-10-24 20:50 — Claude — Integración del sistema de Gemini: 3 reglas al contrato, ordenar D:\Personal\Claude por proyecto, guion cronometrado en presentaciones-universidad, confirmar perfil.
 - 2026-10-25 18:38 — Claude — (monitor) Agregar "no es para la estudiante de Física" a la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing.
-- 2026-11-01 18:40 — Claude — (monitor) Decidir la versión de presentaciones-universidad (conflicto repo ↔ Claude por voz-nick).
-- 2026-11-01 18:40 — Claude — (monitor) Mejorar sincronizar.py para detectar conflicto cuando lo instalado parte de una versión vieja.
 
 ---
 
 ## Entradas
+
+### 2026-11-01 19:30 — Claude Opus 5.5 — HECHO
+**Qué:** Se aplican las 2 propuestas de la revisión 2026-11-01 que Nick aprobó. (1) presentaciones-universidad: versión mezclada = la que Nick tenía en Claude (frases más cortas, pregunta como título, transición con pregunta en las notas) + la sección 5 y la verificación del repo, que mandan a voz-nick. (2) sincronizar.py: nuevo estado de archivo "base-vieja" que cuenta como conflicto y no se sube. La base es la versión del repo más parecida a lo instalado entre las que ya existían cuando se guardó en Claude (updatedAt del manifest); si la base no es la actual, el repo cambió después.
+**Archivos:** skills/presentaciones-universidad/SKILL.md, skills/monitor-skills/scripts/sincronizar.py
+**Fuentes:** respuesta de Nick en el chat (2026-11-01 19:20); reporte proyectos/skills/monitor/2026-11-01.md.
+**Verificado:** sincronizar.py con lo instalado de hoy, antes y después de hacer commit de la mezcla: presentaciones-universidad sale CONFLICTO (base-vieja), las demás igual (monitor-skills: reinstalar). Prueba con una copia de las instaladas: router-ing con una línea agregada y fecha nueva sale "cambiada"; la mezclada con una línea agregada en Claude sale "cambiada". Ojo: sin updatedAt en el manifest el script solo compara parecido, y en este caso no habría visto el conflicto. quick_validate pasa en las dos skills. inventario.py: solo el hallazgo de sincronía de presentaciones-universidad (se va al reinstalar).
+**Para Nick:** reinstalar presentaciones-universidad.skill (y monitor-skills.skill para tener el script nuevo). Mientras no reinstales presentaciones-universidad, la sincronización diaria la marca como conflicto y no la toca.
+**Para la siguiente IA:** si presentaciones-universidad sigue en conflicto después de que Nick diga que reinstaló, comparar lo instalado con el commit de esta entrada.
 
 ### 2026-11-01 18:40 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Sale de la revisión semanal (proyectos/skills/monitor/2026-11-01.md), punto 1. presentaciones-universidad instalada (guardada en Claude 2026-10-26 20:00) parte de la versión del 2026-10-24 18:30: trae el perfil de voz copiado en la sección 5 y no usa voz-nick; también trae ajustes cortos de redacción. Opciones: (a) quedarse con la del repo y reinstalar; (b) subir la instalada; (c) mezclar ajustes cortos + sección 5 apuntando a voz-nick (recomendada).
@@ -28,6 +34,8 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 **Para Nick:** elegir a, b o c.
 **Para la siguiente IA:** no subir presentaciones-universidad aunque el script diga "cambiada" hasta que Nick elija.
 
+✅ Aprobado por Nick — 2026-11-01 19:20 — opción (c): mezclar.
+
 ### 2026-11-01 18:40 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Revisión semanal, punto 2. sincronizar.py marca "cambio-claude" todo archivo instalado que no coincide con ninguna versión del repo, aunque el repo haya cambiado después de la versión base. Proponer: buscar la versión más parecida como base y marcar "conflicto" si el repo cambió después.
 **Archivos:** ninguno todavía (sería skills/monitor-skills/scripts/sincronizar.py).
@@ -35,6 +43,8 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 **Verificado:** n/a hasta ejecutar.
 **Para Nick:** aprobar o rechazar.
 **Para la siguiente IA:** mientras no se arregle, revisar a mano el diff de toda skill "cambiada" antes del push.
+
+✅ Aprobado por Nick — 2026-11-01 19:20.
 
 ### 2026-11-01 18:40 — Claude Opus 5.5 — HECHO
 **Qué:** Revisión de skills 2026-11-01 (semanal, 🟡). Sincronización: Skill_Repository sin subidas (8 iguales; voz-nick v2 y monitor-skills ya reinstaladas; presentaciones-universidad en conflicto, no se subió); Skills_Fisica sin acceso (no hay add_repo en la tarea, el clon pide usuario). Sobra: ninguna. Actualizar: 1 (presentaciones-universidad). Mejorar: 1 nueva (sincronizar.py) + exclusión de física sigue abierta. Crear: nada nuevo (calculo-trazable sigue abierta).

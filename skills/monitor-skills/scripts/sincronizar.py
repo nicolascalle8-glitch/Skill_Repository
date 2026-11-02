@@ -21,17 +21,22 @@ Cómo decide, archivo por archivo (comparando con el historial de git del repo):
                     Nick lo cambió en Claude. Se sube.
 - repo-adelante  -> lo instalado coincide con una versión VIEJA del repo: el repo es más
                     nuevo y Nick no ha reinstalado. No se toca; se avisa.
+- base-vieja     -> lo instalado no coincide con ninguna versión y partió de una versión
+                    vieja (la más parecida entre las que existían cuando se guardó en Claude,
+                    según updatedAt del manifest): el repo cambió después. Cuenta como
+                    conflicto.
 Por skill:
 - nueva          -> instalada y no está en el repo. Se sube completa y se registra.
 - cambiada       -> algún archivo es cambio-claude y ninguno es repo-adelante. Se sube.
 - reinstalar     -> algún archivo es repo-adelante y ninguno es cambio-claude. No se toca.
-- conflicto      -> hay de los dos. No se toca; lo decide Nick.
+- conflicto      -> hay de los dos, o algún archivo es base-vieja. No se toca; lo decide Nick.
 - solo-repo      -> está en el repo y no instalada. No se borra nada; se avisa.
 - igual          -> nada que hacer.
 Nunca borra archivos del repo. Si un archivo parece tener una clave o contraseña, la skill
 no se sube y se avisa (contrato: nada de secretos en el repo).
 """
 import argparse
+import difflib
 import hashlib
 import json
 import os
@@ -137,6 +142,58 @@ def versiones_viejas(repo, ruta_repo):
     return huellas
 
 
+def texto_de(contenido):
+    try:
+        return contenido.decode("utf-8")
+    except UnicodeDecodeError:
+        return None
+
+
+def guardada_en(inst_dir):
+    """Segundos epoch de cuándo se guardó la skill en Claude (updatedAt del manifest.json)."""
+    from datetime import datetime
+    man = os.path.join(os.path.dirname(inst_dir), "manifest.json")
+    try:
+        for sk in json.load(open(man, encoding="utf-8")).get("skills", []):
+            if sk.get("name") == os.path.basename(inst_dir) and sk.get("updatedAt"):
+                return datetime.fromisoformat(sk["updatedAt"].replace("Z", "+00:00")).timestamp()
+    except (OSError, ValueError):
+        pass
+    return None
+
+
+def base_es_vieja(repo, ruta_repo, c_inst, hasta=None):
+    """True si lo instalado partió de una versión del repo que ya no es la actual.
+
+    La base es la versión del repo más parecida a lo instalado, buscando solo entre las que
+    ya existían cuando se guardó en Claude (hasta). Si la base no es la versión actual, el
+    repo cambió después: es conflicto. En empate gana la más nueva, así un cambio normal
+    hecho sobre la versión actual sigue saliendo como cambio-claude."""
+    t_inst = texto_de(c_inst)
+    if t_inst is None:
+        return False
+    lineas_inst = t_inst.splitlines()
+    versiones = []  # (fecha, texto), de la más nueva a la más vieja, sin repetir texto
+    for linea in git(repo, "log", "--format=%H %ct", "--", ruta_repo).split("\n"):
+        if not linea.strip():
+            continue
+        h, ct = linea.split()
+        t = texto_de(git(repo, "show", f"{h}:{ruta_repo}", binario=True))
+        if t and all(t != v for _, v in versiones):
+            versiones.append((int(ct), t))
+    if not versiones:
+        return False
+    candidatas = [(i, t) for i, (ct, t) in enumerate(versiones) if hasta is None or ct <= hasta]
+    if not candidatas:
+        candidatas = list(enumerate(t for _, t in versiones))
+    mejor, mejor_i = -1.0, None
+    for i, t in candidatas:
+        r = difflib.SequenceMatcher(None, t.splitlines(), lineas_inst, autojunk=False).ratio()
+        if r > mejor:
+            mejor, mejor_i = r, i
+    return mejor_i is not None and mejor_i > 0
+
+
 def comparar(repo, skill, inst_dir):
     repo_dir = os.path.join(repo, "skills", skill)
     inst = archivos(inst_dir)
@@ -152,11 +209,18 @@ def comparar(repo, skill, inst_dir):
         ruta_repo = f"skills/{skill}/{rel}"
         viejas = versiones_viejas(repo, ruta_repo)
         if rel in en_repo or viejas:
-            estado_arch[rel] = "repo-adelante" if k in viejas else "cambio-claude"
+            if k in viejas:
+                estado_arch[rel] = "repo-adelante"
+            elif rel in en_repo and base_es_vieja(repo, ruta_repo, c_inst, guardada_en(inst_dir)):
+                estado_arch[rel] = "base-vieja"
+            else:
+                estado_arch[rel] = "cambio-claude"
         else:
             estado_arch[rel] = "cambio-claude"  # archivo nuevo creado en Claude
     tipos = set(estado_arch.values())
-    if not tipos:
+    if "base-vieja" in tipos:
+        estado = "conflicto"
+    elif not tipos:
         # Archivos que el repo tiene y Claude no: casi siempre el repo es más nuevo.
         estado = "reinstalar" if faltan_en_claude else "igual"
     elif tipos == {"cambio-claude"}:
