@@ -78,6 +78,13 @@ capacidades:
     ultima_revision: 2026-10-24
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
+  diseno-cad-fusion:
+    skill: diseno-cad-fusion
+    etapa: por-definir
+    estado: en-prueba
+    ultima_revision: 2026-11-05
+    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
+
   enmarcar-problema:
     skill: marco-problema-ing
     etapa: enmarcar
@@ -103,7 +110,9 @@ capacidades:
   revision-antes-de-fabricar:
     skill: puerta-fabricacion
     etapa: fabricar
-    estado: pendiente
+    estado: en-prueba
+    ultima_revision: 2026-11-05
+    nota: Subida desde lo instalado en Claude (antes estaba pendiente). Falta un caso de prueba real.
 
   entregables-academicos:
     skill: entregables-ing

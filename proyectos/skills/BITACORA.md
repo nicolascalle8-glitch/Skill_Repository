@@ -18,6 +18,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-11-05 — Claude Opus 5.5 — HECHO
+**Qué:** Respaldo antes de cambiar de Mac. Se suben las 2 skills de Nick instaladas en Claude que faltaban en el repo: diseno-cad-fusion (nueva) y puerta-fabricacion (pasa de pendiente a en-prueba). Las otras 9 de Nick ya estaban iguales. morning no se sube: es skill de ejemplo de Anthropic (SKILLS_SISTEMA).
+**Archivos:** skills/diseno-cad-fusion/, skills/puerta-fabricacion/, registry/CAPACIDADES.yml, skills/router-ing/references/catalogo.md
+**Fuentes:** pedido de Nick en el chat (2026-11-05); skills instaladas en ~/.claude/skills/synced.
+**Verificado:** sincronizar.py (simulación y --aplicar): las 2 salen NUEVA; las demás de Nick, igual. CAPACIDADES.yml carga como YAML.
+**Para Nick:** reinstalar router-ing si quieres el catálogo nuevo en Claude. Copiar esta entrada a la bitácora de Drive (no se hizo desde aquí).
+**Para la siguiente IA:** diseno-cad-fusion y puerta-fabricacion están en por-definir/en-prueba; falta un caso de prueba real.
+
 ### 2026-11-01 19:30 — Claude Opus 5.5 — HECHO
 **Qué:** Se aplican las 2 propuestas de la revisión 2026-11-01 que Nick aprobó. (1) presentaciones-universidad: versión mezclada = la que Nick tenía en Claude (frases más cortas, pregunta como título, transición con pregunta en las notas) + la sección 5 y la verificación del repo, que mandan a voz-nick. (2) sincronizar.py: nuevo estado de archivo "base-vieja" que cuenta como conflicto y no se sube. La base es la versión del repo más parecida a lo instalado entre las que ya existían cuando se guardó en Claude (updatedAt del manifest); si la base no es la actual, el repo cambió después.
 **Archivos:** skills/presentaciones-universidad/SKILL.md, skills/monitor-skills/scripts/sincronizar.py
