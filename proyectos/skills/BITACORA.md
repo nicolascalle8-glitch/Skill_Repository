@@ -13,10 +13,27 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 - 2026-10-24 18:22 — Claude — (monitor) Decidir system-oriented-design: base de marco-problema-ing, aparte o descartar.
 - 2026-10-24 20:50 — Claude — Integración del sistema de Gemini: 3 reglas al contrato, ordenar D:\Personal\Claude por proyecto, guion cronometrado en presentaciones-universidad, confirmar perfil.
 - 2026-10-25 18:38 — Claude — (monitor) Agregar "no es para la estudiante de Física" a la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing.
+- 2026-11-08 18:37 — Claude — (monitor) Decidir repo de osciloscopio-ds215h: Skills_Fisica (recomendado) o Skill_Repository.
 
 ---
 
 ## Entradas
+
+### 2026-11-08 18:37 — Claude Opus 5.5 — HECHO
+**Qué:** Revisión de skills 2026-11-08 (semanal, sin Nick). Sobra: 0. Actualizar: 1 (reinstalar router-ing). Mejorar: 0 nuevas (sigue la exclusión de física). Crear: 0. 1 propuesta: decidir el repo de osciloscopio-ds215h. Sincronización: nada subido en Skill_Repository; Skills_Fisica sin acceso.
+**Archivos:** proyectos/skills/monitor/2026-11-08.md, proyectos/skills/BITACORA.md
+**Fuentes:** sincronizar.py e inventario.py 2026-11-08; skills instaladas (~/.claude/skills/synced); commits ce58dcc, b1edf08, 27ec8a7; bitácora de detector-particulas-cern.
+**Verificado:** sincronizar.py en simulación: 10 iguales, router-ing reinstalar, osciloscopio-ds215h nueva (no aplicada). inventario.py: 3 hallazgos, todos de osciloscopio-ds215h. Chats no revisados (sin herramienta).
+**Para Nick:** reinstalar router-ing.skill; responder la propuesta de osciloscopio-ds215h.
+**Para la siguiente IA:** no subir osciloscopio-ds215h hasta que Nick elija repo. selector-ia vence revisión el 2026-11-23.
+
+### 2026-11-08 18:37 — Claude Opus 5.5 — PROPUESTA
+**Qué:** osciloscopio-ds215h está instalada en Claude y no en ningún repo. Dice "Para Valeria (Física, EIA) y Nick" y se coordina con electronica-arduino e informe-laboratorio (de ella). Opciones: (a) agregarla a Skills_Fisica en registry/REPOS.yml (recomendada); (b) subirla a Skill_Repository y registrarla en CAPACIDADES.yml y el catálogo de router-ing.
+**Archivos:** ninguno todavía (sería registry/REPOS.yml o skills/osciloscopio-ds215h/).
+**Fuentes:** sincronizar.py 2026-11-08; manifest de instaladas (updatedAt 2026-11-05T02:12Z); proyectos/skills/monitor/2026-11-08.md.
+**Verificado:** se leyó la skill instalada; no se aplicó nada.
+**Para Nick:** elegir a o b.
+**Para la siguiente IA:** la sincronización diaria la va a marcar NUEVA; no subirla hasta que Nick elija.
 
 ### 2026-11-05 — Claude Opus 5.5 — HECHO
 **Qué:** Respaldo antes de cambiar de Mac. Se suben las 2 skills de Nick instaladas en Claude que faltaban en el repo: diseno-cad-fusion (nueva) y puerta-fabricacion (pasa de pendiente a en-prueba). Las otras 9 de Nick ya estaban iguales. morning no se sube: es skill de ejemplo de Anthropic (SKILLS_SISTEMA).
