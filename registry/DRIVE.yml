@@ -35,7 +35,9 @@ proyectos:
     bitacora_doc_id: 1p8eQVI9A0OLfpjyAVWQ4tswdb5ZZry2KBzTqDC09hw0
     bitacora_url: https://docs.google.com/document/d/1p8eQVI9A0OLfpjyAVWQ4tswdb5ZZry2KBzTqDC09hw0/edit
     estado: activo
-    nota: Código y datos viven en el Mac de Nick (Max_Power/01_Horno_Vertical) y en el repo PyrolysisReactorCoffee.
+    nota: Desde 2026-11-09 sin copias en Drive (decisión de Nick). Fuente única proyectos/horno-vertical/PLAN.md y BITACORA.md en GitHub. En Drive quedan LÉEME (1iyhWHj56uL2x6NtOeRavl5Bzy3GzQVFP7IIRghPb9P4), investigaciones/ y la carpeta archivo (1m6quei2A4sAUXw0WMZDN13EVSwETvyRK) con las copias viejas, incluida la bitácora de abajo.
+    leeme_doc_id: 1iyhWHj56uL2x6NtOeRavl5Bzy3GzQVFP7IIRghPb9P4
+    archivo_folder_id: 1m6quei2A4sAUXw0WMZDN13EVSwETvyRK
 
   ia-local:
     folder_id: 1Rg2yYjfSxW2IWwMMODFPZMjWZPv1k7Iy
@@ -47,10 +49,10 @@ proyectos:
 # Copias de los trabajos del repo (CONTEXTO, HANDOVER, archivos/), subidas el 2026-11-08 20:25 por pedido de Nick.
 # Son respaldo para leer en Drive; la versión principal sigue en GitHub.
 copias:
-  horno-vertical:
-    CONTEXTO: 1f6Be3Rem4u2DkyhhkqrWnKbLdOobZL0d1im40j4qyL0   # 2026-11-09 09:50 (commit 2147998)
-    HANDOVER: 1OZJ1zIIIAeAHIfrNQ7YXoOZCdEbN5izNY_oY6IqaKSc   # 2026-11-08 21:55 (commit 47df3ad)
-    CONTEXTO_viejo: 1_2YJlpperUnutEWfgGD7VEH4APwHf5pNGmsQbveRjdA   # versión 20:02, renombrada; no se borró
+  horno-vertical:   # archivadas el 2026-11-09 en la carpeta archivo; ya no se actualizan
+    CONTEXTO: 1f6Be3Rem4u2DkyhhkqrWnKbLdOobZL0d1im40j4qyL0
+    HANDOVER: 1OZJ1zIIIAeAHIfrNQ7YXoOZCdEbN5izNY_oY6IqaKSc
+    CONTEXTO_viejo: 1_2YJlpperUnutEWfgGD7VEH4APwHf5pNGmsQbveRjdA
   detector-particulas-cern:
     CONTEXTO: 1qpDnSMbtcCZZxB8Cr4s27Bi7NWHym3EpparDviCbmg8
     HANDOVER: 14Dr13xouRlCCD_JMT2rddaxfqtDw5jIV6Ir8DmYAWCk

@@ -3,7 +3,7 @@
 Antes de hacer cualquier cosa en este repositorio:
 
 1. Lee y sigue `CONTRATO.md` (raíz). Es obligatorio y aplica a todas las IAs.
-2. Si vas a trabajar en un proyecto, lee `proyectos/<proyecto>/CONTEXTO.md` y las últimas entradas de `proyectos/<proyecto>/BITACORA.md`.
+2. Si vas a trabajar en un proyecto, lee `proyectos/<proyecto>/CONTEXTO.md` (o `PLAN.md` si el proyecto lo tiene, como horno-vertical) y las últimas entradas de `proyectos/<proyecto>/BITACORA.md`.
 3. Al terminar, deja tu entrada en la bitácora con tu nombre real (formato en la sección 7 del contrato).
 
 Resumen corto del contrato, por si no lo cargas completo:

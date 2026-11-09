@@ -81,6 +81,8 @@ proyectos/<proyecto>/
   archivos/      Código, textos largos, tablas.
 ```
 
+Excepción (Nick, 2026-11-09): `horno-vertical` usa solo `PLAN.md` + `BITACORA.md` corta, sin HANDOVER ni copia en Drive. Lo viejo está en `proyectos/horno-vertical/archivo/`.
+
 ### Al empezar
 1. Lee este CONTRATO.md.
 2. Lee `proyectos/<proyecto>/CONTEXTO.md`.
