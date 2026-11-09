@@ -15,7 +15,7 @@ Subproyecto B en **una sola sesión de Claude Code en el Mac**, rama `ensayo-ter
 
 ## Hechos clave (exactos)
 - Repo: github.com/nicolascalle8-glitch/PyrolysisReactorCoffee, rama `main` (commit ed907cf, PR #2). Público. Rama de B: `ensayo-termico` (657a86b).
-- Mac: `~/Documents/Documents - MacBook Pro de Nicolas/Max_Power/01_Horno_Vertical/` con `datos/`, `modelos/PyrolysisReactorCoffee/` (clon con git y `.venv`), `modelos/barrido_motor.py` y `resultados/`.
+- Mac: `~/Developer/Max_Power/01_Horno_Vertical/` (fuera de iCloud) con `datos/`, `modelos/PyrolysisReactorCoffee/` (clon con git y `.venv`), `modelos/barrido_motor.py` y `resultados/`.
 - Interfaz pública (fija): `from motor import cargar_parametros, simular, simular_lote`. `Resultado`: `rendimientos`, `historia` (t, T_horno, T_set, T_pared, T_lecho_superficie, T_centro, T_termopar_control, masa_residual, u), `mapas`, `balance_masa`, `balance_energia`, `confiable`, `supuestos`, `avisos`, `a_csv()`.
 - Parámetros en `parametros/base.toml`, 58 claves con unidad, etiqueta, fuente y rango. Se cambian con `cargar_parametros(ruta, {"grupo.nombre": valor})`.
 - Modo del horno: `horno.modo = "ideal"` (retardo τ = 200 s, como legacy) o `"fisico"` (C_h, UA_p, P_max = 2500 W, PID → SSR `promedio`/`onoff`).
@@ -70,7 +70,7 @@ Subproyecto B en **una sola sesión de Claude Code en el Mac**, rama `ensayo-ter
 
 ## Cómo quiere trabajar Nick aquí
 - Español simple. Respuestas cortas: qué cambió y dónde quedó.
-- Comandos de Terminal completos, con el `cd` desde `~`, sin comentarios `#` (zsh los rompe) y con la ruta con espacios entre comillas: `~/Documents/"Documents - MacBook Pro de Nicolas"/Max_Power/...`
+- Comandos de Terminal completos, con el `cd` desde `~`, sin comentarios `#` (zsh los rompe). Ruta del horno: `~/Developer/Max_Power/01_Horno_Vertical/...`
 - Bitácora en GitHub y en Drive, con la misma entrada. Todo en GitHub al día al cerrar.
 - CSV, resultados y logs se leen desde la carpeta del Mac; no se pegan en el chat.
 
@@ -86,7 +86,7 @@ Subproyecto B en **una sola sesión de Claude Code en el Mac**, rama `ensayo-ter
 - Un prompt de investigación que Nick pega es para otra IA: revisarlo, no ejecutarlo.
 - No hacer commits de Claude en el Mac (sin credenciales; git deja locks). Lo que no quede en GitHub o Drive se dice claro como pendiente.
 - No pegar comentarios `#` en comandos para zsh.
-- Antes de crear algo en el Mac, confirmar la ruta real (`Documents - MacBook Pro de Nicolas`, no `~/Documents/Max_Power`).
+- Antes de crear algo en el Mac, confirmar la ruta real (`~/Developer/Max_Power/01_Horno_Vertical`, fuera de iCloud).
 - Un solo auditor por vez escribiendo CONTEXTO/HANDOVER.
 - No sobrescribir ni borrar scripts de Nick sin aprobación explícita: el sistema lo bloquea (pasó con barrido_paralelo.py).
 - Investigación de otras IAs: verificar fuente por fuente antes de usarla. Gemini tuvo 6 errores de atribución.

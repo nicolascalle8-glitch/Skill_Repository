@@ -94,7 +94,7 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 |---|---|---|
 | Código del motor | github.com/nicolascalle8-glitch/PyrolysisReactorCoffee, rama main | motor/, parametros/base.toml, tests/, matlab/verificacion/ |
 | Spec y plan del motor | docs/specs/2026-11-08-motor-nuevo-design.md, docs/plans/2026-11-08-motor-nuevo.md | — |
-| Copia de trabajo en el Mac | ~/Documents/Documents - MacBook Pro de Nicolas/Max_Power/01_Horno_Vertical/modelos/PyrolysisReactorCoffee | .venv propio; `git pull` para actualizar |
+| Copia de trabajo en el Mac | ~/Developer/Max_Power/01_Horno_Vertical/modelos/PyrolysisReactorCoffee | .venv propio; `git pull` para actualizar |
 | Barrido en paralelo | 01_Horno_Vertical/modelos/barrido_motor.py | Salida en 01_Horno_Vertical/resultados/ |
 | Barrido de 30 casos | 01_Horno_Vertical/resultados/barrido_20261108_2148.csv | biochar 20.3–25.8 %, bio-oil 35.8–39.6 % |
 | Investigación de Gemini | Drive: Proyectos IA / horno-vertical / Investigación — datos del café y del reactor | Revisada: 6 errores de atribución (bitácora 20:11) |
