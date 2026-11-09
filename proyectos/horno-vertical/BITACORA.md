@@ -3,19 +3,35 @@
 Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idéntica en Google Drive: Proyectos IA / horno-vertical / Bitácora — horno-vertical.
 
 ## En curso
-- Perplexity — datos del controlador MC-5438 — desde 2026-11-08 19:36
+- (nada)
 
 ## Propuestas sin respuesta
-- 2026-11-08 22:40 — Claude — spec de B (criterio RMS, tubo vacío 0D o en el motor, horno.modo = "medido")
+- (ninguna)
 
 ---
 
 ## Entradas
 
+### 2026-11-09 08:50 — Claude Opus 5.5 — HECHO
+**Qué:** Handover 2026-11-09 — 🟡 66/100. Se cierra el chat del subproyecto B (plan del ensayo térmico). Plan aprobado; lo que sigue va en una sola sesión de Claude Code en el Mac, rama ensayo-termico.
+**Archivos:** proyectos/horno-vertical/HANDOVER.md (estado, 4 decisiones nuevas, hitos, pendientes, historial); CONTEXTO.md (reescrito, 1.655 palabras); archivos/investigaciones/controlador-mc5438-2026-11.md (nuevo); archivos/hechos-cafe-y-barrido-2026-11.md (nuevo: hechos sacados del CONTEXTO sin cambios).
+**Fuentes:** este chat (2026-11-08 22:06 – 2026-11-09 08:50) y la bitácora.
+**Verificado:** El CONTEXTO tiene 1.655 palabras (un poco más que el tope de ~1.500). Las decisiones 9–12 coinciden con las respuestas de Nick de las 08:40.
+**Para Nick:** Abrir Claude Code en el Mac con el mensaje de arranque (HANDOVER §2). Este chat ya se puede borrar.
+**Para la siguiente IA:** Arrancar con CONTEXTO.md, las últimas 5 entradas y el spec de B. No volver a buscar el horno en la web.
+
+### 2026-11-09 08:32 — Claude Opus 5.5 — HECHO
+**Qué:** Datos del MC-5438 que Perplexity dejó como "no encontrado". Siguen sin aparecer: unidad de P1, paso a paso del modo manual, códigos de función Modbus, número de programas, USB. Dato nuevo: abrir el nivel PROG "needs to contact distributor" (manual oficial P.20). Horno "Max-Therma": sin resultados. Se cierra el "En curso" de Perplexity (su Doc: https://docs.google.com/document/d/1lairm_wlDatv9MnkhmZN58nJezyGwt_F1qoirpmV4uI/edit). Nota: Claude hizo esta búsqueda con un prompt pensado para otra IA; quedó así, pero no era su tarea.
+**Archivos:** Doc https://docs.google.com/document/d/1ZswMN3ejfi6rCBTDzbaTeR0DSDLTycyiXrMs7Ydrz3Y/edit (Drive, horno-vertical/investigaciones). Ficha que resume los dos Docs: archivos/investigaciones/controlador-mc5438-2026-11.md.
+**Fuentes:** manual oficial Maxthermo MC-5x38; manual de Terwin (sí descarga); catálogo de STI-GAS.
+**Verificado:** En la ficha se marca qué releyó Claude en la fuente y qué viene solo de Perplexity.
+**Para Nick:** Foto de la placa del horno y de la etiqueta del controlador; probar en el equipo el modo manual, el nivel PROG y la unidad de P1.
+**Para la siguiente IA:** Usar la ficha, no los Docs.
+
 ### 2026-11-08 22:40 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Decidir tres puntos del spec de B: (1) criterio de cierre: RMS T_pared ≤ 5 K en las dos corridas, T_centro ≤ 10 K fuera de la pirólisis y ≤ 20 K en ella; (2) corrida en vacío con un modelo 0D del tubo en calibracion/ (no toca el motor) o con un modo "tubo vacío" en el motor; (3) agregar horno.modo = "medido" (T_horno(t) leído del CSV) para separar el horno del tubo en la corrida con café.
 **Recomendación:** (1) sí; (2) 0D; (3) sí.
-**Para Nick:** Responder sí/no a cada uno.
+**Para Nick:** Responder sí/no a cada uno. ✅ Aprobado por Nick — 2026-11-09 08:40: (1) sí, (2) modelo 0D en calibracion/, (3) sí
 
 ### 2026-11-08 22:40 — Claude Opus 5.5 — HECHO
 **Qué:** Plan del ensayo térmico (subproyecto B), borrador. Corrida 1 (tubo vacío) → C_h, UA_p, h_c, ε. Corrida 2 (café, 10 °C/min a 500 °C) con eso fijo → k_virgen_0 (25–200 °C), k_char_0 (enfriamiento final), R_contacto_extra (débil con 2 termopares). Aparte: τ de termopares (agua hirviendo) y P_max real (pinza). h_c y k no se confunden porque h_c sale de la corrida sin lecho.

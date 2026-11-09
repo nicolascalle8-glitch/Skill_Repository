@@ -1,8 +1,8 @@
 # HANDOVER — Horno vertical (pirólisis de café, práctica GIEM UdeA/EIA)
 
-Última actualización: 2026-11-08 22:10 (Bogotá)
-Chat de origen: Project "MacBook's Power": chat "Línea 1 horno vertical" (diseño, spec y plan, 19:11–22:10) y chat del subproyecto A (motor nuevo, 19:57–21:55)
-Auditoría más reciente: 🟢 78/100 (chat A) · 🟡 71/100 (chat de diseño)
+Última actualización: 2026-11-09 08:50 (Bogotá)
+Chat de origen: Project "MacBook's Power": chat "Línea 1 horno vertical" (diseño, 19:11–22:10), chat del subproyecto A (motor nuevo, 19:57–21:55) y chat del subproyecto B (plan del ensayo térmico, 2026-11-08 22:06 – 2026-11-09 08:50)
+Auditoría más reciente: 🟡 66/100 (chat B, 2026-11-09) · 🟢 78/100 (chat A) · 🟡 71/100 (chat de diseño)
 
 ---
 
@@ -14,7 +14,8 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 ### Dónde vamos
 - **A (motor) — cerrado.** Paquete `motor/` en PyrolysisReactorCoffee, rama `main` (PR #2, commit ed907cf). Pasan las 8 pruebas del spec y las 84 de pytest, en el contenedor y en el Mac. legacy/ borrado.
 - **C (app) — desbloqueado.** La interfaz quedó fija y le toca a Cursor/Copilot.
-- **B (calibración) — próximo paso.** Plan del ensayo térmico: termopar en pared y centro, una corrida en vacío y una con café.
+- **B (calibración) — plan aprobado, falta el script de ajuste.** Spec docs/specs/2026-11-08-ensayo-termico-design.md en la rama `ensayo-termico` (commit 657a86b, en GitHub). Nick aprobó sus 3 propuestas (2026-11-09 08:40). Siguiente: script de ajuste en calibracion/ probado con datos sintéticos, en una sola sesión de Claude Code en el Mac.
+- **Controlador MC-5438:** investigado (Perplexity + Claude, 2026-11-09). Ficha: archivos/investigaciones/controlador-mc5438-2026-11.md. El horno "Max-Therma" no aparece en la web.
 
 ### Decisiones vigentes
 | Fecha | Decisión | Por qué | Quién la tomó |
@@ -29,6 +30,10 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 | 2026-11-08 21:17 | lecho.R_contacto_extra = 0.011 m²K/W [Calculado] | Resistencia efectiva de legacy al quitar el término que dependía de la malla | Propuso Claude, aprobó Nick |
 | 2026-11-08 21:30 | Unir motor-nuevo a main | Dejar todo al día en GitHub | Nick |
 | 2026-11-08 | Datos del GIEM y FTIR no se suben (repo público) | El reporte trae datos personales | Nick |
+| 2026-11-09 08:40 | Criterio de cierre de B: RMS T_pared ≤ 5 K (las dos corridas); RMS T_centro ≤ 10 K fuera de la pirólisis y ≤ 20 K en ella | Propuesta del spec de B | Propuso Claude, aprobó Nick |
+| 2026-11-09 08:40 | Corrida en vacío con un modelo 0D del tubo en calibracion/ (no se toca el motor) | El motor no tiene modo tubo vacío | Propuso Claude, aprobó Nick |
+| 2026-11-09 08:40 | Agregar horno.modo = "medido" (T_horno(t) leído del CSV del ensayo) | Separa el horno del tubo en la corrida con café | Propuso Claude, aprobó Nick |
+| 2026-11-08 22:30 aprox. | Un solo escritor por rama: ensayo-termico = una sesión de Claude Code; app-streamlit = Cursor, solo app/ | Evitar reprocesos y trabajo cruzado | Propuso Claude; Nick lo pidió así (pocos chats y ramas) |
 
 ### Hitos
 | Fecha | Hito | Estado |
@@ -45,13 +50,22 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 | 2026-11-08 21:36 | Unido a main (PR #2); Mac en main | ✅ |
 | 2026-11-08 21:48 | Barrido de 30 casos en el Mac: 8.4 s (x9.3) | ✅ |
 | — | App Streamlit (C) | 🔜 Cursor/Copilot |
-| — | Plan del ensayo térmico (B) | 🔜 Claude, chat nuevo |
+| 2026-11-08 22:15 | Spec del ensayo térmico (B), rama ensayo-termico (657a86b) | ✅ |
+| 2026-11-09 08:27 | Investigación del MC-5438 (Perplexity) + faltantes (Claude) | ✅ |
+| 2026-11-09 08:40 | Nick aprueba las 3 propuestas del spec de B | ✅ |
+| — | Script de ajuste con datos sintéticos (B) | 🔜 Claude Code en el Mac |
+| — | Ensayo real (2 corridas) | 🔜 Nick, en el laboratorio |
 
 ### Pendientes
 | Pendiente | Responsable | Fecha límite | Bloqueado por |
 |---|---|---|---|
-| Plan del ensayo térmico (termopar pared + centro; vacío y con café) | Claude (chat B) | — | — |
-| Datos del MC-5438 (tiempo de ciclo SSR, unidades y rangos PID, autotune) | Perplexity → Nick | — | — |
+| ~~Plan del ensayo térmico~~ → hecho (spec en ensayo-termico) | — | — | — |
+| ~~Datos del MC-5438~~ → ficha archivos/investigaciones/controlador-mc5438-2026-11.md | — | — | — |
+| Script de ajuste en calibracion/ (0D del tubo + horno.modo = "medido"), probado con datos sintéticos | Claude Code (Mac) | — | — |
+| Actualizar el spec de B: quitar "borrador" y anotar las 3 aprobaciones | Claude Code (Mac) | — | — |
+| Foto de la placa del horno y de la etiqueta del controlador (código MC-5438-BCD-EFG; G = 2 es RS-485) | Nick | — | — |
+| En el equipo: cómo entrar a manual y fijar OutL; ¿nivel PROG abierto?; unidad de P1 | Nick | — | — |
+| Conseguir 3 termopares tipo K con vaina, registrador de 1 s y adaptador USB–RS-485 (si G = 2) | Nick / GIEM | — | — |
 | Responder la PREGUNTA del 19:33 (masas y temperaturas de "Pirolizado 1-2"; ¿"Café grano" = residuo del GIEM?) | Nick | — | — |
 | Medir lípidos (Soxhlet, hexano) y densidad aparente a 8 % de humedad | Nick / GIEM | — | — |
 | Confirmar con el GIEM N = 0.418 % bs (la literatura da 2.3–2.8 %) | Nick | — | — |
@@ -72,6 +86,8 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 - Composición de Ballesteros: aprobada. Para comparar contra legacy, usar COMPOSICION_LEGACY de tests/test_simulador.py.
 - R_contacto_extra = 0.011: aprobado; se recalibra en B, no antes.
 - Emisividad = 0 en la base: h_c = 90 ya incluye la radiación (legacy). Separarlos es trabajo de B.
+- Plan del ensayo (qué se calibra con cada corrida, por qué h_c y k no se confunden) y las 3 aprobaciones del 2026-11-09.
+- Horno "Max-Therma" en la web: dos búsquedas sin resultado. Sale de la placa o del GIEM.
 
 ### Archivos, links y entregables
 | Qué | Dónde | Notas |
@@ -84,6 +100,9 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 | Investigación de Gemini | Drive: Proyectos IA / horno-vertical / Investigación — datos del café y del reactor | Revisada: 6 errores de atribución (bitácora 20:11) |
 | Bitácora | GitHub proyectos/horno-vertical/BITACORA.md + Drive (id en registry/DRIVE.yml) | Entradas del 2026-11-08 |
 | Datos del laboratorio | 01_Horno_Vertical/datos/ (GIEM 28ago2604.pdf, FTIR CSV) | No van al repo |
+| Spec del ensayo térmico (B) | PyrolysisReactorCoffee, rama ensayo-termico: docs/specs/2026-11-08-ensayo-termico-design.md | 657a86b |
+| Ficha del MC-5438 | proyectos/horno-vertical/archivos/investigaciones/controlador-mc5438-2026-11.md | Resume los dos Docs de Drive |
+| Investigaciones MC-5438 + PDFs | Drive: Proyectos IA / horno-vertical / investigaciones (folder 1hPOFZqmEttY3lUTJa2bdGmhnS9NIeavr) | Doc Perplexity 1lairm_wl…; Doc Claude 1ZswMN3e…; manual oficial, Terwin, STI |
 
 ### Preferencias de trabajo para este proyecto
 - Español simple y directo; cifras con fuente y etiqueta ([Dato], [Supuesto], [Por validar], [Calculado]).
@@ -97,11 +116,20 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 
 ## 2. Mensaje de arranque para el chat nuevo
 
-> Trabajemos en horno-vertical, subproyecto B (calibración térmica). Para arrancar lee **solo** `proyectos/horno-vertical/CONTEXTO.md` del repo `nicolascalle8-glitch/Skill_Repository` y las últimas 5 entradas de BITACORA.md. No releas el chat viejo ni este HANDOVER. Lo siguiente que necesito: el plan del ensayo térmico (termopar en pared y centro, corrida en vacío y con café) y qué parámetros del motor se calibran con él. No reabras las decisiones vigentes. En mi Mac trabaja solo en ~/Documents/Documents - MacBook Pro de Nicolas/Max_Power/01_Horno_Vertical.
+> Subproyecto B del horno vertical, en Claude Code en mi Mac. Lee solo `proyectos/horno-vertical/CONTEXTO.md` de `nicolascalle8-glitch/Skill_Repository` y las últimas 5 entradas de su BITACORA.md, más `docs/specs/2026-11-08-ensayo-termico-design.md` de este repo. Trabaja solo en la rama `ensayo-termico`. No reabras decisiones vigentes. Tarea: la del CONTEXTO ("Tu siguiente tarea").
 
 ---
 
 ## 3. Historial de actualizaciones
+
+### 2026-11-09 08:50 — 🟡 66/100 (chat del subproyecto B)
+- **Nuevo:** spec del ensayo térmico (rama ensayo-termico, 657a86b). Corrida 1 vacío → C_h, UA_p, h_c, ε; corrida 2 café → k_virgen_0 (25–200 °C), k_char_0 (enfriamiento), R_contacto (débil). Aparte: τ de termopares y P_max real.
+- **Nuevo:** Nick aprobó las 3 propuestas (criterio RMS, tubo vacío 0D, horno.modo = "medido").
+- **Nuevo:** investigación del MC-5438 (Perplexity + Claude) → ficha en archivos/investigaciones/. Lo importante: nivel PROG puede requerir al distribuidor; modo manual existe sin paso a paso; Modbus RTU sin códigos de función; unidad de P1 no documentada; sin USB.
+- **Auditoría del chat B:** 66/100. Se desvió: Claude ejecutó como suyo un prompt de investigación pensado para otra IA (rompe el reparto) en vez de revisar la tabla de Perplexity. También dejó el push al Mac sin credenciales y la copia de Drive a medias, y Nick tuvo que preguntar. Las decisiones vigentes se respetaron.
+- **Cerrado:** plan del ensayo térmico; datos del MC-5438 (En curso de Perplexity); PROPUESTA 22:40.
+- **Cambiado:** nada del motor ni de base.toml.
+- **Notas:** git en el Mac (VM de Claude) no puede borrar sus locks: dejó .git/stale-HEAD-lock y .git/stale-maintenance-lock (renombrados), que se pueden borrar. El Mac de Claude no tiene credenciales de GitHub: los commits de Claude van desde la nube o los empuja Claude Code.
 
 ### 2026-11-08 22:10 — 🟡 71/100 (chat de diseño "Línea 1 horno vertical")
 - **Nuevo:** se suma la trazabilidad del chat de diseño (19:11–22:10): hitos de 19:20 a 19:55, desacuerdo abierto del panel sobre el craqueo de alquitranes y dos pendientes menores (BRIEF.md del Mac, ramas ya unidas).
