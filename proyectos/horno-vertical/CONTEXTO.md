@@ -1,12 +1,13 @@
 # CONTEXTO — Horno vertical
 
-Actualizado: 2026-11-08 20:02 (Claude Opus 5.5)
+Actualizado: 2026-11-08 20:54 (Claude Opus 5.5)
 
 ## En una frase
 Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cinética RAC + TGL, que se va a rehacer como motor limpio, calibrar con el horno real y usar desde una app (Streamlit) como "tuner": calibrar modelo → sintonizar PID → escoger receta.
 
 ## Dónde está todo
-- Código original: GitHub nicolascalle8-glitch/PyrolysisReactorCoffee (simulador_interactivo.py = modelo vigente; docs/EVALUACION_CINETICAS.md).
+- Código: GitHub nicolascalle8-glitch/PyrolysisReactorCoffee, rama motor-nuevo = motor nuevo (motor/, parametros/base.toml, tests/); el modelo anterior quedó en legacy/.
+- En el Mac: 01_Horno_Vertical/modelos/PyrolysisReactorCoffee-motor-nuevo (clon con git); la copia vieja modelos/PyrolysisReactorCoffee sigue ahí hasta que Nick apruebe.
 - Carpeta de trabajo: Mac de Nick, ~/Documents/Documents - MacBook Pro de Nicolas/Max_Power/01_Horno_Vertical (datos/, modelos/, resultados/).
 - Brief: doc del Project "MacBook's Power" → lineas/01-horno-vertical.md.
 
@@ -24,7 +25,9 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cin�
 - Falta: curvas de termopar, masas de productos, TGA.
 
 ## Pendientes
-- Implementar el motor (Claude, chat nuevo): plan docs/plans/2026-11-08-motor-nuevo.md en la rama motor-nuevo, 11 tareas.
+- Motor (A) HECHO 2026-11-08: 78 pruebas, caso base igual a legacy, ≈12× más rápido. Interfaz fija (cargar_parametros, simular, simular_lote, Resultado) → Cursor/Copilot ya puede hacer la app.
+- Nick: correr las pruebas en la Terminal de macOS y la prueba 7 en MATLAB real; decidir la PROPUESTA de borrar legacy/ y los datos de la REVISIÓN de Gemini (lignina 24 %).
+- B: aviso de horno saturado y demás menores de la revisión (bitácora 20:54).
 - Respuestas de Nick a la PREGUNTA del 2026-11-08 19:33.
 - Plan del ensayo térmico (termopar pared + centro; corrida en vacío y con café).
 - Manual Max-Therma MC-5438: tiempo de ciclo SSR y rangos PID.

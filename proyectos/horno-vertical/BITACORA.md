@@ -3,16 +3,81 @@
 Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idéntica en Google Drive: Proyectos IA / horno-vertical / Bitácora — horno-vertical.
 
 ## En curso
-- Claude Opus 5.5 — implementación del motor nuevo (chat nuevo, plan docs/plans/2026-11-08-motor-nuevo.md) — desde 2026-11-08 20:02
-- Gemini — investigación de datos del café y del reactor — desde 2026-11-08 19:36
 - Perplexity — datos del controlador MC-5438 — desde 2026-11-08 19:36
 
 ## Propuestas sin respuesta
-- (ninguna)
+- 2026-11-08 20:54 — Claude Opus 5.5 — borrar legacy/ de PyrolysisReactorCoffee y reemplazar en el Mac la copia vieja modelos/PyrolysisReactorCoffee por la nueva
+- 2026-11-08 20:54 — Claude Opus 5.5 — datos de la revisión de Gemini para base.toml (lignina 24 %, medir lípidos y densidad, confirmar N con el GIEM)
 
 ---
 
 ## Entradas
+
+### 2026-11-08 20:54 — Claude Opus 5.5 — PROPUESTA
+**Qué:** (1) Borrar `legacy/` del repo PyrolysisReactorCoffee: el motor ya pasa la sección 9 del spec. (2) En el Mac, reemplazar la copia vieja `modelos/PyrolysisReactorCoffee` (commit ddb0a63, sin git) por la nueva `modelos/PyrolysisReactorCoffee-motor-nuevo` (clon con git, rama motor-nuevo).
+**Archivos:** nada todavía.
+**Fuentes:** entrada HECHO 20:54 (pruebas 1–8).
+**Verificado:** n/a.
+**Para Nick:** Aprobar o rechazar cada punto. Antes de borrar legacy/ conviene correr la prueba 7 en MATLAB real y las pruebas en la Terminal de macOS. Si se borra: las pruebas de validación Bok 2012 / Inayat 2022 viven solo en legacy/tests y habría que portarlas antes.
+**Para la siguiente IA:** No borrar ni mover nada hasta que Nick apruebe aquí.
+
+### 2026-11-08 20:54 — Claude Opus 5.5 — HECHO
+**Qué:** Motor nuevo implementado (subproyecto A, 11 tareas del plan, con pruebas primero) y revisado por un revisor nuevo. **La interfaz pública quedó fija:** `cargar_parametros`, `simular`, `simular_lote`, `Resultado` (spec §7).
+**Archivos:** PyrolysisReactorCoffee, rama motor-nuevo (commits a37bd5b..05cd97d): motor/, parametros/base.toml, tests/ (78 pruebas), matlab/verificacion/, legacy/ (código anterior sin cambios), pyproject.toml, README.md. En el Mac: Max_Power/01_Horno_Vertical/modelos/PyrolysisReactorCoffee-motor-nuevo/ (clon con git).
+**Fuentes:** spec docs/specs/2026-11-08-motor-nuevo-design.md; legacy simulador_interactivo.py. Todos los parámetros de base.toml traen unidad, etiqueta y fuente; casi todos son [Supuesto] de legacy.
+**Verificado:** `python -m pytest tests -q` → 78 passed (3 min 29 s, contenedor Linux).
+- (1) Bessel: error ≤ 1 % de ΔT0 en Fo 0.05, 0.2 y 0.5.
+- (2) Caso base contra legacy: biochar 24.93 / bio-oil 38.95 / gas 20.23 / agua 15.90 % (legacy 24.93 / 38.94 / 20.23 / 15.90); RMS de T_centro 4.5 K (límite 10).
+- (3) 16 casos: masa ≤ 3e-13 %, energía ≤ 1e-8 % (es cierre numérico).
+- (4) dt/2: rendimientos 0.005 pp, T_centro 1.3 K RMS.
+- (5) Malla ×2: rendimientos 0.001 pp, T 0.8 K RMS.
+- (6) Velocidad: 2.1 s el caso base en la VM del Mac (legacy 25 s en la misma VM), ≈12 veces más rápido.
+- (7) MATLAB: probado con GNU Octave, ode15s contra Python 0.349 K (límite 4.75 K), PASA; falta MATLAB real.
+- (8) Parámetros malos: ErrorParametro con el nombre del parámetro.
+- Revisión final por otro agente: 0 críticos, 6 importantes, todos corregidos con su prueba.
+**Para Nick:**
+- (a) En la Terminal de macOS, dentro de modelos/PyrolysisReactorCoffee-motor-nuevo: `python3 -m venv .venv && .venv/bin/pip install -e ".[pruebas]" && .venv/bin/python -m pytest tests -q`.
+- (b) Prueba 7 en MATLAB: ver matlab/verificacion/README.md y pegar el número aquí.
+- (c) Decisión que tomó Claude y que conviene que revises: lecho.R_contacto_extra pasó de 0.003 a 0.011 m²K/W [Calculado]. Legacy sumaba una resistencia que dependía de la malla; 0.011 es su valor efectivo y B lo calibra.
+- (d) PROPUESTA de arriba (borrar legacy/).
+**Para la siguiente IA:**
+- CURSOR/COPILOT: ya puedes hacer tu tarea (PREGUNTA 2026-11-08 19:36). Usa SOLO `from motor import cargar_parametros, simular, simular_lote` y los campos de `Resultado`:
+  - `rendimientos`
+  - `historia`, con claves t, T_horno, T_set, T_pared, T_lecho_superficie, T_centro, T_termopar_control, masa_residual, u
+  - `mapas`, `balance_masa`, `balance_energia`, `confiable`, `supuestos`, `avisos`, `a_csv()`
+  - las gráficas con `motor.graficas.graficar`
+  - Para mostrar etiquetas y fuentes: `p.supuestos()` y `p.info(clave)`.
+  - No tocar motor/, parametros/ ni tests/ existentes.
+- Claude (B): pendientes menores de la revisión, en el ledger del commit 05cd97d:
+  - aviso cuando el horno físico satura (con los valores de arranque, P_max/C_h = 7.5 K/min, el horno no alcanza la rampa de 10 °C/min)
+  - T_final < T_inicial sin aviso
+  - guardar los parámetros en Resultado
+  - variables BLAS con fork
+
+### 2026-11-08 20:11 — Claude Opus 5.5 — REVISIÓN
+**Qué:** Revisé fuente por fuente la investigación de Gemini (6 temas). Sirve como base, pero no se puede copiar tal cual al modelo.
+**Archivos:** Drive: Proyectos IA / horno-vertical / Investigación — datos del café y del reactor (solo lectura).
+**Fuentes:** Ballesteros 2014 (Tabla 1 leída), Oliva 2022, Taleb 2020, Zuluaga 2024, Ben Abdallah 2023, Choi 2020, Debiagi 2015, Gupta 2003 (abstract), Guendouz 2023, Cardoso 2018, Nasr 2023 (citado como "Aouadja"), NASA CR-1431, Incropera A.11, Kordoghli 2026, Semaan 2022.
+**Verificado:**
+- Bien: composición de Ballesteros (celulosa 12.4, hemicelulosa 39.1, lignina 23.9 % bs), TGA de Ben Abdallah y Zuluaga, cinética TGL (A = 7e12 1/s, E = 191.2 kJ/mol), cp y k de char de Gupta (madera blanda) y ρ = 387 kg/m³ de Guendouz (SCG seco).
+- 6 errores de atribución:
+  - La "Tabla 389" de NASA CR-1431 no existe en ese documento.
+  - El 27 % de Taleb es lignina aislada, no Klason, así que no respalda el 28 %.
+  - "Aouadja 2023" es en realidad Nasr et al., sobre materiales de construcción.
+  - El hilo caliente de Guendouz se usó en el concreto, no en el café.
+  - Las áreas DTG de Ben Abdallah están mal copiadas: el artículo da 3.9 / 10.5 / 48.9.
+  - Los ácidos grasos a 197–362 °C no aparecen en Zuluaga.
+- Además mezcla datos de madera y de grano tostado como si fueran de SCG.
+**Para Nick:**
+- PROPUESTA: bajar la lignina a 24 % bs (Ballesteros 2014).
+- Medir lípidos (Soxhlet, hexano) y la densidad aparente a 8 % de humedad.
+- Pedir al GIEM que confirme N = 0.418 % bs (la literatura da 2.3–2.8 %).
+- Separar la radiación (ε ≈ 0.7, por validar) de h_c: con ε = 0.7, h_rad va de ≈26 W/m²K a 300 °C a ≈89 a 600 °C.
+- Unificar h: legacy config.py y matlab/param.m usan 85; simulador_interactivo.py usa 90.
+**Para la siguiente IA:**
+- No usar las emisividades de NASA CR-1431 ni los datos de "Aouadja". Buscar TPRC Vol. 7 (Touloukian & DeWitt 1970) para AISI 304 oxidado.
+- No mezclar la composición NREL (Ballesteros) con las fracciones CRECK de Choi 2020.
+- Nada de esto cambió base.toml todavía: espera la aprobación de Nick y el subproyecto B.
 
 ### 2026-11-08 20:02 — Claude Opus 5.5 — HECHO
 **Qué:** Plan de implementación del motor nuevo: 11 tareas con pruebas primero (ordenar repo, parámetros, malla, propiedades, conducción implícita con Bessel, cinética, horno/PID/SSR, simulador contra legacy, dt adaptativo y convergencia, lote y gráficas, verificación MATLAB).
@@ -21,6 +86,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 **Verificado:** Auto-revisión del plan contra el spec (cobertura de las 8 pruebas, nombres e interfaces consistentes).
 **Para Nick:** Abrir un chat nuevo en el Project "MacBook's Power" con el mensaje de arranque que dejó Claude, y correr ahí la implementación.
 **Para la siguiente IA:** Implementar en la rama motor-nuevo siguiendo el plan tarea por tarea (executing-plans), en un chat nuevo. Cursor/Copilot sigue en espera hasta la Tarea 10.
+
+### 2026-11-08 19:56 — Gemini — HECHO
+**Qué:** Investigación bibliográfica con fuentes revisadas por pares de los 6 temas de datos del café (SCG) y del reactor que el modelo tenía como [Supuesto]: composición, análisis elemental y poder calorífico, propiedades del lecho, emisividad del AISI 304, TGA/DTG en N₂ y cinética de lípidos (TGL).
+**Archivos:** Google Drive (Proyectos IA / horno-vertical): Investigación — datos del café y del reactor (https://docs.google.com/document/d/1V0surrX-eTDgg7Mrz_901qPwmTgXFKbSZSs947Y-8B8/edit).
+**Fuentes:** 25+ artículos, manuales e informes con DOI/URL (lista completa en el Doc y en la copia de esta entrada en Drive).
+**Verificado:** Según Gemini, todos los valores salen de tablas primarias; lo que no encontró quedó como "no encontrado".
+**Para Nick:** Avisar a Claude para la revisión.
+**Para la siguiente IA:** Revisar las 6 tablas. (Copiada al repo por Claude Opus 5.5 el 2026-11-08 20:54 desde la bitácora de Drive; ver la REVISIÓN de las 20:11.)
 
 ### 2026-11-08 19:55 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Spec del motor nuevo (subproyecto A): estructura ordenada del repo PyrolysisReactorCoffee (motor/, parametros/, legacy/…), módulos, paso dividido calor implícito + química, horno físico con PID y SSR, archivo de parámetros con unidad/etiqueta/fuente, interfaz pública y 8 pruebas de verificación con criterios.
