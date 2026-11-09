@@ -2,7 +2,7 @@
 # Lo mantienen las skills colaboracion-ias y auditor-handover. Nunca se borra una línea:
 # si un proyecto se cierra, se marca estado: cerrado.
 version: 1
-actualizado: 2026-11-08
+actualizado: 2026-11-09
 cuenta: Drive de Nick (Mi unidad)
 
 raiz:
@@ -15,8 +15,8 @@ proyectos:
     folder_id: 18Ym93jsT1tNuvr1LsC3TJNzq65AH0Unv
     bitacora_doc_id: 1N8LNvyekYiY0MUxwc6HrlEd4bTjfgJtktnYw4de1vfQ
     bitacora_url: https://docs.google.com/document/d/1N8LNvyekYiY0MUxwc6HrlEd4bTjfgJtktnYw4de1vfQ/edit
-    estado: activo
-    nota: Los entregables del curso viven aparte, en "Helical Gears - Mechanical Design (EIA)" (1pi2Ol_GlQl70H1oVSDyNX0x68ZE4xR0R). No mover.
+    estado: fuera
+    nota: 2026-11-09, pedido de Nick — sale del repo y de Proyectos IA (aquí solo van skills). La carpeta (mismo id) se movió a la raíz de Mi unidad con la bitácora completa, CONTEXTO y HANDOVER. Los entregables del curso siguen en "Helical Gears - Mechanical Design (EIA)" (1pi2Ol_GlQl70H1oVSDyNX0x68ZE4xR0R).
 
   skills:
     folder_id: 1_9DxRnuTRqduzD4ZluVg3LJKoHrDsySg

@@ -20,7 +20,7 @@ proyectos/<proyecto>/
     <otros>           Textos largos aprobados, tablas, código que el CONTEXTO apunta
 ```
 
-- `<proyecto>`: minúsculas con guiones, corto (`engranajes-helicoidales`, `banco-pruebas-fz15`).
+- `<proyecto>`: minúsculas con guiones, corto (`horno-vertical`, `detector-particulas-cern`).
 - Los archivos pesados (PDF, CAD, Word, imágenes) **no** van al repo: viven en el computador o
   en Drive y el CONTEXTO los apunta con su ruta.
 - Cada proyecto aparece en `proyectos/README.md` (índice) con su estado.
