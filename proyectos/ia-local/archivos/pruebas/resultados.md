@@ -45,7 +45,7 @@ VS Code 1.145.2, proveedor integrado Custom Endpoint, contexto 32768 (entrada 24
 | Responde dentro del chat de VS Code | Bien: el registro de LM Studio muestra 3 peticiones de `qwen3.6-27b-mlx`, sin errores |
 | Tiempo de la primera respuesta real | ~3 min 10 s para explicar un archivo de 31 líneas (primera petición: 114 s) |
 
-El chat venía en modo Copilot, donde el modelo local no aparece. Hay que usar el modo Local (abajo, en el panel de chat) y elegir "Qwen 3.6-27B (local)". Comprobar que el selector lo muestre: en Auto responde Copilot, no Qwen.
+El chat venía en modo Copilot, donde el modelo local no aparece. Hay que usar el modo Local (abajo, en el panel de chat) y elegir "L3-37 (local)", el nombre visible de Qwen 3.6-27B desde el 9 nov. Comprobar que el selector lo muestre: en Auto responde Copilot, no Qwen.
 
 No es 100 % local: aun con Qwen elegido, VS Code generó el título de la conversación con `gpt-4o-mini` en la nube de Copilot.
 

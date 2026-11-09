@@ -7,7 +7,7 @@
     "models": [
       {
         "id": "qwen3.6-27b-mlx",
-        "name": "Qwen 3.6-27B (local)",
+        "name": "L3-37 (local)",
         "url": "http://localhost:1234",
         "toolCalling": true,
         "vision": false,

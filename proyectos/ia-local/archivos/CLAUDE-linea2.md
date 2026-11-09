@@ -38,7 +38,12 @@ Estoy aprendiendo esta parte (servidores de modelos, terminal, Python), así que
   - `vscode_chatLanguageModels.json` copia de la configuración del modelo local en VS Code
 - `pruebas/` — mediciones de velocidad y calidad; el resumen está en `pruebas/resultados.md`
 
-## Estado (8 nov 2026, 21:40)
+## Nombre
+La IA local se llama **L3-37**: la droide de Star Wars cuya mente queda en la computadora del Halcón Milenario.
+Sigue la serie de los equipos de Nick (computador Millennium Falcon, celular BB-8, impresoras C3PO y R2D2).
+Es el nombre visible en VS Code; el modelo sigue siendo Qwen 3.6-27B y su clave técnica `qwen3.6-27b-mlx`.
+
+## Estado (9 nov 2026)
 - macOS 27.0.1, M4 Max, 48 GB, límite GPU por defecto (`iogpu.wired_limit_mb` = 0). Disco libre: ~744 GB.
 - Homebrew instalado. Python 3.13 (python.org), sin MLX, torch, numpy ni Whisper.
 - LM Studio 0.4.28 instalado, motor mlx-llm 1.14.0. Ollama no instalado.
@@ -48,7 +53,7 @@ Estoy aprendiendo esta parte (servidores de modelos, terminal, Python), así que
 - Medido: 26–28 tok/s, primera palabra ~0.5 s (28–31 s con 6801 tokens de entrada), 14.98 GiB.
 - Calidad (4 prompts): explica y razona bien; su código nuevo hay que probarlo siempre.
 - VS Code conectado (Custom Endpoint) y comprobado en el registro de LM Studio.
-  Para usarlo: correr `config/encender_qwen.sh`, poner el chat en modo **Local** y elegir **Qwen 3.6-27B (local)**.
+  Para usarlo: correr `config/encender_qwen.sh`, poner el chat en modo **Local** y elegir **L3-37 (local)**.
   Si el selector dice Auto, responde Copilot. Una respuesta real tardó ~3 min. Los títulos del chat siguen yendo a la nube de Copilot.
 - Antigravity IDE: sin soporte oficial confirmado para modelos locales; se deja con sus modelos en la nube.
 

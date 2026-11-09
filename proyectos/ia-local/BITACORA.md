@@ -14,6 +14,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra.
 
 ## Entradas
 
+### 2026-11-09 08:10 — Claude Opus 5.5 — HECHO
+**Qué:** La IA local ahora se llama L3-37 en VS Code, por pedido de Nick: es la droide de Star Wars cuya mente queda en la computadora del Halcón Milenario, y sigue la serie de sus equipos. El modelo sigue siendo Qwen 3.6-27B.
+**Archivos:** proyectos/ia-local/CONTEXTO.md y archivos/ (config/vscode_chatLanguageModels.json, config/encender_qwen.sh, CLAUDE-linea2.md, pruebas/resultados.md).
+**Fuentes:** pedido de Nick en el chat; la referencia a L3-37 viene de la película Solo (2018).
+**Verificado:** JSON válido y copiado a la configuración real de VS Code; sintaxis del script revisada con bash -n. No verificado en pantalla: VS Code estaba en otro escritorio y la captura no mostraba cambios recientes.
+**Para Nick:** revisar que el selector de VS Code diga L3-37 (local), reiniciando VS Code si no cambia; y decir si el proyecto también cambia de nombre (sigue como ia-local).
+**Para la siguiente IA:** L3-37 es solo el nombre visible. La clave técnica sigue siendo qwen3.6-27b-mlx y el grupo LM Studio (local) no se renombró, porque VS Code los usa para identificar el modelo.
+
 ### 2026-11-08 21:40 — Claude Opus 5.5 — HECHO
 **Qué:** Se crea el proyecto ia-local en el repo y en Drive. Quedan instalado LM Studio, medido Qwen 3.6-27B (26–28 tok/s) y conectado a VS Code, y compartidos los documentos con Claude chat y Gemini.
 **Archivos:** proyectos/ia-local/CONTEXTO.md, BITACORA.md y archivos/ (BRIEF, CLAUDE-linea2, config, pruebas); proyectos/README.md; registry/DRIVE.yml.

@@ -1,6 +1,6 @@
 #!/bin/bash
 # encender_qwen.sh - Linea 2 (IA local)
-# Que hace: enciende el servidor de LM Studio y carga Qwen 3.6-27B para usarlo en VS Code.
+# Que hace: enciende el servidor de LM Studio y carga L3-37 (el modelo Qwen 3.6-27B) para usarla en VS Code.
 # Ocupa unos 15 GB de memoria hasta que lo apagues.
 #
 # Como correrlo (en Terminal):
@@ -27,4 +27,4 @@ fi
 
 # 3) Muestra el estado final
 "$LMS" ps
-echo "Listo. En VS Code elige 'Qwen 3.6-27B (local)' en el selector de modelos del chat."
+echo "Listo. En VS Code elige 'L3-37 (local)' en el selector de modelos del chat."

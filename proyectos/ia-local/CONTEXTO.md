@@ -1,9 +1,9 @@
 # CONTEXTO — IA local en el M4 Max (Línea 2 de Max_Power)
 
-Actualizado: 2026-11-08 21:40 (Bogotá). Lee solo esto para arrancar. Reglas: CONTRATO.md del repo.
+Actualizado: 2026-11-09 08:10 (Bogotá). Lee solo esto para arrancar. Reglas: CONTRATO.md del repo.
 
 ## En una frase
-Montar y usar modelos de IA locales en el MacBook Pro M4 Max de Nick. Complementa a Gemini y a Cursor/Copilot, no los reemplaza. El horno vertical es otra línea (`horno-vertical`): no mezclar.
+Montar y usar modelos de IA locales en el MacBook Pro M4 Max de Nick. Complementa a Gemini y a Cursor/Copilot, no los reemplaza. El horno vertical es otra línea (`horno-vertical`): no mezclar. La IA se llama L3-37 (modelo Qwen 3.6-27B), siguiendo la serie Star Wars de los equipos de Nick.
 
 ## Tu siguiente tarea
 Objetivo 3: tutor local que busque en los PDF y apuntes de Nick (Çengel, Shigley, Mott, clases) y explique con el porqué físico. Antes de instalar o descargar algo, decirle a Nick qué es, cuánto pesa y dónde queda, y esperar su sí.
@@ -20,7 +20,7 @@ Todo medido en el Mac de Nick el 2026-11-08, con el Mac en uso normal. Detalle e
 
 ## Cómo se usa
 1. Correr `archivos/config/encender_qwen.sh` (en el Mac está en `Max_Power/02_IA_Local/config/`).
-2. En el chat de VS Code: modo **Local** y modelo **Qwen 3.6-27B (local)**. Si el selector dice Auto, responde Copilot.
+2. En el chat de VS Code: modo **Local** y modelo **L3-37 (local)**. Si el selector dice Auto, responde Copilot.
 3. Al terminar: `~/.lmstudio/bin/lms unload --all && ~/.lmstudio/bin/lms server stop`.
 
 ## Decisiones vigentes (no reabrir)
