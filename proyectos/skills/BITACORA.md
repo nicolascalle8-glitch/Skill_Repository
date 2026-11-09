@@ -19,6 +19,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-11-08 20:25 — Claude Opus 5.5 — HECHO
+**Qué:** Pedido de Nick: copiar a Drive (carpeta "Proyectos IA") todos los trabajos que estaban solo en GitHub. Se subieron 17 archivos: CONTEXTO y HANDOVER de engranajes-helicoidales y detector-particulas-cern, CONTEXTO de horno-vertical; los 5 scripts del detector (planos, sketch, calculadora) en detector-particulas-cern/archivos; en skills/archivos el sistema de Gemini, su revisión y la ficha de fotosíntesis cuántica; en skills/monitor los 4 reportes. Los .md quedaron como Google Docs; el código como archivos .py/.ino sin convertir. No se movió ni borró nada. GitHub sigue siendo la versión principal.
+**Archivos:** Drive Proyectos IA/<proyecto>/ (ids en registry/DRIVE.yml, campo copias), registry/DRIVE.yml, proyectos/skills/BITACORA.md
+**Fuentes:** archivos del repo en el commit c18f435.
+**Verificado:** búsqueda en Drive: los 17 archivos y 3 carpetas nuevas están; el código tiene el mismo tamaño en bytes que en el repo; un doc leído completo con read_doc (emojis bien).
+**Para Nick:** si cambia algo en GitHub, la copia de Drive no se actualiza sola. Pedir "actualiza las copias de Drive" cuando haga falta.
+**Para la siguiente IA:** las copias en Drive son solo lectura de respaldo; se edita en GitHub y se vuelve a copiar.
+
 ### 2026-11-08 18:37 — Claude Opus 5.5 — HECHO
 **Qué:** Revisión de skills 2026-11-08 (semanal, sin Nick). Sobra: 0. Actualizar: 1 (reinstalar router-ing). Mejorar: 0 nuevas (sigue la exclusión de física). Crear: 0. 1 propuesta: decidir el repo de osciloscopio-ds215h. Sincronización: nada subido en Skill_Repository; Skills_Fisica sin acceso.
 **Archivos:** proyectos/skills/monitor/2026-11-08.md, proyectos/skills/BITACORA.md

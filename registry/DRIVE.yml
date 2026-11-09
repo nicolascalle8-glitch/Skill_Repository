@@ -36,3 +36,19 @@ proyectos:
     bitacora_url: https://docs.google.com/document/d/1p8eQVI9A0OLfpjyAVWQ4tswdb5ZZry2KBzTqDC09hw0/edit
     estado: activo
     nota: Código y datos viven en el Mac de Nick (Max_Power/01_Horno_Vertical) y en el repo PyrolysisReactorCoffee.
+
+# Copias de los trabajos del repo (CONTEXTO, HANDOVER, archivos/), subidas el 2026-11-08 20:25 por pedido de Nick.
+# Son respaldo para leer en Drive; la versión principal sigue en GitHub.
+copias:
+  horno-vertical:
+    CONTEXTO: 1_2YJlpperUnutEWfgGD7VEH4APwHf5pNGmsQbveRjdA
+  detector-particulas-cern:
+    CONTEXTO: 1qpDnSMbtcCZZxB8Cr4s27Bi7NWHym3EpparDviCbmg8
+    HANDOVER: 14Dr13xouRlCCD_JMT2rddaxfqtDw5jIV6Ir8DmYAWCk
+    archivos_folder_id: 1O-1DVULXqxtUC0qlmOcnNSjTp6kkl-GD
+  engranajes-helicoidales:
+    CONTEXTO: 11V84a9VX8zxakLhog5FK_3WpvArwYw7JxHlRM5Q_0UI
+    HANDOVER: 1n7q3v6bk721rrpqAmA8k_NspUs9IS8j3cfDfagUyDbI
+  skills:
+    archivos_folder_id: 1bqtyTwKMq13lMuqqPEFe5XWtE3P6NcNB
+    monitor_folder_id: 1bQYKiJRVdbDPddbibWLgbL1o02Vy75OS
