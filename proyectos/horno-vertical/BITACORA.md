@@ -12,6 +12,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 
 ## Entradas
 
+### 2026-11-08 21:55 — Claude Opus 5.5 — HECHO
+**Qué:** Handover 2026-11-08 — 🟢 78/100. Se cierra el chat del subproyecto A (motor nuevo).
+**Archivos:** proyectos/horno-vertical/HANDOVER.md (nuevo, primer handover); proyectos/horno-vertical/CONTEXTO.md (reescrito).
+**Fuentes:** este chat (19:57–21:55) y la bitácora.
+**Verificado:** CONTEXTO con menos de 1.500 palabras; las decisiones y los pendientes coinciden con las entradas de hoy.
+**Para Nick:** Abrir un chat nuevo en el Project "MacBook's Power" con el mensaje de arranque del HANDOVER §2 (subproyecto B, plan del ensayo térmico). La app (C) va en Cursor/Copilot.
+**Para la siguiente IA:** Arrancar leyendo solo CONTEXTO.md y las últimas 5 entradas de esta bitácora. Siguiente tarea: plan del ensayo térmico (B).
+
 ### 2026-11-08 21:36 — Claude Opus 5.5 — HECHO
 **Qué:** motor-nuevo unido a main en PyrolysisReactorCoffee (PR #2, aprobado por Nick en el chat).
 **Archivos:** PyrolysisReactorCoffee main = ed907cf (merge de 7fd829c). En el Mac, modelos/PyrolysisReactorCoffee quedó en la rama main.

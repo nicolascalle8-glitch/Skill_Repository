@@ -1,0 +1,117 @@
+# HANDOVER — Horno vertical (pirólisis de café, práctica GIEM UdeA/EIA)
+
+Última actualización: 2026-11-08 21:55 (Bogotá)
+Chat de origen: Project "MacBook's Power", chat del subproyecto A (motor nuevo), 19:57–21:55
+Auditoría más reciente: 🟢 78/100
+
+---
+
+## 1. Estado actual
+
+### Qué es el proyecto
+Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de la práctica de Nick en el GIEM. Cinética RAC + TGL. La meta es usarlo como "tuner" del horno real: calibrar el modelo con termopares, sintonizar el PID del MC-5438 y escoger la receta (rampa, T final, meseta). Tres subproyectos: A motor nuevo, B ensayo térmico y calibración, C app Streamlit.
+
+### Dónde vamos
+- **A (motor) — cerrado.** Paquete `motor/` en PyrolysisReactorCoffee, rama `main` (PR #2, commit ed907cf). Pasan las 8 pruebas del spec y las 84 de pytest, en el contenedor y en el Mac. legacy/ borrado.
+- **C (app) — desbloqueado.** La interfaz quedó fija y le toca a Cursor/Copilot.
+- **B (calibración) — próximo paso.** Plan del ensayo térmico: termopar en pared y centro, una corrida en vacío y una con café.
+
+### Decisiones vigentes
+| Fecha | Decisión | Por qué | Quién la tomó |
+|---|---|---|---|
+| 2026-11-08 | Orden A motor → B calibración → C app | Primero un motor verificado | Nick |
+| 2026-11-08 | Paso dividido: conducción implícita + química exacta por nodo | El esquema explícito obligaba a dt ≈ 0.3 s | Nick |
+| 2026-11-08 | Horno como el real (C_h, UA_p, P_max, PID → SSR, termopar con retardo) | Tuner del horno real | Nick |
+| 2026-11-08 | App en Streamlit local; el PID se sintoniza en Python; MATLAB verifica y sirve para el micro | Reparto de herramientas | Nick |
+| 2026-11-08 19:53 | Spec del motor aprobado (docs/specs/2026-11-08-motor-nuevo-design.md) | — | Nick |
+| 2026-11-08 21:17 | Borrar legacy/ y reemplazar la copia vieja del Mac | El motor pasó la sección 9 | Nick |
+| 2026-11-08 21:17 | Composición: celulosa 12.4 y lignina 23.9 % bs (Ballesteros 2014) | Revisión de la investigación de Gemini | Nick |
+| 2026-11-08 21:17 | lecho.R_contacto_extra = 0.011 m²K/W [Calculado] | Resistencia efectiva de legacy al quitar el término que dependía de la malla | Propuso Claude, aprobó Nick |
+| 2026-11-08 21:30 | Unir motor-nuevo a main | Dejar todo al día en GitHub | Nick |
+| 2026-11-08 | Datos del GIEM y FTIR no se suben (repo público) | El reporte trae datos personales | Nick |
+
+### Hitos
+| Fecha | Hito | Estado |
+|---|---|---|
+| 2026-11-08 20:02 | Plan del motor (11 tareas) | ✅ |
+| 2026-11-08 20:54 | Motor implementado + revisión por otro agente (6 hallazgos importantes corregidos) | ✅ |
+| 2026-11-08 21:11 | 78 pruebas en macOS; caso base 1.4 s en el M4 | ✅ |
+| 2026-11-08 21:15 | Prueba 7 en MATLAB real: 0.349 K (límite 4.75) | ✅ |
+| 2026-11-08 21:30 | legacy/ borrado, composición Ballesteros, validaciones Bok/Inayat portadas (84 pruebas) | ✅ |
+| 2026-11-08 21:36 | Unido a main (PR #2); Mac en main | ✅ |
+| 2026-11-08 21:48 | Barrido de 30 casos en el Mac: 8.4 s (x9.3) | ✅ |
+| — | App Streamlit (C) | 🔜 Cursor/Copilot |
+| — | Plan del ensayo térmico (B) | 🔜 Claude, chat nuevo |
+
+### Pendientes
+| Pendiente | Responsable | Fecha límite | Bloqueado por |
+|---|---|---|---|
+| Plan del ensayo térmico (termopar pared + centro; vacío y con café) | Claude (chat B) | — | — |
+| Datos del MC-5438 (tiempo de ciclo SSR, unidades y rangos PID, autotune) | Perplexity → Nick | — | — |
+| Responder la PREGUNTA del 19:33 (masas y temperaturas de "Pirolizado 1-2"; ¿"Café grano" = residuo del GIEM?) | Nick | — | — |
+| Medir lípidos (Soxhlet, hexano) y densidad aparente a 8 % de humedad | Nick / GIEM | — | — |
+| Confirmar con el GIEM N = 0.418 % bs (la literatura da 2.3–2.8 %) | Nick | — | — |
+| Menores de la revisión (ver Errores/Notas abajo) | Claude (B) | — | — |
+| App Streamlit con la interfaz pública | Cursor/Copilot | — | — |
+
+### Preguntas abiertas
+- ¿Dónde está físicamente el termopar de control del MC-5438? El modelo lo pone en la cara externa del tubo.
+- Valores reales de C_h, UA_p y emisividad del horno: se sacan del ensayo térmico.
+- Sensibilidad a la rampa: el barrido de 5 a 20 °C/min casi no cambia los rendimientos (< 0.5 pp). Es propiedad del régimen `lecho_fijo` del modelo y hay que contrastarla con una corrida real.
+
+### No volver a discutir
+- Numérica (paso dividido, Euler implícito, solver de banda): verificada con Bessel, MATLAB y convergencia.
+- Borrar legacy/: hecho y aprobado. La referencia vive en tests/referencia/ y en git (commit c2acaae).
+- Composición de Ballesteros: aprobada. Para comparar contra legacy, usar COMPOSICION_LEGACY de tests/test_simulador.py.
+- R_contacto_extra = 0.011: aprobado; se recalibra en B, no antes.
+- Emisividad = 0 en la base: h_c = 90 ya incluye la radiación (legacy). Separarlos es trabajo de B.
+
+### Archivos, links y entregables
+| Qué | Dónde | Notas |
+|---|---|---|
+| Código del motor | github.com/nicolascalle8-glitch/PyrolysisReactorCoffee, rama main | motor/, parametros/base.toml, tests/, matlab/verificacion/ |
+| Spec y plan del motor | docs/specs/2026-11-08-motor-nuevo-design.md, docs/plans/2026-11-08-motor-nuevo.md | — |
+| Copia de trabajo en el Mac | ~/Documents/Documents - MacBook Pro de Nicolas/Max_Power/01_Horno_Vertical/modelos/PyrolysisReactorCoffee | .venv propio; `git pull` para actualizar |
+| Barrido en paralelo | 01_Horno_Vertical/modelos/barrido_motor.py | Salida en 01_Horno_Vertical/resultados/ |
+| Barrido de 30 casos | 01_Horno_Vertical/resultados/barrido_20261108_2148.csv | biochar 20.3–25.8 %, bio-oil 35.8–39.6 % |
+| Investigación de Gemini | Drive: Proyectos IA / horno-vertical / Investigación — datos del café y del reactor | Revisada: 6 errores de atribución (bitácora 20:11) |
+| Bitácora | GitHub proyectos/horno-vertical/BITACORA.md + Drive (id en registry/DRIVE.yml) | Entradas del 2026-11-08 |
+| Datos del laboratorio | 01_Horno_Vertical/datos/ (GIEM 28ago2604.pdf, FTIR CSV) | No van al repo |
+
+### Preferencias de trabajo para este proyecto
+- Español simple y directo; cifras con fuente y etiqueta ([Dato], [Supuesto], [Por validar], [Calculado]).
+- Pruebas primero; no decir que algo funciona sin correrlo.
+- Borrar, mover, unir a main o cambiar decisiones: solo con aprobación de Nick (PROPUESTA en la bitácora).
+- Comandos para la Terminal de macOS: completos (con el `cd` desde ~), sin comentarios `#`, y la ruta con espacios entre comillas.
+- Bitácora siempre en GitHub y en Drive, en la misma entrada.
+- "Todo en GitHub absolutamente actualizado" al cerrar.
+
+---
+
+## 2. Mensaje de arranque para el chat nuevo
+
+> Trabajemos en horno-vertical, subproyecto B (calibración térmica). Para arrancar lee **solo** `proyectos/horno-vertical/CONTEXTO.md` del repo `nicolascalle8-glitch/Skill_Repository` y las últimas 5 entradas de BITACORA.md. No releas el chat viejo ni este HANDOVER. Lo siguiente que necesito: el plan del ensayo térmico (termopar en pared y centro, corrida en vacío y con café) y qué parámetros del motor se calibran con él. No reabras las decisiones vigentes. En mi Mac trabaja solo en ~/Documents/Documents - MacBook Pro de Nicolas/Max_Power/01_Horno_Vertical.
+
+---
+
+## 3. Historial de actualizaciones
+
+### 2026-11-08 21:55 — 🟢 78/100
+- **Nuevo:** primer HANDOVER del proyecto. Subproyecto A cerrado: motor implementado (11 tareas), revisado, verificado en el Mac y en MATLAB, unido a main.
+- **Nuevo:** revisión de la investigación de Gemini (bitácora 20:11). Entró la composición de Ballesteros 2014.
+- **Nuevo:** barrido_motor.py en el Mac; barrido de 30 casos en 8.4 s.
+- **Cerrado:** implementar el motor; PROPUESTA de borrar legacy/; datos de la revisión de Gemini; R_contacto; unir a main; limpieza del Mac.
+- **Cambiado:** composición 12/35/28/15 % bs (legacy, sin fuente) → celulosa 12.4 y lignina 23.9 % bs (Ballesteros 2014); hemicelulosa 35 y lípidos 15 siguen sin medir. R_contacto_extra 0.003 → 0.011 m²K/W, porque el motor ya no suma Δr_l/(2k_l), que dependía de la malla.
+- **Reemplazado / ya no aplica:** ~~simulador_interactivo.py como modelo vigente~~ → paquete motor/. ~~modelos/barrido_paralelo.py~~ → barrido_motor.py (Nick borró el viejo). ~~Copia del Mac sin git (commit ddb0a63)~~ → clon con git en main.
+- **Notas para B** (menores de la revisión, no corregidos):
+  - no avisa cuando el horno físico satura: con la base, P_max/C_h = 7.5 K/min, menos que la rampa de 10
+  - no avisa si T_final < T_inicial
+  - no hay cota de divergencia
+  - Resultado no guarda los parámetros que se usaron
+  - las variables BLAS no aplican con fork
+  - lecho al 70 % de humedad lento (~15 s)
+  - "biochar" incluye cenizas
+  - graficas.py fuerza Agg
+  - el termopar va al nodo más cercano sin aviso
+  - la historia usa T_termopar_control en vez de T_termopar_<n>
+  - balance_energia es cierre numérico, no físico
