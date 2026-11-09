@@ -8,11 +8,19 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 - Perplexity — datos del controlador MC-5438 — desde 2026-11-08 19:36
 
 ## Propuestas sin respuesta
-- (ninguna)
+- 2026-11-08 19:55 — Claude — Spec del motor nuevo (rama motor-nuevo)
 
 ---
 
 ## Entradas
+
+### 2026-11-08 19:55 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Spec del motor nuevo (subproyecto A): estructura ordenada del repo PyrolysisReactorCoffee (motor/, parametros/, legacy/…), módulos, paso dividido calor implícito + química, horno físico con PID y SSR, archivo de parámetros con unidad/etiqueta/fuente, interfaz pública y 8 pruebas de verificación con criterios.
+**Archivos:** PyrolysisReactorCoffee, rama motor-nuevo: docs/specs/2026-11-08-motor-nuevo-design.md (commit 60b5c0f).
+**Fuentes:** Decisiones de Nick en el chat (2026-11-08); legacy simulador_interactivo.py; reporte GIEM 28ago2604.
+**Verificado:** Revisión propia del spec (sin huecos ni contradicciones); el código no existe todavía.
+**Para Nick:** Leer el spec y aprobarlo o pedir cambios. Con la aprobación sigue el plan de implementación.
+**Para la siguiente IA:** No implementar nada del motor hasta que Nick apruebe el spec. Cursor/Copilot sigue en espera.
 
 ### 2026-11-08 19:36 — Claude Opus 5.5 — HECHO
 **Qué:** Reglas del proyecto para ahorrar tokens (todas las IAs).
