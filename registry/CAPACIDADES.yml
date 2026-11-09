@@ -136,3 +136,17 @@ capacidades:
     skill: null
     estado: hueco
     nota: Crear solo si se repite en varios proyectos y no cabe en puerta-fabricacion.
+
+  contexto:
+    skill: contexto-nick
+    etapa: todas
+    estado: en-prueba
+    ultima_revision: 2026-11-08
+    nota: Quién es Nick (núcleo, ingeniero, Mede 3D Lab, docencia, proyectos). Se actualiza solo con su sí.
+
+  decisiones:
+    skill: cerebro-nick
+    etapa: todas
+    estado: en-prueba
+    ultima_revision: 2026-11-09
+    nota: Cómo decide Nick para trabajar sin interrumpirlo. No acepta permisos de la app.
