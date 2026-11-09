@@ -48,7 +48,9 @@ proyectos:
 # Son respaldo para leer en Drive; la versión principal sigue en GitHub.
 copias:
   horno-vertical:
-    CONTEXTO: 1_2YJlpperUnutEWfgGD7VEH4APwHf5pNGmsQbveRjdA
+    CONTEXTO: 1f6Be3Rem4u2DkyhhkqrWnKbLdOobZL0d1im40j4qyL0   # 2026-11-08 21:55 (commit 47df3ad)
+    HANDOVER: 1OZJ1zIIIAeAHIfrNQ7YXoOZCdEbN5izNY_oY6IqaKSc   # 2026-11-08 21:55 (commit 47df3ad)
+    CONTEXTO_viejo: 1_2YJlpperUnutEWfgGD7VEH4APwHf5pNGmsQbveRjdA   # versión 20:02, renombrada; no se borró
   detector-particulas-cern:
     CONTEXTO: 1qpDnSMbtcCZZxB8Cr4s27Bi7NWHym3EpparDviCbmg8
     HANDOVER: 14Dr13xouRlCCD_JMT2rddaxfqtDw5jIV6Ir8DmYAWCk
