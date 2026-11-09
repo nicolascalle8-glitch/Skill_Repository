@@ -27,3 +27,11 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cin�
 - Respuestas de Nick a la PREGUNTA del 2026-11-08 19:33.
 - Plan del ensayo térmico (termopar pared + centro; corrida en vacío y con café).
 - Manual Max-Therma MC-5438: tiempo de ciclo SSR y rangos PID.
+
+## Cómo se trabaja (ahorro de tokens, 2026-11-08)
+1. Un chat por subproyecto (A motor, B calibración, C app); la Línea 2 (IA local) siempre aparte.
+2. Chat largo o que empieza a fallar → cerrar con `auditor-handover` y abrir otro que lea este CONTEXTO.
+3. Al empezar, leer este CONTEXTO y las últimas 5 entradas de la bitácora; no todo.
+4. CSV, resultados y logs se leen desde la carpeta del Mac; no se pegan en el chat.
+5. Corridas pesadas en la Terminal de macOS; Claude prepara los scripts.
+6. Reparto: investigación → Gemini (Deep Research) / Perplexity; pantallas de la app → Cursor/Copilot; física, numérica, revisión y verificación → Claude.
