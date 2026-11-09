@@ -31,7 +31,8 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cin�
 ## Pendientes
 - Motor (A) HECHO 2026-11-08: 78 pruebas, caso base igual a legacy, ≈12× más rápido. Interfaz fija (cargar_parametros, simular, simular_lote, Resultado) → Cursor/Copilot ya puede hacer la app.
 - Verificado en el Mac (2026-11-08): 78 pruebas pasan en macOS, caso base 1.4 s, prueba 7 en MATLAB 0.349 K (PASA).
-- Nick: crear de nuevo el .venv del repo en el Mac; medir lípidos (Soxhlet) y densidad; pedir al GIEM confirmar N = 0.418 % bs.
+- Mac limpio y al día con main (2026-11-08 21:41): .venv nuevo, 84 pruebas pasan, git sin cambios.
+- Nick: medir lípidos (Soxhlet) y densidad; pedir al GIEM confirmar N = 0.418 % bs.
 - B: aviso de horno saturado y demás menores de la revisión (bitácora 20:54).
 - Respuestas de Nick a la PREGUNTA del 2026-11-08 19:33.
 - Plan del ensayo térmico (termopar pared + centro; corrida en vacío y con café).
