@@ -6,12 +6,45 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 - Perplexity — datos del controlador MC-5438 — desde 2026-11-08 19:36
 
 ## Propuestas sin respuesta
-- 2026-11-08 20:54 — Claude Opus 5.5 — borrar legacy/ de PyrolysisReactorCoffee y reemplazar en el Mac la copia vieja modelos/PyrolysisReactorCoffee por la nueva
-- 2026-11-08 20:54 — Claude Opus 5.5 — datos de la revisión de Gemini para base.toml (lignina 24 %, medir lípidos y densidad, confirmar N con el GIEM)
+- (ninguna)
 
 ---
 
 ## Entradas
+
+### 2026-11-08 21:30 — Claude Opus 5.5 — HECHO
+**Qué:** Se aplicaron las tres aprobaciones de Nick (21:17): (1) se borró legacy/ del repo y se reemplazó en el Mac la copia vieja; (2) entraron a base.toml los datos de la REVISIÓN de Gemini; (3) R_contacto_extra = 0.011 m²K/W queda confirmado.
+**Archivos:**
+- PyrolysisReactorCoffee, rama motor-nuevo, commit 7fd829c:
+  - legacy/ borrado (sigue en el historial, commit c2acaae)
+  - tests/referencia/ (curva T_centro de legacy y foto de la química)
+  - motor/cinetica/tga.py (muestra 0D)
+  - tests/test_validacion_cinetica.py (Bok 2012, Inayat 2022)
+  - parametros/base.toml
+  - README.md, docs/EVALUACION_CINETICAS.md (nota), spec §3
+- Mac:
+  - modelos/PyrolysisReactorCoffee = clon nuevo con git (copia vieja borrada)
+  - modelos/barrido_motor.py nuevo (barrido en paralelo con el motor); barrido_paralelo.py viejo sin tocar
+**Fuentes:** base.toml:
+- celulosa 12.4 y lignina 23.9 % bs [Dato]: Ballesteros et al. 2014, Tabla 1
+- hemicelulosa 35 [Supuesto], rango 34–39
+- lípidos 15 [Por validar]: Atabani 2019, 13.4–21.5
+- densidad 380 [Por validar]: Guendouz 2023, 387
+- otros 11.39 [Calculado]
+- nota de emisividad ≈0.7 (Incropera A.11) [Por validar]
+**Verificado:**
+- `python -m pytest tests -q` → 84 passed (contenedor). La prueba 2 sigue contra legacy con la composición de legacy y la curva guardada: RMS T_centro 4.5 K.
+- Validaciones de cinética portadas: Bok 54.85 ± 3, Inayat 22.5 ± 5, mismos números que legacy.
+- Caso base con la composición nueva: biochar 24.22 / bio-oil 39.60 / gas 20.31 / agua 15.88 %. Antes, con la de legacy: 24.93 / 38.95 / 20.23 / 15.90.
+- Mac: git en 7fd829c; barrido_motor.py --demo corre (4 casos, 1.9 s, x3.5 con 4 procesos en la VM).
+**Para Nick:**
+- (a) Crear de nuevo el .venv en macOS: se borró porque apuntaba a la carpeta con el nombre viejo.
+- (b) Si quieres, borrar a mano en la Terminal modelos/barrido_paralelo.py y los restos ignorados por git (modelos/PyrolysisReactorCoffee/legacy/, que solo tiene __pycache__, y pirolisis_cafe.egg-info/). El permiso de Claude no alcanzó para sobrescribir ni borrar eso.
+- (c) Decidir si se une motor-nuevo a main.
+- Sigue pendiente: medir lípidos (Soxhlet) y densidad a 8 % de humedad; pedir al GIEM que confirme N = 0.418 % bs.
+**Para la siguiente IA:**
+- Ya no hay legacy/: la referencia de legacy está en tests/referencia/ y en el historial de git.
+- El caso base usa la composición de Ballesteros; para comparar con legacy usa COMPOSICION_LEGACY de tests/test_simulador.py.
 
 ### 2026-11-08 21:15 — Claude Opus 5.5 — HECHO
 **Qué:** Prueba 7 del spec (verificación térmica en MATLAB) corrida por Nick en MATLAB real.
@@ -36,6 +69,7 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 **Verificado:** n/a.
 **Para Nick:** Aprobar o rechazar cada punto. Antes de borrar legacy/ conviene correr la prueba 7 en MATLAB real y las pruebas en la Terminal de macOS. Si se borra: las pruebas de validación Bok 2012 / Inayat 2022 viven solo en legacy/tests y habría que portarlas antes.
 **Para la siguiente IA:** No borrar ni mover nada hasta que Nick apruebe aquí.
+✅ Aprobado por Nick — 2026-11-08 (hecho a las 21:30, ver entrada HECHO)
 
 ### 2026-11-08 20:54 — Claude Opus 5.5 — HECHO
 **Qué:** Motor nuevo implementado (subproyecto A, 11 tareas del plan, con pruebas primero) y revisado por un revisor nuevo. **La interfaz pública quedó fija:** `cargar_parametros`, `simular`, `simular_lote`, `Resultado` (spec §7).
@@ -54,7 +88,7 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 **Para Nick:**
 - (a) En la Terminal de macOS, dentro de modelos/PyrolysisReactorCoffee-motor-nuevo: `python3 -m venv .venv && .venv/bin/pip install -e ".[pruebas]" && .venv/bin/python -m pytest tests -q`.
 - (b) Prueba 7 en MATLAB: ver matlab/verificacion/README.md y pegar el número aquí.
-- (c) Decisión que tomó Claude y que conviene que revises: lecho.R_contacto_extra pasó de 0.003 a 0.011 m²K/W [Calculado]. Legacy sumaba una resistencia que dependía de la malla; 0.011 es su valor efectivo y B lo calibra.
+- (c) Decisión que tomó Claude y que conviene que revises: lecho.R_contacto_extra pasó de 0.003 a 0.011 m²K/W [Calculado]. Legacy sumaba una resistencia que dependía de la malla; 0.011 es su valor efectivo y B lo calibra. ✅ Aprobado por Nick — 2026-11-08
 - (d) PROPUESTA de arriba (borrar legacy/).
 **Para la siguiente IA:**
 - CURSOR/COPILOT: ya puedes hacer tu tarea (PREGUNTA 2026-11-08 19:36). Usa SOLO `from motor import cargar_parametros, simular, simular_lote` y los campos de `Resultado`:
@@ -85,7 +119,7 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
   - Los ácidos grasos a 197–362 °C no aparecen en Zuluaga.
 - Además mezcla datos de madera y de grano tostado como si fueran de SCG.
 **Para Nick:**
-- PROPUESTA: bajar la lignina a 24 % bs (Ballesteros 2014).
+- PROPUESTA: bajar la lignina a 24 % bs (Ballesteros 2014). ✅ Aprobado por Nick — 2026-11-08 (quedó 23.9 %, el número exacto de la fuente)
 - Medir lípidos (Soxhlet, hexano) y la densidad aparente a 8 % de humedad.
 - Pedir al GIEM que confirme N = 0.418 % bs (la literatura da 2.3–2.8 %).
 - Separar la radiación (ε ≈ 0.7, por validar) de h_c: con ε = 0.7, h_rad va de ≈26 W/m²K a 300 °C a ≈89 a 600 °C.
