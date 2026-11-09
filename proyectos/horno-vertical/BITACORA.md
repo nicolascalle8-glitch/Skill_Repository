@@ -3,16 +3,24 @@
 Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idéntica en Google Drive: Proyectos IA / horno-vertical / Bitácora — horno-vertical.
 
 ## En curso
-- Claude Opus 5.5 — diseño del motor nuevo (subproyecto A, spec) — desde 2026-11-08 19:33
+- Claude Opus 5.5 — implementación del motor nuevo (chat nuevo, plan docs/plans/2026-11-08-motor-nuevo.md) — desde 2026-11-08 20:02
 - Gemini — investigación de datos del café y del reactor — desde 2026-11-08 19:36
 - Perplexity — datos del controlador MC-5438 — desde 2026-11-08 19:36
 
 ## Propuestas sin respuesta
-- 2026-11-08 19:55 — Claude — Spec del motor nuevo (rama motor-nuevo)
+- (ninguna)
 
 ---
 
 ## Entradas
+
+### 2026-11-08 20:02 — Claude Opus 5.5 — HECHO
+**Qué:** Plan de implementación del motor nuevo: 11 tareas con pruebas primero (ordenar repo, parámetros, malla, propiedades, conducción implícita con Bessel, cinética, horno/PID/SSR, simulador contra legacy, dt adaptativo y convergencia, lote y gráficas, verificación MATLAB).
+**Archivos:** PyrolysisReactorCoffee, rama motor-nuevo: docs/plans/2026-11-08-motor-nuevo.md (commit a37bd5b).
+**Fuentes:** Spec docs/specs/2026-11-08-motor-nuevo-design.md, aprobado por Nick.
+**Verificado:** Auto-revisión del plan contra el spec (cobertura de las 8 pruebas, nombres e interfaces consistentes).
+**Para Nick:** Abrir un chat nuevo en el Project "MacBook's Power" con el mensaje de arranque que dejó Claude, y correr ahí la implementación.
+**Para la siguiente IA:** Implementar en la rama motor-nuevo siguiendo el plan tarea por tarea (executing-plans), en un chat nuevo. Cursor/Copilot sigue en espera hasta la Tarea 10.
 
 ### 2026-11-08 19:55 — Claude Opus 5.5 — PROPUESTA
 **Qué:** Spec del motor nuevo (subproyecto A): estructura ordenada del repo PyrolysisReactorCoffee (motor/, parametros/, legacy/…), módulos, paso dividido calor implícito + química, horno físico con PID y SSR, archivo de parámetros con unidad/etiqueta/fuente, interfaz pública y 8 pruebas de verificación con criterios.
@@ -21,6 +29,7 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 **Verificado:** Revisión propia del spec (sin huecos ni contradicciones); el código no existe todavía.
 **Para Nick:** Leer el spec y aprobarlo o pedir cambios. Con la aprobación sigue el plan de implementación.
 **Para la siguiente IA:** No implementar nada del motor hasta que Nick apruebe el spec. Cursor/Copilot sigue en espera.
+✅ Aprobado por Nick — 2026-11-08 19:53
 
 ### 2026-11-08 19:36 — Claude Opus 5.5 — HECHO
 **Qué:** Reglas del proyecto para ahorrar tokens (todas las IAs).
