@@ -37,7 +37,7 @@ Subproyecto B en **una sola sesión de Claude Code en el Mac**, rama `ensayo-ter
 6. legacy/ borrado (en git, commit c2acaae). La referencia de legacy está en tests/referencia/.
 7. Composición de Ballesteros 2014 para celulosa y lignina. Para comparar contra legacy, usar COMPOSICION_LEGACY de tests/test_simulador.py.
 8. R_contacto_extra = 0.011 m²K/W hasta calibrarlo en B.
-9. Criterio de cierre de B: RMS T_pared ≤ 5 K (las dos corridas); RMS T_centro ≤ 10 K fuera de la pirólisis y ≤ 20 K en ella.
+9. Criterio de cierre de B: RMS T_pared ≤ 5 K (las dos corridas); RMS T_horno ≤ 5 K (corrida 1; agregado por Nick el 2026-11-09 09:36, porque es lo único que comprueba C_h y UA_p, la base para sintonizar el PID en C); RMS T_centro ≤ 10 K fuera de la pirólisis y ≤ 20 K en ella.
 10. Corrida en vacío con modelo 0D del tubo en calibracion/; no se toca el motor para eso.
 11. Se agrega horno.modo = "medido" al motor.
 12. Un solo escritor por rama: ensayo-termico = una sesión de Claude Code; app-streamlit = Cursor, solo app/.
