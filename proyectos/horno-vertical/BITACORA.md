@@ -12,6 +12,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 
 ## Entradas
 
+### 2026-11-08 21:36 — Claude Opus 5.5 — HECHO
+**Qué:** motor-nuevo unido a main en PyrolysisReactorCoffee (PR #2, aprobado por Nick en el chat).
+**Archivos:** PyrolysisReactorCoffee main = ed907cf (merge de 7fd829c). En el Mac, modelos/PyrolysisReactorCoffee quedó en la rama main.
+**Fuentes:** n/a.
+**Verificado:** main contiene motor/, parametros/, tests/, matlab/, docs/, app/, calibracion/ y ya no tiene legacy/. Las 84 pruebas pasaron en ese mismo commit (7fd829c).
+**Para Nick:** Para actualizar en la Terminal de macOS: `git pull` dentro de modelos/PyrolysisReactorCoffee.
+**Para la siguiente IA:** Trabajar desde main; las ramas nuevas salen de main.
+
 ### 2026-11-08 21:30 — Claude Opus 5.5 — HECHO
 **Qué:** Se aplicaron las tres aprobaciones de Nick (21:17): (1) se borró legacy/ del repo y se reemplazó en el Mac la copia vieja; (2) entraron a base.toml los datos de la REVISIÓN de Gemini; (3) R_contacto_extra = 0.011 m²K/W queda confirmado.
 **Archivos:**
@@ -40,7 +48,7 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 **Para Nick:**
 - (a) Crear de nuevo el .venv en macOS: se borró porque apuntaba a la carpeta con el nombre viejo.
 - (b) Si quieres, borrar a mano en la Terminal modelos/barrido_paralelo.py y los restos ignorados por git (modelos/PyrolysisReactorCoffee/legacy/, que solo tiene __pycache__, y pirolisis_cafe.egg-info/). El permiso de Claude no alcanzó para sobrescribir ni borrar eso.
-- (c) Decidir si se une motor-nuevo a main.
+- (c) Decidir si se une motor-nuevo a main. ✅ Aprobado por Nick — 2026-11-08 (unido, PR #2)
 - Sigue pendiente: medir lípidos (Soxhlet) y densidad a 8 % de humedad; pedir al GIEM que confirme N = 0.418 % bs.
 **Para la siguiente IA:**
 - Ya no hay legacy/: la referencia de legacy está en tests/referencia/ y en el historial de git.

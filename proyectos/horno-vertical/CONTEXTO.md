@@ -1,13 +1,13 @@
 # CONTEXTO — Horno vertical
 
-Actualizado: 2026-11-08 21:30 (Claude Opus 5.5)
+Actualizado: 2026-11-08 21:36 (Claude Opus 5.5)
 
 ## En una frase
 Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cinética RAC + TGL, que se va a rehacer como motor limpio, calibrar con el horno real y usar desde una app (Streamlit) como "tuner": calibrar modelo → sintonizar PID → escoger receta.
 
 ## Dónde está todo
-- Código: GitHub nicolascalle8-glitch/PyrolysisReactorCoffee, rama motor-nuevo = motor nuevo (motor/, parametros/base.toml, tests/). El modelo anterior se borró (historial git, commit c2acaae); su referencia está en tests/referencia/.
-- En el Mac: 01_Horno_Vertical/modelos/PyrolysisReactorCoffee (clon con git de motor-nuevo) y modelos/barrido_motor.py (barrido en paralelo).
+- Código: GitHub nicolascalle8-glitch/PyrolysisReactorCoffee, rama main = motor nuevo (unido con el PR #2) (motor/, parametros/base.toml, tests/). El modelo anterior se borró (historial git, commit c2acaae); su referencia está en tests/referencia/.
+- En el Mac: 01_Horno_Vertical/modelos/PyrolysisReactorCoffee (clon con git, rama main) y modelos/barrido_motor.py (barrido en paralelo).
 - Carpeta de trabajo: Mac de Nick, ~/Documents/Documents - MacBook Pro de Nicolas/Max_Power/01_Horno_Vertical (datos/, modelos/, resultados/).
 - Brief: doc del Project "MacBook's Power" → lineas/01-horno-vertical.md.
 
@@ -31,7 +31,7 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cin�
 ## Pendientes
 - Motor (A) HECHO 2026-11-08: 78 pruebas, caso base igual a legacy, ≈12× más rápido. Interfaz fija (cargar_parametros, simular, simular_lote, Resultado) → Cursor/Copilot ya puede hacer la app.
 - Verificado en el Mac (2026-11-08): 78 pruebas pasan en macOS, caso base 1.4 s, prueba 7 en MATLAB 0.349 K (PASA).
-- Nick: crear de nuevo el .venv del repo en el Mac; decidir si motor-nuevo se une a main; medir lípidos (Soxhlet) y densidad; pedir al GIEM confirmar N = 0.418 % bs.
+- Nick: crear de nuevo el .venv del repo en el Mac; medir lípidos (Soxhlet) y densidad; pedir al GIEM confirmar N = 0.418 % bs.
 - B: aviso de horno saturado y demás menores de la revisión (bitácora 20:54).
 - Respuestas de Nick a la PREGUNTA del 2026-11-08 19:33.
 - Plan del ensayo térmico (termopar pared + centro; corrida en vacío y con café).
