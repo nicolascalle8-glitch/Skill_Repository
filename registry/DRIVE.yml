@@ -2,7 +2,7 @@
 # Lo mantienen las skills colaboracion-ias y auditor-handover. Nunca se borra una línea:
 # si un proyecto se cierra, se marca estado: cerrado.
 version: 1
-actualizado: 2026-10-24
+actualizado: 2026-11-08
 cuenta: Drive de Nick (Mi unidad)
 
 raiz:
@@ -29,3 +29,10 @@ proyectos:
     bitacora_doc_id: 1AupsYKrZDKK0f6ijkq46XytJW-F6uv5RGLEBZzXmXkk
     bitacora_url: https://docs.google.com/document/d/1AupsYKrZDKK0f6ijkq46XytJW-F6uv5RGLEBZzXmXkk/edit
     estado: activo
+
+  horno-vertical:
+    folder_id: 1Be184lnZLaYw1fRFR4gIVf294INO8Xx7
+    bitacora_doc_id: 1p8eQVI9A0OLfpjyAVWQ4tswdb5ZZry2KBzTqDC09hw0
+    bitacora_url: https://docs.google.com/document/d/1p8eQVI9A0OLfpjyAVWQ4tswdb5ZZry2KBzTqDC09hw0/edit
+    estado: activo
+    nota: Código y datos viven en el Mac de Nick (Max_Power/01_Horno_Vertical) y en el repo PyrolysisReactorCoffee.
