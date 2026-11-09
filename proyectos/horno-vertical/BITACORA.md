@@ -6,11 +6,24 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 - Perplexity — datos del controlador MC-5438 — desde 2026-11-08 19:36
 
 ## Propuestas sin respuesta
-- (ninguna)
+- 2026-11-08 22:40 — Claude — spec de B (criterio RMS, tubo vacío 0D o en el motor, horno.modo = "medido")
 
 ---
 
 ## Entradas
+
+### 2026-11-08 22:40 — Claude Opus 5.5 — PROPUESTA
+**Qué:** Decidir tres puntos del spec de B: (1) criterio de cierre: RMS T_pared ≤ 5 K en las dos corridas, T_centro ≤ 10 K fuera de la pirólisis y ≤ 20 K en ella; (2) corrida en vacío con un modelo 0D del tubo en calibracion/ (no toca el motor) o con un modo "tubo vacío" en el motor; (3) agregar horno.modo = "medido" (T_horno(t) leído del CSV) para separar el horno del tubo en la corrida con café.
+**Recomendación:** (1) sí; (2) 0D; (3) sí.
+**Para Nick:** Responder sí/no a cada uno.
+
+### 2026-11-08 22:40 — Claude Opus 5.5 — HECHO
+**Qué:** Plan del ensayo térmico (subproyecto B), borrador. Corrida 1 (tubo vacío) → C_h, UA_p, h_c, ε. Corrida 2 (café, 10 °C/min a 500 °C) con eso fijo → k_virgen_0 (25–200 °C), k_char_0 (enfriamiento final), R_contacto_extra (débil con 2 termopares). Aparte: τ de termopares (agua hirviendo) y P_max real (pinza). h_c y k no se confunden porque h_c sale de la corrida sin lecho.
+**Archivos:** PyrolysisReactorCoffee, rama ensayo-termico (solo local en el Mac, commit 657a86b): docs/specs/2026-11-08-ensayo-termico-design.md.
+**Fuentes:** base.toml (main, ed907cf), spec del motor §6 y §11. Números de orden de magnitud marcados [Calculado] en el spec.
+**Verificado:** Las claves y valores del spec coinciden con base.toml. El motor no tiene modo de tubo vacío ni de T_horno medido (revisado en motor/simulador.py y horno.py). No se corrió ningún ajuste: aún no hay datos.
+**Para Nick:** (a) Hacer push de la rama desde la Terminal (el Mac de Claude no tiene credenciales de GitHub). (b) Aprobar la PROPUESTA de arriba. (c) Ver si el MC-5438 deja fijar la salida del SSR a mano y registrar u_ssr_pct. (d) git dejó dos locks renombrados en .git (stale-HEAD-lock, stale-maintenance-lock): se pueden borrar.
+**Para la siguiente IA:** Copia en Drive de esta entrada pendiente. Siguiente paso de B: script de ajuste en calibracion/ con datos sintéticos (el motor con valores conocidos + ruido) para probar que el ajuste recupera los parámetros antes de tener datos reales.
 
 ### 2026-11-08 22:10 — Claude Opus 5.5 — HECHO
 **Qué:** Handover del chat de diseño "Línea 1 horno vertical" — 🟡 71/100. Se suma al handover de 21:55 (chat A) sin cambiar su estado ni su siguiente tarea (B).
