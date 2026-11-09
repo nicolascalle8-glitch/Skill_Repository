@@ -1,6 +1,6 @@
 # CONTEXTO — Horno vertical
 
-Actualizado: 2026-11-08 21:55 (Bogotá, Claude Opus 5.5). Lee solo esto y las últimas 5 entradas de BITACORA.md para arrancar. El historial completo está en HANDOVER.md; ábrelo solo si Nick pregunta por algo del pasado.
+Actualizado: 2026-11-08 22:10 (Bogotá, Claude Opus 5.5). Lee solo esto y las últimas 5 entradas de BITACORA.md para arrancar. El historial completo está en HANDOVER.md; ábrelo solo si Nick pregunta por algo del pasado.
 
 ## En una frase
 Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (práctica GIEM UdeA/EIA), con cinética RAC + TGL, para usarlo como "tuner" del horno real: calibrar el modelo → sintonizar el PID → escoger la receta. El motor (A) está terminado y en `main`; sigue la calibración (B), y la app (C) le toca a Cursor.
@@ -56,6 +56,7 @@ Subproyecto B: plan del ensayo térmico. Termopar en la pared del tubo y en el c
 - [ ] Medir lípidos (Soxhlet) y densidad a 8 % de humedad; confirmar N = 0.418 % con el GIEM — Nick
 - [ ] Menores de la revisión del motor (lista en HANDOVER §3, notas para B), empezando por el aviso de horno saturado — Claude (B)
 - [ ] App Streamlit — Cursor/Copilot (tarea en la bitácora, PREGUNTA 19:36)
+- [ ] Actualizar 01_Horno_Vertical/BRIEF.md del Mac (está viejo) — Claude (B)
 
 ## Criterio de cierre
 - [x] A: motor en main, 8 pruebas del spec en verde (contenedor, macOS y MATLAB)
@@ -65,6 +66,7 @@ Subproyecto B: plan del ensayo térmico. Termopar en la pared del tubo y en el c
 
 ## Preguntas abiertas
 - ¿Dónde está el termopar de control real del MC-5438?
+- ¿Craqueo de alquitranes en fase gas? Se decide cuando haya bio-oil medido de una corrida real (desacuerdo del panel).
 - ¿Cuánto pesa la rampa en el horno real? El modelo dice que casi nada entre 5 y 20 °C/min.
 
 ## Cómo quiere trabajar Nick aquí
@@ -83,6 +85,8 @@ Subproyecto B: plan del ensayo térmico. Termopar en la pared del tubo y en el c
 
 ## Errores que no repetir
 - No pegar comentarios `#` en comandos para zsh.
+- Antes de crear algo en el Mac, confirmar la ruta real (`Documents - MacBook Pro de Nicolas`, no `~/Documents/Max_Power`).
+- Un solo auditor por vez escribiendo CONTEXTO/HANDOVER.
 - No sobrescribir ni borrar scripts de Nick sin aprobación explícita: el sistema lo bloquea (pasó con barrido_paralelo.py).
 - Investigación de otras IAs: verificar fuente por fuente antes de usarla. Gemini tuvo 6 errores de atribución.
 - En Google Docs, insertar párrafos con "\n" y no con saltos verticales: si no, la entrada queda toda como título.

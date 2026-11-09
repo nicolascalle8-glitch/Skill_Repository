@@ -1,8 +1,8 @@
 # HANDOVER — Horno vertical (pirólisis de café, práctica GIEM UdeA/EIA)
 
-Última actualización: 2026-11-08 21:55 (Bogotá)
-Chat de origen: Project "MacBook's Power", chat del subproyecto A (motor nuevo), 19:57–21:55
-Auditoría más reciente: 🟢 78/100
+Última actualización: 2026-11-08 22:10 (Bogotá)
+Chat de origen: Project "MacBook's Power": chat "Línea 1 horno vertical" (diseño, spec y plan, 19:11–22:10) y chat del subproyecto A (motor nuevo, 19:57–21:55)
+Auditoría más reciente: 🟢 78/100 (chat A) · 🟡 71/100 (chat de diseño)
 
 ---
 
@@ -33,6 +33,10 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 ### Hitos
 | Fecha | Hito | Estado |
 |---|---|---|
+| 2026-11-08 19:20 | Modelo traído al Mac; una corrida de legacy medida (25 s en la VM); primer barrido en paralelo | ✅ |
+| 2026-11-08 19:33 | Proyecto registrado en Skill_Repository + bitácora en Drive; datos de datos/ revisados (la composición 12/35/28/15 no venía del GIEM) | ✅ |
+| 2026-11-08 19:36 | Tareas para Gemini, Perplexity y Cursor en la bitácora; reglas de ahorro de tokens | ✅ |
+| 2026-11-08 19:55 | Spec del motor escrito (panel de asesores: opción 3, horno físico, identificabilidad) | ✅ |
 | 2026-11-08 20:02 | Plan del motor (11 tareas) | ✅ |
 | 2026-11-08 20:54 | Motor implementado + revisión por otro agente (6 hallazgos importantes corregidos) | ✅ |
 | 2026-11-08 21:11 | 78 pruebas en macOS; caso base 1.4 s en el M4 | ✅ |
@@ -53,10 +57,13 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 | Confirmar con el GIEM N = 0.418 % bs (la literatura da 2.3–2.8 %) | Nick | — | — |
 | Menores de la revisión (ver Errores/Notas abajo) | Claude (B) | — | — |
 | App Streamlit con la interfaz pública | Cursor/Copilot | — | — |
+| Actualizar BRIEF.md del Mac (01_Horno_Vertical/BRIEF.md todavía dice "falta traer el modelo") | Claude (B) | — | — |
+| Borrar las ramas motor-nuevo y claude/determined-curie-2btbhr de PyrolysisReactorCoffee (las dos ya están dentro de main) | Nick (aprobar) | — | — |
 
 ### Preguntas abiertas
 - ¿Dónde está físicamente el termopar de control del MC-5438? El modelo lo pone en la cara externa del tubo.
 - Valores reales de C_h, UA_p y emisividad del horno: se sacan del ensayo térmico.
+- Craqueo de alquitranes en fase gas: desacuerdo del panel (20:00 aprox.). Prof. Térmicas lo quiere en el modelo; Ing. Simulación dice que no hace falta hasta tener rendimientos medidos. Lo resuelve medir el bio-oil de una corrida real a 500–550 °C. Fuera del spec del motor (§10).
 - Sensibilidad a la rampa: el barrido de 5 a 20 °C/min casi no cambia los rendimientos (< 0.5 pp). Es propiedad del régimen `lecho_fijo` del modelo y hay que contrastarla con una corrida real.
 
 ### No volver a discutir
@@ -95,6 +102,12 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café (SCG) de
 ---
 
 ## 3. Historial de actualizaciones
+
+### 2026-11-08 22:10 — 🟡 71/100 (chat de diseño "Línea 1 horno vertical")
+- **Nuevo:** se suma la trazabilidad del chat de diseño (19:11–22:10): hitos de 19:20 a 19:55, desacuerdo abierto del panel sobre el craqueo de alquitranes y dos pendientes menores (BRIEF.md del Mac, ramas ya unidas).
+- **Auditoría del chat de diseño:** 71/100. El chat era largo y con salidas pesadas (lecturas completas del Doc de Drive) y se mezcló con el orden de la cuenta de GitHub. Las decisiones se respetaron. Nick corrigió el rumbo dos veces ("el repositorio que estás usando", "yo organizo GitHub luego").
+- **Fuera de este proyecto (no se archiva aquí):** Nick aprobó borrar 5 repos vacíos de su cuenta (Skills_Repository, PirolosisCatalitica, ProyectoPOO, ProyectoPOO1, RefactorizacionCompleta) y lo hace él después. Los repos de Valeria se quedan.
+- **Cerrado:** ninguno nuevo. **Cambiado:** nada; el estado y la siguiente tarea (B) del handover de 21:55 siguen igual.
 
 ### 2026-11-08 21:55 — 🟢 78/100
 - **Nuevo:** primer HANDOVER del proyecto. Subproyecto A cerrado: motor implementado (11 tareas), revisado, verificado en el Mac y en MATLAB, unido a main.

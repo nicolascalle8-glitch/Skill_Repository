@@ -12,6 +12,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 
 ## Entradas
 
+### 2026-11-08 22:10 — Claude Opus 5.5 — HECHO
+**Qué:** Handover del chat de diseño "Línea 1 horno vertical" — 🟡 71/100. Se suma al handover de 21:55 (chat A) sin cambiar su estado ni su siguiente tarea (B).
+**Archivos:** proyectos/horno-vertical/HANDOVER.md (hitos 19:20–19:55, desacuerdo del panel sobre el craqueo de alquitranes, 2 pendientes menores, entrada nueva en el historial); proyectos/horno-vertical/CONTEXTO.md (1 pregunta abierta, 1 pendiente, 2 errores que no repetir; 1.492 palabras). Copias de Drive del CONTEXTO y del HANDOVER actualizadas.
+**Fuentes:** Chat "Línea 1 horno vertical" (19:11–22:10) y chat "Motor nuevo horno vertical" (leído desde el chat y la bitácora).
+**Verificado:** Mac: modelos/PyrolysisReactorCoffee en main (ed907cf), igual a GitHub y sin cambios sueltos. Las ramas motor-nuevo y claude/determined-curie-2btbhr ya están dentro de main. En el repo público no hay datos del GIEM ni datos personales.
+**Para Nick:** Abrir el chat de B con el mensaje de arranque del HANDOVER §2. Después ya se puede borrar este chat ("Línea 1 horno vertical").
+**Para la siguiente IA:** Nada cambia para B: arrancar con CONTEXTO.md y las últimas 5 entradas.
+
 ### 2026-11-08 22:05 — Claude Opus 5.5 — HECHO
 **Qué:** Depuración del Project "MacBook's Power". El arranque de cada chat ya es liviano (~5.300 tokens aprox.). El gasto grande estaba en leer completa la bitácora de Drive: ~20.000 tokens aprox. por cada escritura, y se evita con el hábito nuevo.
 **Archivos:**
