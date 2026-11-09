@@ -19,6 +19,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-11-09 11:19 — Claude (claude-opus-5-5) — HECHO
+**Qué:** Subí `contexto-nick` y `cerebro-nick` (nueva, creada hoy) al repo; estaban en la cuenta de Claude pero no aquí. Las de Valeria quedan en Skills_Fisica (se agregó `osciloscopio-ds215h` allá).
+**Archivos:** skills/contexto-nick/SKILL.md, skills/cerebro-nick/SKILL.md, registry/CAPACIDADES.yml
+**Fuentes:** copias de las skills en la cuenta de Claude.
+**Verificado:** registro YAML cargado sin errores; comparé la lista de skills de la cuenta con las carpetas del repo.
+**Para mí:** probar `cerebro-nick` con una tarea real.
+**Para la siguiente IA:** `cerebro-nick` dice cómo decide Nick; no acepta permisos de la app por él.
+
 ### 2026-11-09 09:15 — Claude Opus 5.5 — HECHO
 **Qué:** Pedido de Nick: el repo y la carpeta Proyectos IA quedan solo para skills, sin cosas de la universidad. Se saca engranajes-helicoidales: (1) la bitácora de Drive se completó con las 2 entradas que solo estaban en GitHub (PROPUESTA y REVISIÓN del 2026-10-24 17:45); (2) la carpeta de Drive engranajes-helicoidales (mismo id, con bitácora, CONTEXTO y HANDOVER) se movió de Proyectos IA a la raíz de Mi unidad; (3) se quitó proyectos/engranajes-helicoidales/ del repo. No se borró nada en Drive. En el repo, los 3 archivos siguen en el historial de git (commit d36bed2). Las menciones a engranajes dentro de las skills (panel-asesores, catálogos, casos de prueba en CAPACIDADES.yml) se dejan: son conocimiento de las skills, no archivos del curso.
 **Archivos:** proyectos/engranajes-helicoidales/ (quitado), proyectos/README.md, registry/DRIVE.yml (estado: fuera), shared/PLANTILLA-PROYECTO.md (ejemplo de nombre), Drive: Bitácora — engranajes-helicoidales
