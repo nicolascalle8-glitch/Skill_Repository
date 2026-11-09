@@ -1,0 +1,20 @@
+[
+  {
+    "name": "LM Studio (local)",
+    "vendor": "customendpoint",
+    "apiKey": "lm-studio",
+    "apiType": "chat-completions",
+    "models": [
+      {
+        "id": "qwen3.6-27b-mlx",
+        "name": "Qwen 3.6-27B (local)",
+        "url": "http://localhost:1234",
+        "toolCalling": true,
+        "vision": false,
+        "thinking": true,
+        "maxInputTokens": 24576,
+        "maxOutputTokens": 8192
+      }
+    ]
+  }
+]

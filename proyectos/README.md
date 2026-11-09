@@ -10,5 +10,6 @@ Una fila nunca se borra: si se termina, pasa a `cerrado`.
 | `banco-pruebas-fz15` | Banco de pruebas para medir la fuerza en la manigueta de freno (UN R78), script de Fusion 360 | Diseño Mecánico, EIA — Incolmotos Yamaha | por confirmar | no tiene todavía | `D:\Personal\Claude\proyectos\banco-pruebas-fz15\` |
 | `taller-final-mecanismos` | Taller final: síntesis, inercia y cinética (MATLAB) con informe en Word | Diseño de Mecanismos, EIA (jun 2026) | por confirmar (parece cerrado) | no tiene todavía | `D:\Personal\Claude\proyectos\taller-final-mecanismos\` |
 | `detector-particulas-cern` | Detector de partículas DIY de CERN S'Cool LAB (fotodiodo PIN + preamplificador de carga), variante alfa con TLE2072 + BPX61 | Laboratorio de Electrónica, EIA (relacionado con Electrónica 2 de Valeria) | activo | `proyectos/detector-particulas-cern/` | — (planos y fotos entregados en el chat del 29 oct) |
+| `ia-local` | Modelos de IA locales en el MacBook Pro M4 Max (LM Studio, Qwen, VS Code, tutor con PDF) | Línea 2 de Max_Power | activo | `proyectos/ia-local/` | `Max_Power/02_IA_Local` en el Mac |
 
 "por confirmar": Nick dice si está activo o cerrado y si se le crea carpeta en el repo.

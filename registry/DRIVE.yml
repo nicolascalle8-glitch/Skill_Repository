@@ -37,6 +37,13 @@ proyectos:
     estado: activo
     nota: Código y datos viven en el Mac de Nick (Max_Power/01_Horno_Vertical) y en el repo PyrolysisReactorCoffee.
 
+  ia-local:
+    folder_id: 1Rg2yYjfSxW2IWwMMODFPZMjWZPv1k7Iy
+    bitacora_doc_id: 1huncIpDp2EyVzeJDSMTwHF_SgVeNM-jUDC-c3ODE1uc
+    bitacora_url: https://docs.google.com/document/d/1huncIpDp2EyVzeJDSMTwHF_SgVeNM-jUDC-c3ODE1uc/edit
+    estado: activo
+    nota: Modelos de IA locales en el M4 Max. En el Mac vive en Max_Power/02_IA_Local. No mezclar con horno-vertical.
+
 # Copias de los trabajos del repo (CONTEXTO, HANDOVER, archivos/), subidas el 2026-11-08 20:25 por pedido de Nick.
 # Son respaldo para leer en Drive; la versión principal sigue en GitHub.
 copias:
@@ -52,3 +59,6 @@ copias:
   skills:
     archivos_folder_id: 1bqtyTwKMq13lMuqqPEFe5XWtE3P6NcNB
     monitor_folder_id: 1bQYKiJRVdbDPddbibWLgbL1o02Vy75OS
+  ia-local:
+    CONTEXTO: 1TxJ7SYnoDdlqZT8FLSZnoFjIMFf1HTuTrpkefYesmU4
+    archivos_folder_id: 1xpGL54s-yWjX1591rs7aaoqRQRSYXKko

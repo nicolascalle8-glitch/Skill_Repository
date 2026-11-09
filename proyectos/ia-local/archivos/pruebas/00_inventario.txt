@@ -1,0 +1,33 @@
+=== Fecha
+Sun Nov  8 19:37:28 -05 2026
+
+=== Equipo
+ProductName:		macOS
+ProductVersion:		27.0.1
+BuildVersion:		26A434
+Apple M4 Max
+Memoria (GB): 48
+iogpu.wired_limit_mb: 0
+
+=== Disco libre
+/dev/disk3s1s1   926Gi    13Gi   770Gi     2%    484k  4.3G    0%   /
+
+=== Homebrew
+Homebrew 7.0.12
+gh 
+
+=== Python
+python3 -> /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 Python 3.13.17
+python3.13 -> /Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13 Python 3.13.17
+sin mlx/torch/whisper
+
+=== LM Studio
+app NO instalada
+
+=== Ollama
+app NO instalada
+
+=== Editores
+/Applications/Antigravity IDE.app
+/Applications/Antigravity.app
+/Applications/Visual Studio Code.app
