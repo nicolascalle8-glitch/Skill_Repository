@@ -13,6 +13,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 
 ## Entradas
 
+### 2026-11-08 21:11 — Claude Opus 5.5 — HECHO
+**Qué:** Nick corrió el motor nuevo en la Terminal de macOS (M4 Max, Python 3.13): pruebas y velocidad.
+**Archivos:** Mac: Max_Power/01_Horno_Vertical/modelos/PyrolysisReactorCoffee-motor-nuevo (.venv creado ahí, no se sube).
+**Fuentes:** salida de la Terminal que Nick pegó en el chat.
+**Verificado:** `.venv/bin/python -m pytest tests -q` → 78 passed en 88 s. Caso base: 1.4 s (prueba 6, meta ≤ 5 s), con biochar 24.93 / bio-oil 38.95 / gas 20.23 / agua 15.90 %, igual que en el contenedor y en legacy. La referencia de legacy (25 s) se midió en la VM y no en macOS, así que "≈18× más rápido" es aproximado.
+**Para Nick:** Falta la prueba 7 en MATLAB (matlab/verificacion/README.md) y decidir las PROPUESTAS de las 20:54.
+**Para la siguiente IA:** El motor corre nativo en macOS; usar el .venv de esa carpeta para las corridas pesadas.
+
 ### 2026-11-08 20:54 — Claude Opus 5.5 — PROPUESTA
 **Qué:** (1) Borrar `legacy/` del repo PyrolysisReactorCoffee: el motor ya pasa la sección 9 del spec. (2) En el Mac, reemplazar la copia vieja `modelos/PyrolysisReactorCoffee` (commit ddb0a63, sin git) por la nueva `modelos/PyrolysisReactorCoffee-motor-nuevo` (clon con git, rama motor-nuevo).
 **Archivos:** nada todavía.
