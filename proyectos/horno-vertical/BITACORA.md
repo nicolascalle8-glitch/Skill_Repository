@@ -13,6 +13,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 
 ## Entradas
 
+### 2026-11-08 21:15 — Claude Opus 5.5 — HECHO
+**Qué:** Prueba 7 del spec (verificación térmica en MATLAB) corrida por Nick en MATLAB real.
+**Archivos:** PyrolysisReactorCoffee, rama motor-nuevo: matlab/verificacion/README.md (resultado anotado).
+**Fuentes:** salida de MATLAB que Nick pegó en el chat.
+**Verificado:** ode15s en MATLAB contra Euler implícito de Python (dt 0.5 s): error máximo 0.349 K, límite 4.75 K (1 % de 475 K) → PASA. Volúmenes iguales a Python (diferencia relativa 1.58e-11). Coincide con Octave y con el BDF de Python (0.349 K). Con esto pasan las 8 pruebas del spec.
+**Para Nick:** Quedan las PROPUESTAS de las 20:54 y confirmar R_contacto_extra = 0.011 m²K/W.
+**Para la siguiente IA:** Prueba 7 cerrada; no hace falta repetirla salvo que cambie la conducción o la interfaz.
+
 ### 2026-11-08 21:11 — Claude Opus 5.5 — HECHO
 **Qué:** Nick corrió el motor nuevo en la Terminal de macOS (M4 Max, Python 3.13): pruebas y velocidad.
 **Archivos:** Mac: Max_Power/01_Horno_Vertical/modelos/PyrolysisReactorCoffee-motor-nuevo (.venv creado ahí, no se sube).

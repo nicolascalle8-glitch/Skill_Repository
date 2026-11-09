@@ -1,6 +1,6 @@
 # CONTEXTO — Horno vertical
 
-Actualizado: 2026-11-08 20:54 (Claude Opus 5.5)
+Actualizado: 2026-11-08 21:15 (Claude Opus 5.5)
 
 ## En una frase
 Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cinética RAC + TGL, que se va a rehacer como motor limpio, calibrar con el horno real y usar desde una app (Streamlit) como "tuner": calibrar modelo → sintonizar PID → escoger receta.
@@ -26,7 +26,8 @@ Modelo 2D (r, z) del reactor vertical de pirólisis de residuo de café con cin�
 
 ## Pendientes
 - Motor (A) HECHO 2026-11-08: 78 pruebas, caso base igual a legacy, ≈12× más rápido. Interfaz fija (cargar_parametros, simular, simular_lote, Resultado) → Cursor/Copilot ya puede hacer la app.
-- Nick: correr las pruebas en la Terminal de macOS y la prueba 7 en MATLAB real; decidir la PROPUESTA de borrar legacy/ y los datos de la REVISIÓN de Gemini (lignina 24 %).
+- Verificado en el Mac (2026-11-08): 78 pruebas pasan en macOS, caso base 1.4 s, prueba 7 en MATLAB 0.349 K (PASA).
+- Nick: decidir la PROPUESTA de borrar legacy/, los datos de la REVISIÓN de Gemini (lignina 24 %) y confirmar R_contacto_extra = 0.011 m²K/W.
 - B: aviso de horno saturado y demás menores de la revisión (bitácora 20:54).
 - Respuestas de Nick a la PREGUNTA del 2026-11-08 19:33.
 - Plan del ensayo térmico (termopar pared + centro; corrida en vacío y con café).
