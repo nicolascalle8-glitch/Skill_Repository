@@ -25,6 +25,7 @@ skills/            Skills de Claude (una carpeta por skill)
   colaboracion-ias/  Coordina a Claude con las otras IAs (bitácora, propuestas)
   selector-ia/       Dice qué IA, modelo y nivel usar para cada tarea
   depurador-recursos/ Limpia memoria, docs del proyecto y chats viejos sin perder datos
+perplexity/skills/  Las mismas skills adaptadas para Perplexity Computer (ver perplexity/README.md)
 shared/BITACORA-DRIVE.md   Cómo se copia la bitácora a Google Drive
 registry/DRIVE.yml         Ids de carpetas y bitácoras en Drive (carpeta "Proyectos IA")
 shared/PLANTILLA-PROYECTO.md Cómo se arma un proyecto (repo + computador, criterio de cierre)
@@ -47,7 +48,8 @@ proyectos/<proyecto>/
 ## Trabajar con varias IAs
 
 - **Cursor / Copilot / Gemini CLI**: abre este repo en la herramienta. Leen solas su archivo de entrada y siguen el contrato.
-- **Grok / Perplexity / Gemini web**: pídele a Claude "prepara el mensaje para <IA> sobre <proyecto>". Lo pegas allá; la respuesta trae su entrada de bitácora y se la pegas a Claude para que la suba.
+- **Perplexity Computer**: lee y escribe el repo y Drive directo, con sus skills de `perplexity/skills/`.
+- **Grok / Perplexity web (sin Computer) / Gemini web**: pídele a Claude "prepara el mensaje para <IA> sobre <proyecto>". Lo pegas allá; la respuesta trae su entrada de bitácora y se la pegas a Claude para que la suba.
 - **Aprobar**: dile a Claude "apruebo la propuesta de <IA> sobre <tema>" y queda marcado en la bitácora.
 
 ## Crear una skill nueva

@@ -19,6 +19,14 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 
 ## Entradas
 
+### 2026-11-09 11:19 — Perplexity Computer (Claude Opus 5.5) — HECHO
+**Qué:** Pedido de Nick: crear las skills para Perplexity a partir del repo. Las 13 skills de `skills/` (incluidas `contexto-nick` y `cerebro-nick`) se adaptaron a Perplexity y se guardaron en su cuenta de Perplexity. Las copias quedan en `perplexity/skills/`, y `skills/` (las de Claude) no se tocó. Cada skill trae una sección "Acceso a las otras skills de Nick" que carga `contexto-nick` y `cerebro-nick` de fondo y las demás por nombre. Los scripts de `monitor-skills` (versión Perplexity) ahora usan solo `perplexity/skills/`.
+**Archivos:** perplexity/README.md, perplexity/skills/ (13 carpetas), README.md (dos líneas), proyectos/skills/BITACORA.md
+**Fuentes:** skills/ del repo en el commit becbbfb.
+**Verificado:** `agentskills validate` pasa en las 13. `sincronizar.py` e `inventario.py` corridos en simulación sobre una copia del repo: detectan nueva/cambiada/igual y solo miran `perplexity/skills/`. `revisar_voz.py` corre sin errores. Las 13 se guardaron en Perplexity sin error.
+**Para Nick:** 1) Confirmar tu plan de Perplexity (en `perplexity/skills/selector-ia/references/mis-planes.md` quedó [Por validar]). 2) `contexto-nick` dice "paga Gemini y Cursor/Copilot" y no menciona Perplexity: lo dejé igual porque son tus datos. ¿Lo actualizo?
+**Para la siguiente IA:** Hay dos carpetas: `skills/` es de Claude y `perplexity/skills/` es de Perplexity. No se copia una encima de la otra. Si una mejora sirve para las dos, se deja como PROPUESTA para la otra IA.
+
 ### 2026-11-09 11:19 — Claude (claude-opus-5-5) — HECHO
 **Qué:** Subí `contexto-nick` y `cerebro-nick` (nueva, creada hoy) al repo; estaban en la cuenta de Claude pero no aquí. Las de Valeria quedan en Skills_Fisica (se agregó `osciloscopio-ds215h` allá).
 **Archivos:** skills/contexto-nick/SKILL.md, skills/cerebro-nick/SKILL.md, registry/CAPACIDADES.yml

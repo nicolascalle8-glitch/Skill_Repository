@@ -1,0 +1,389 @@
+#!/usr/bin/env python3
+"""Sube al repo las skills que Nick creó o cambió (guardadas en Perplexity o instaladas en Claude).
+
+Uso:
+    python sincronizar.py <ruta-repo> [--instaladas <carpeta>] [--excluir a,b] [--mapa REPOS.yml] [--aplicar] [--json]
+
+Sirve para cualquier repo de registry/REPOS.yml: solo mira las skills que ese mapa le asigna
+al repo de <ruta-repo> (las de otro repo salen como "otro-repo" y no se tocan).
+
+La carpeta de skills instaladas se busca sola (ver comun.CANDIDATAS; en Perplexity es
+~/.perplexity/skills, donde quedan las skills guardadas después de cargarlas por nombre).
+--instaladas acepta una carpeta simple de subcarpetas con SKILL.md, sin manifest.json: cada
+una cuenta como skill de Nick salvo las integradas (comun.SKILLS_SISTEMA) y las de --excluir.
+Sin manifest no hay updatedAt: base-vieja compara contra todas las versiones del repo.
+
+Sin --aplicar solo dice qué haría. Con --aplicar copia los archivos al repo y registra las
+skills nuevas en CAPACIDADES.yml y en el catálogo del router (no hace commit).
+
+Antes de correrlo, trae historia al clon: git fetch --depth=200 origin main
+
+Cómo decide, archivo por archivo (comparando con el historial de git del repo):
+- igual          -> lo instalado es lo mismo que el repo. Nada que hacer.
+- cambio-claude  -> lo instalado no coincide con ninguna versión que haya tenido el repo:
+                    Nick lo cambió en Claude. Se sube.
+- repo-adelante  -> lo instalado coincide con una versión VIEJA del repo: el repo es más
+                    nuevo y Nick no ha reinstalado. No se toca; se avisa.
+- base-vieja     -> lo instalado no coincide con ninguna versión y partió de una versión
+                    vieja (la más parecida entre las que existían cuando se guardó en Claude,
+                    según updatedAt del manifest): el repo cambió después. Cuenta como
+                    conflicto.
+Por skill:
+- nueva          -> instalada y no está en el repo. Se sube completa y se registra.
+- cambiada       -> algún archivo es cambio-claude y ninguno es repo-adelante. Se sube.
+- reinstalar     -> algún archivo es repo-adelante y ninguno es cambio-claude. No se toca.
+- conflicto      -> hay de los dos, o algún archivo es base-vieja. No se toca; lo decide Nick.
+- solo-repo      -> está en el repo y no instalada. No se borra nada; se avisa.
+- igual          -> nada que hacer.
+Nunca borra archivos del repo. Si un archivo parece tener una clave o contraseña, la skill
+no se sube y se avisa (contrato: nada de secretos en el repo).
+"""
+import argparse
+import difflib
+import hashlib
+import json
+import os
+import re
+import subprocess
+import sys
+
+import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from comun import (CARPETA_SKILLS, buscar_instaladas, cargar_mapa, catalogos, hoy_bogota, propias_en,  # noqa: E402
+                   repo_de_ruta, repo_de_skill, router_de)
+
+IGNORAR = {"__pycache__", ".DS_Store", "LICENSE.txt"}
+SECRETOS = re.compile(
+    r"(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-ant-[A-Za-z0-9-]{10,}|"
+    r"sk-[A-Za-z0-9]{32,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|xox[bp]-[A-Za-z0-9-]{10,}|"
+    r"-----BEGIN [A-Z ]*PRIVATE KEY-----|(?:password|contraseña|api[_-]?key|token)\s*[:=]\s*['\"][^'\"\s]{8,})",
+    re.I,
+)
+
+
+def skills_propias(instaladas, excluir=None):
+    """Nombres de las skills de Nick (ver comun.propias_en)."""
+    return propias_en(instaladas, excluir)
+
+
+def archivos(carpeta):
+    res = {}
+    for raiz, dirs, files in os.walk(carpeta):
+        dirs[:] = [d for d in dirs if d not in IGNORAR]
+        for f in files:
+            if f in IGNORAR or f.endswith(".pyc"):
+                continue
+            p = os.path.join(raiz, f)
+            res[os.path.relpath(p, carpeta)] = p
+    return res
+
+
+def partir_skill(texto):
+    m = re.match(r"^---\n(.*?)\n---\n?(.*)$", texto, re.S)
+    if not m:
+        return None, None, texto
+    try:
+        meta = yaml.safe_load(m.group(1)) or {}
+    except yaml.YAMLError:
+        meta = None
+    return m.group(1), meta, m.group(2)
+
+
+def clave(rel, contenido):
+    """Huella del contenido. En SKILL.md ignora el formato del encabezado (comillas, >-)."""
+    if rel == "SKILL.md":
+        try:
+            texto = contenido.decode("utf-8")
+        except UnicodeDecodeError:
+            return hashlib.sha1(contenido).hexdigest()
+        _, meta, cuerpo = partir_skill(texto)
+        meta = meta or {}
+        norm = json.dumps({"name": str(meta.get("name", "")).strip(),
+                           "description": " ".join(str(meta.get("description", "")).split())},
+                          ensure_ascii=False)
+        cuerpo = "\n".join(l.rstrip() for l in cuerpo.strip().splitlines())
+        return hashlib.sha1((norm + "\n" + cuerpo).encode("utf-8")).hexdigest()
+    if not rel.endswith((".png", ".jpg", ".woff2", ".pdf", ".xlsx")):
+        try:
+            t = contenido.decode("utf-8")
+            return hashlib.sha1("\n".join(l.rstrip() for l in t.strip().splitlines()).encode()).hexdigest()
+        except UnicodeDecodeError:
+            pass
+    return hashlib.sha1(contenido).hexdigest()
+
+
+def git(repo, *args, binario=False):
+    r = subprocess.run(["git", "-C", repo, *args], capture_output=True, timeout=60)
+    return r.stdout if binario else r.stdout.decode("utf-8", "replace")
+
+
+def versiones_viejas(repo, ruta_repo):
+    """Huellas de todas las versiones que ha tenido un archivo en el historial."""
+    rel = os.path.basename(ruta_repo) if ruta_repo.endswith("SKILL.md") else ruta_repo
+    huellas = set()
+    for h in git(repo, "log", "--format=%H", "--", ruta_repo).split():
+        c = git(repo, "show", f"{h}:{ruta_repo}", binario=True)
+        if c:
+            huellas.add(clave("SKILL.md" if rel == "SKILL.md" else ruta_repo, c))
+    return huellas
+
+
+def texto_de(contenido):
+    try:
+        return contenido.decode("utf-8")
+    except UnicodeDecodeError:
+        return None
+
+
+def guardada_en(inst_dir):
+    """Segundos epoch de cuándo se guardó la skill en Claude (updatedAt del manifest.json)."""
+    from datetime import datetime
+    man = os.path.join(os.path.dirname(inst_dir), "manifest.json")
+    try:
+        for sk in json.load(open(man, encoding="utf-8")).get("skills", []):
+            if sk.get("name") == os.path.basename(inst_dir) and sk.get("updatedAt"):
+                return datetime.fromisoformat(sk["updatedAt"].replace("Z", "+00:00")).timestamp()
+    except (OSError, ValueError):
+        pass
+    return None
+
+
+def base_es_vieja(repo, ruta_repo, c_inst, hasta=None):
+    """True si lo instalado partió de una versión del repo que ya no es la actual.
+
+    La base es la versión del repo más parecida a lo instalado, buscando solo entre las que
+    ya existían cuando se guardó en Claude (hasta). Si la base no es la versión actual, el
+    repo cambió después: es conflicto. En empate gana la más nueva, así un cambio normal
+    hecho sobre la versión actual sigue saliendo como cambio-claude."""
+    t_inst = texto_de(c_inst)
+    if t_inst is None:
+        return False
+    lineas_inst = t_inst.splitlines()
+    versiones = []  # (fecha, texto), de la más nueva a la más vieja, sin repetir texto
+    for linea in git(repo, "log", "--format=%H %ct", "--", ruta_repo).split("\n"):
+        if not linea.strip():
+            continue
+        h, ct = linea.split()
+        t = texto_de(git(repo, "show", f"{h}:{ruta_repo}", binario=True))
+        if t and all(t != v for _, v in versiones):
+            versiones.append((int(ct), t))
+    if not versiones:
+        return False
+    candidatas = [(i, t) for i, (ct, t) in enumerate(versiones) if hasta is None or ct <= hasta]
+    if not candidatas:
+        candidatas = list(enumerate(t for _, t in versiones))
+    mejor, mejor_i = -1.0, None
+    for i, t in candidatas:
+        r = difflib.SequenceMatcher(None, t.splitlines(), lineas_inst, autojunk=False).ratio()
+        if r > mejor:
+            mejor, mejor_i = r, i
+    return mejor_i is not None and mejor_i > 0
+
+
+def comparar(repo, skill, inst_dir):
+    repo_dir = os.path.join(repo, CARPETA_SKILLS, skill)
+    inst = archivos(inst_dir)
+    if not os.path.isdir(repo_dir):
+        return "nueva", {r: "nuevo" for r in inst}, []
+    en_repo = archivos(repo_dir)
+    estado_arch, faltan_en_claude = {}, sorted(set(en_repo) - set(inst))
+    for rel, p in inst.items():
+        c_inst = open(p, "rb").read()
+        k = clave(rel, c_inst)
+        if rel in en_repo and k == clave(rel, open(en_repo[rel], "rb").read()):
+            continue
+        ruta_repo = f"{CARPETA_SKILLS}/{skill}/{rel}"
+        viejas = versiones_viejas(repo, ruta_repo)
+        if rel in en_repo or viejas:
+            if k in viejas:
+                estado_arch[rel] = "repo-adelante"
+            elif rel in en_repo and base_es_vieja(repo, ruta_repo, c_inst, guardada_en(inst_dir)):
+                estado_arch[rel] = "base-vieja"
+            else:
+                estado_arch[rel] = "cambio-claude"
+        else:
+            estado_arch[rel] = "cambio-claude"  # archivo nuevo creado en Claude
+    tipos = set(estado_arch.values())
+    if "base-vieja" in tipos:
+        estado = "conflicto"
+    elif not tipos:
+        # Archivos que el repo tiene y Claude no: casi siempre el repo es más nuevo.
+        estado = "reinstalar" if faltan_en_claude else "igual"
+    elif tipos == {"cambio-claude"}:
+        estado = "cambiada"
+    elif tipos == {"repo-adelante"}:
+        estado = "reinstalar"
+    else:
+        estado = "conflicto"
+    return estado, estado_arch, faltan_en_claude
+
+
+def tiene_secretos(inst_dir):
+    hallados = []
+    for rel, p in archivos(inst_dir).items():
+        try:
+            t = open(p, encoding="utf-8").read()
+        except (UnicodeDecodeError, OSError):
+            continue
+        for m in SECRETOS.finditer(t):
+            hallados.append(f"{rel}: {m.group(0)[:12]}…")
+    return hallados
+
+
+def escribir(repo, skill, inst_dir, cambios):
+    repo_dir = os.path.join(repo, CARPETA_SKILLS, skill)
+    for rel in cambios:
+        src = os.path.join(inst_dir, rel)
+        dst = os.path.join(repo_dir, rel)
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        data = open(src, "rb").read()
+        if rel == "SKILL.md" and os.path.isfile(dst):
+            # Si el encabezado solo cambió de formato, se conserva el del repo.
+            fm_r, meta_r, _ = partir_skill(open(dst, encoding="utf-8").read())
+            fm_i, meta_i, cuerpo_i = partir_skill(data.decode("utf-8"))
+            mismo = meta_r and meta_i and str(meta_r.get("name")).strip() == str(meta_i.get("name")).strip() \
+                and " ".join(str(meta_r.get("description")).split()) == " ".join(str(meta_i.get("description")).split())
+            if mismo:
+                data = f"---\n{fm_r}\n---\n{cuerpo_i}".encode("utf-8")
+        elif rel == "SKILL.md":
+            fm_i, meta_i, cuerpo_i = partir_skill(data.decode("utf-8"))
+            if meta_i and fm_i and re.match(r'^name:\s*"', fm_i):
+                fm_i = re.sub(r'^name:\s*"([^"]+)"', r"name: \1", fm_i, flags=re.M)
+                data = f"---\n{fm_i}\n---\n{cuerpo_i}".encode("utf-8")
+        open(dst, "wb").write(data)
+
+
+def registrar(repo, skill, inst_dir, hoy):
+    """Agrega la skill nueva a CAPACIDADES.yml y al catálogo de SU router, si no está.
+
+    Si la skill es de otra familia (tiene su propio router-x), no se toca el catálogo de
+    router-ing: se agrega al de ese router si existe, o se deja anotado.
+    """
+    texto = open(os.path.join(inst_dir, "SKILL.md"), encoding="utf-8").read()
+    _, meta, _ = partir_skill(texto)
+    router = router_de(repo, skill, texto)
+    desc = " ".join(str((meta or {}).get("description", "")).split())
+    uso = re.split(r"(?<=[.:])\s", desc, maxsplit=1)[0].rstrip(".:")
+    cap = os.path.join(repo, "registry", "CAPACIDADES.yml")
+    t = open(cap, encoding="utf-8").read()
+    if f"skill: {skill}\n" not in t:
+        clave = skill
+        n = 2
+        while re.search(rf"^  {re.escape(clave)}:\s*$", t, re.M):
+            clave = f"{skill}-{n}"  # ese nombre ya lo usa otra capacidad
+            n += 1
+        linea_router = f"    router: {router}\n" if router != "router-ing" else ""
+        bloque = (f"\n  {clave}:\n    skill: {skill}\n    etapa: por-definir\n{linea_router}    estado: en-prueba\n"
+                  f"    ultima_revision: {hoy}\n    nota: Subida automáticamente por monitor-skills desde lo "
+                  f"guardado por Nick. Falta revisar etapa y caso de prueba.\n")
+        t = t.replace("\n  enmarcar-problema:", bloque + "\n  enmarcar-problema:", 1) \
+            if "\n  enmarcar-problema:" in t else t.rstrip("\n") + "\n" + bloque
+        open(cap, "w", encoding="utf-8").write(t)
+        yaml.safe_load(open(cap, encoding="utf-8"))
+    if router == skill:
+        return  # es un router: no se lista en el catálogo de otro router
+    cats = catalogos(repo)
+    if router not in cats:
+        return  # su router todavía no tiene catálogo en el repo
+    cat, listadas = cats[router]
+    if skill in listadas:
+        return
+    if router != "router-ing":
+        c = open(cat, encoding="utf-8").read().rstrip("\n")
+        filas = [l for l in c.splitlines() if l.startswith("| `")]
+        fila = f"| `{skill}` | en-prueba | {uso}. | Ver su SKILL.md. |"
+        if filas and filas[-1].count("|") == fila.count("|"):
+            c = c.replace(filas[-1], filas[-1] + "\n" + fila, 1)
+            open(cat, "w", encoding="utf-8").write(c + "\n")
+        return
+    if os.path.isfile(cat):
+        c = open(cat, encoding="utf-8").read()
+        if f"| `{skill}` |" not in c:
+            fila = f"| `{skill}` | por definir | {uso}. | Ver su SKILL.md. | en-prueba |\n"
+            ancla = "| `marco-problema-ing` |"
+            c = c.replace(ancla, fila + ancla, 1) if ancla in c else c.replace("\n## Rutas", fila + "\n## Rutas", 1)
+            open(cat, "w", encoding="utf-8").write(c)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("repo")
+    ap.add_argument("--instaladas", default=None)
+    ap.add_argument("--aplicar", action="store_true")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--hoy", default=None)
+    ap.add_argument("--excluir", action="append", default=[],
+                    help="skills que no son de Nick, separadas por coma (se suman a las integradas)")
+    ap.add_argument("--mapa", default=None, help="ruta a registry/REPOS.yml si no se encuentra sola")
+    a = ap.parse_args()
+    repo = os.path.abspath(a.repo)
+    hoy = a.hoy or hoy_bogota()
+    a.instaladas = buscar_instaladas(a.instaladas)
+
+    propias = skills_propias(a.instaladas, a.excluir)
+    mapa = cargar_mapa(a.mapa, repo)
+    este = repo_de_ruta(mapa, repo) if mapa else None
+    if mapa and not este:
+        raise SystemExit(f"{repo} no está en registry/REPOS.yml: agrégalo antes de sincronizar.")
+    otro_repo = {}
+    if este:
+        for s in list(propias):
+            md = os.path.join(a.instaladas, s, "SKILL.md")
+            desc = ""
+            if os.path.isfile(md):
+                _, meta, _ = partir_skill(open(md, encoding="utf-8").read())
+                desc = " ".join(str((meta or {}).get("description", "")).split())
+            destino = repo_de_skill(mapa, s, desc)
+            if destino != este:
+                otro_repo[s] = destino
+                del propias[s]
+    base = os.path.join(repo, CARPETA_SKILLS)
+    en_repo = {d for d in (os.listdir(base) if os.path.isdir(base) else [])
+               if os.path.isfile(os.path.join(base, d, "SKILL.md"))}
+    res = []
+    for s, destino in sorted(otro_repo.items()):
+        res.append({"skill": s, "estado": "otro-repo", "repo": destino})
+    for s in sorted(set(propias) | en_repo):
+        inst_dir = os.path.join(a.instaladas, s)
+        if s not in propias or not os.path.isdir(inst_dir):
+            res.append({"skill": s, "estado": "solo-repo"})
+            continue
+        estado, arch, faltan = comparar(repo, s, inst_dir)
+        fila = {"skill": s, "estado": estado, "instalada_el": propias.get(s),
+                "archivos": arch, "en_repo_no_en_claude": faltan}
+        if estado in ("nueva", "cambiada"):
+            sec = tiene_secretos(inst_dir)
+            if sec:
+                fila["estado"], fila["secretos"] = "bloqueada", sec
+            elif a.aplicar:
+                escribir(repo, s, inst_dir, [r for r, e in arch.items() if e in ("nuevo", "cambio-claude")])
+                if estado == "nueva":
+                    registrar(repo, s, inst_dir, hoy)
+                fila["aplicado"] = True
+        res.append(fila)
+
+    if a.json:
+        json.dump(res, sys.stdout, ensure_ascii=False, indent=2)
+        return
+    nombres = {"nueva": "NUEVA → se sube", "cambiada": "CAMBIADA por Nick → se sube",
+               "reinstalar": "repo más nuevo → Nick debe re-guardar la skill", "conflicto": "CONFLICTO → decide Nick",
+               "solo-repo": "solo en el repo (no guardada o no cargada en esta sesión)", "igual": "igual", "bloqueada": "BLOQUEADA (posible secreto)",
+               "otro-repo": "va en otro repo"}
+    for f in res:
+        extra = ""
+        if f.get("archivos"):
+            extra = " — " + ", ".join(f"{r} ({e})" for r, e in f["archivos"].items())
+        if f.get("secretos"):
+            extra += " — " + "; ".join(f["secretos"])
+        if f.get("aplicado"):
+            extra += " [aplicado]"
+        if f["estado"] == "otro-repo":
+            extra = f" ({f['repo']})"
+        print(f"- {f['skill']}: {nombres[f['estado']]}{extra}")
+    if not a.aplicar and any(f["estado"] in ("nueva", "cambiada") for f in res):
+        print("\n(Simulación. Corre con --aplicar para subirlas.)")
+
+
+if __name__ == "__main__":
+    main()
