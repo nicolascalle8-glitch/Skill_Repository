@@ -77,7 +77,9 @@ Subproyecto B: plan del ensayo térmico. Termopar en la pared del tubo y en el c
 1. Un chat por subproyecto (A, B, C); la Línea 2 (IA local) siempre aparte.
 2. Si el chat se alarga, cerrar con `auditor-handover`.
 3. Reparto: investigación → Gemini/Perplexity; pantallas de la app → Cursor/Copilot; física, numérica, revisión y verificación → Claude.
-4. La bitácora de Drive ya es grande (~90 mil caracteres): no leerla completa. Para insertar, leer la estructura con read_doc y ubicar el índice.
+4. La bitácora de Drive es grande (~90 mil caracteres): nunca leerla completa. Para insertar, sacar los índices de read_doc con un script y verificar solo lo nuevo.
+5. Salidas largas (pytest, logs) a un archivo; leer solo el final.
+6. Investigación de otra IA: revisarla, convertirla en ficha en archivos/investigaciones/ y no volver a leer el original.
 
 ## Errores que no repetir
 - No pegar comentarios `#` en comandos para zsh.
@@ -92,8 +94,7 @@ Subproyecto B: plan del ensayo térmico. Termopar en la pared del tubo y en el c
 | PyrolysisReactorCoffee/parametros/base.toml | Parámetros con fuente | Calibrar o cambiar valores |
 | PyrolysisReactorCoffee/README.md | Instalar, correr un caso, un lote, pruebas | Usar el motor |
 | PyrolysisReactorCoffee/matlab/verificacion/README.md | Prueba 7 en MATLAB | Cambiar la conducción |
-| Drive: Investigación — datos del café y del reactor | Investigación de Gemini (revisada) | Buscar propiedades con fuente |
-| BITACORA.md entrada 20:11 | Qué datos de Gemini sirven y cuáles no | Antes de usar esa investigación |
+| archivos/investigaciones/datos-cafe-reactor-2026-11.md | Valores del café y del reactor verificados, por validar y descartados (de la investigación de Gemini) | Buscar una propiedad con fuente o calibrar en B |
 | HANDOVER.md | Trazabilidad e historial de decisiones | Nick pregunte cuándo o por qué cambió algo |
 
 ## Glosario

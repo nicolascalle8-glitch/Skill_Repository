@@ -12,6 +12,22 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Copia idént
 
 ## Entradas
 
+### 2026-11-08 22:05 — Claude Opus 5.5 — HECHO
+**Qué:** Depuración del Project "MacBook's Power". El arranque de cada chat ya es liviano (~5.300 tokens aprox.). El gasto grande estaba en leer completa la bitácora de Drive: ~20.000 tokens aprox. por cada escritura, y se evita con el hábito nuevo.
+**Archivos:**
+- proyectos/horno-vertical/archivos/investigaciones/datos-cafe-reactor-2026-11.md (nuevo: ficha con lo verificado, por validar y descartado de la investigación de Gemini)
+- proyectos/horno-vertical/CONTEXTO.md (hábitos 4–6 y la ficha en el mapa de archivos)
+- memoria del Project: descripción de areas/horno-lecho-vertical.md
+**Fuentes:** depurador-recursos; REVISIÓN 20:11.
+**Verificado:** Cada cifra de la ficha sale de la REVISIÓN 20:11. El CONTEXTO tiene 1.433 palabras.
+**Para Nick:**
+- (1) Borrar a mano los chats "M4 Max compute utilization" y "Proyecto: funciones y uso". También "Línea 1 horno vertical", pero después de que su auditor termine (revisión programada a las 22:09), y este chat cuando abras el B.
+- (2) Corregir la memoria de la cuenta en un chat normal, fuera del Project: profile.md y varias áreas (fábrica de medias, Arde La Selva, Artequino, Conectar Valores, Q2 Office, memecoins, Assetto Corsa, Dr. Calle, David Córdoba) aparecen como tuyas, pero según contexto-nick son de Juan José; además, coursework.md está vencido.
+- (3) Responder en el chat de la Línea 2 si se actualiza lineas/02-ia-local.md.
+**Para la siguiente IA:**
+- Propiedades del café con fuente: usar la ficha, no el documento de Gemini.
+- Bitácora de Drive: nunca leerla completa.
+
 ### 2026-11-08 21:55 — Claude Opus 5.5 — HECHO
 **Qué:** Handover 2026-11-08 — 🟢 78/100. Se cierra el chat del subproyecto A (motor nuevo).
 **Archivos:** proyectos/horno-vertical/HANDOVER.md (nuevo, primer handover); proyectos/horno-vertical/CONTEXTO.md (reescrito).
