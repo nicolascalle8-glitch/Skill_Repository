@@ -50,7 +50,11 @@ Morcelador laparoscópico inalámbrico y en bolsa para el Dr. Gustavo Calle (pap
 
 ## Pendientes abiertos
 - [ ] Motores (Perplexity) — Nick
-- [ ] Prototipo v3 en Fusion — Claude
+- [x] Prototipo v3 y banco v2 modelados en Fusion (2026-11-11 13:25, sin guardar) — Claude
+- [ ] Guardar v3 y banco v2 + exportar STL — permiso de Nick
+- [ ] Aprobar separación 1,6 mm y Hall abajo (ver bitácora 13:25) — Nick
+- [ ] Motor del mango con requisito corregido (Perplexity, Uso B v2) — Nick
+- [ ] rpm de los morceladores Storz — Nick
 - [ ] Guardar banco y prototipo v2 en Fusion (están abiertos sin título) — pedir permiso
 - [ ] Tamaño de mioma y tiempo de morcelación actual — Nick pregunta al Dr. Calle
 - [ ] Acuerdos: opciones A/B, [CONFIRMAR], abogado — Nick
