@@ -2,7 +2,7 @@
 # Lo mantienen las skills colaboracion-ias y auditor-handover. Nunca se borra una línea:
 # si un proyecto se cierra, se marca estado: cerrado.
 version: 1
-actualizado: 2026-11-09
+actualizado: 2026-11-11
 cuenta: Drive de Nick (Mi unidad)
 
 raiz:
@@ -66,3 +66,10 @@ copias:
   ia-local:
     CONTEXTO: 1TxJ7SYnoDdlqZT8FLSZnoFjIMFf1HTuTrpkefYesmU4
     archivos_folder_id: 1xpGL54s-yWjX1591rs7aaoqRQRSYXKko
+
+  morcelador-contenido:
+    folder_id: 1KVDQXMWb6iLU7czhm2c0zhDQHqJLgqeH
+    bitacora_doc_id: 1K9-2UZJSV0wwkSG9HuYTCGWawoseDuFHrtyDj94Em5U
+    bitacora_url: https://docs.google.com/document/d/1K9-2UZJSV0wwkSG9HuYTCGWawoseDuFHrtyDj94Em5U/edit
+    estado: activo
+    nota: 2026-11-11, carpeta creada por Gemini. Subcarpetas Perplexity (1H3Ram4RY3hbT-cuMZvR22JnSPqg1O87v) y Copilot (1m3WMJlKvtp45rgO6QkoG6qIajPKWPYOR). Confidencial hasta radicar la patente.
