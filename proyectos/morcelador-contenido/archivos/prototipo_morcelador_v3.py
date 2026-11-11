@@ -185,7 +185,7 @@ def run(_context: str):
     zm = -(rp_g + rp_p)                  # centro del motor (z), = -30 con 43/17 m1
     head_D = P('iman_pcd') + P('iman_D') + 4          # 48
     cav_head = head_D + 2 * 0.6                        # 49.2
-    tun_D = P('tunel_d') + 1.0                         # tunel OD 13
+    tun_D = P('tunel_d') + 1.6                         # tunel OD 13,6 (pared 0,8 = 2 perimetros)
     canal = tun_D + 2 * hl                             # 13.6
     manga = canal + 2 * w                              # 15.2
     bar_D = 56.0                                        # canon del mango
