@@ -130,3 +130,64 @@ Estas notas son mías. Las que dicen "estimación" son cálculos con un modelo s
 - Preguntar por WhatsApp a BigTronica (315 643 53 52) y Didácticas si tienen algo de 36–42 mm a unos 1000 rpm.
 - Revisar MercadoLibre a mano, porque desde aquí no cargó.
 - Definir el torque nominal real del mango antes de volver a buscar el motor del Uso B.
+
+## Uso B v2 (mango con engranaje recto de ~2,75:1) — 2026-11-11 13:26
+
+Perplexity Computer (Claude Opus 5.5). Se usó la misma regla: lo que no está publicado = NO ENCONTRADO. Lo marcado como "estimación" es un cálculo mío, no viene de una ficha.
+
+### Requisito nuevo
+- Salida del motorreductor (o del motor sin caja): 2500–3500 rpm con carga.
+- Torque nominal ≥ 0,6 kg·cm (0,06 N·m) a esa velocidad; torque de bloqueo ≥ 2 kg·cm (0,2 N·m).
+- Alimentación 2S 18650: 7,4 V nominal (6–8,4 V).
+- Ø ≤ 28 mm (máximo 32), largo ≤ 60 mm sin eje, ≤ 120 g, corriente nominal ≤ 4 A.
+- Sirve un BLDC con planetario (indicando driver) o un motor con escobillas con caja de 2:1 a 5:1.
+- Potencia útil: 0,06 N·m × 3000 rpm ≈ 19 W. A 7,4 V y 4 A entran 29,6 W, así que la eficiencia total del motor más la caja tiene que ser de ~64 % o más. Eso deja fuera a la mayoría de los motores de 25–28 mm con caja barata.
+
+### Tiendas revisadas (en el orden pedido)
+- **Didácticas Electrónicas (Medellín):** en su categoría de motores DC hay N20 de 12 V hasta 1000 rpm, JGB37 de hasta 500 rpm, motores 795/895 de 12 V (grandes) y motorreductores de 24 V hasta 470 rpm. No hay nada de 380/385 ni planetarios de 28 mm. https://www.didacticaselectronicas.com/shop/category/motores-actuadores-solenoides-y-drivers-motores-acdc-31
+- **BigTronica (Medellín):** en motores solo hay un "Motor DC 6-9V con piñón" a $10.000 sin ficha, brushless de dron de 1000 Kv (agotados) y micromotores de dron. https://bigtronica.com/motores-drones. Habría que preguntar por WhatsApp (315 643 53 52) si tienen 380/385.
+- **Resto de Colombia:** no encontré motores 380/385 ni planetarios de 28 mm con ficha en Vistronica, Electronilab, Dynamo, ja-bots, Sigma ni Ferretrónica. Ja-bots tiene Pololu 20D/25D/37D, pero ninguno a 2500 rpm. MercadoLibre volvió a fallar al cargar.
+- Como en Colombia no había nada, pasé al fabricante, a tiendas internacionales y a AliExpress.
+
+### Revisado y descartado (sin estimaciones; cada valor sale de la ficha)
+| Modelo | Por qué no sirve | Fuente |
+|---|---|---|
+| SLW BLDC 28 mm con planetario | Relación mínima publicada 4:1: 2000 rpm sin carga / 1600 nominal a 12 V, 0,5 kg·cm nominal, 1,5 kg·cm de bloqueo, 1,25 A. A 7,4 V iría más lento. La caja de 1 etapa solo se publica en 4:1 y 5:1 (22,9 mm); 3:1 y 2,5:1 = NO ENCONTRADO. Driver: NO ENCONTRADO. Precio: NO ENCONTRADO. | https://slwmotor.com/product/28mm-diameter-brushless-dc-motor-with-planetary-gearbox/ · https://slwmotor.com/product/28mm-planetary-gearbox-reducer/ |
+| SLW 28 mm con escobillas (395) y planetario | 4:1 a 12 V: 2000 / 1600 rpm, 0,5 kg·cm nominal, 1,5 de bloqueo, 1,8 A | https://slwmotor.com/product/28mm-diameter-brushed-motor-with-planetary-gearbox/ |
+| NFP-GA28Y-385 (todas las relaciones) | La relación mínima es 4:1. A 12 V: 1000 rpm, 0,3 / 0,7 kg·cm. Versión de 24 V: 2000 rpm, 0,5 / 1,2 kg·cm. Las otras relaciones (16:1 a 400:1) son más lentas. | https://nfpshop.com/product/28mm-planetary-gear-motor-model-nfp-28-385 |
+| NFP-GA28Y-2838 BLDC | 4:1 a 12 V: 1500 rpm, 0,15 / 0,4 kg·cm. A 24 V: 3000 rpm, 0,3 / 0,8 kg·cm. US$36. | https://microdcmotors.com/product/28mm-high-torque-dc-brushless-gear-motor |
+| SGMADA PG28-395 a 12 V | Variantes de 12 V: 298 y 306 rpm nominales (0,11 y 0,20 N·m) | https://sggearbox.com/product/pg28-395/ |
+| Transmotec PBTI2838-12 (BLDC, driver interno) | 4:1: 1300 rpm nominales y 2,7 N·cm; motor de 12 V con 6000 rpm sin carga. Lento. | https://transmotec.com/Download/Datasheets/Transmotec-Datasheet-PBTI2838-12.pdf |
+| Mechtex BI2838 / Kegu BL2838 (BLDC sin caja, driver interno) | BI2838 12 V: 4800 rpm y 1,3 N·cm. BL2838-V1 7,4 V: 4100 rpm y 7 mN·m; BL2838-V2 12 V: 3200 rpm y 12 mN·m. Muy poco torque (se pide 60 mN·m). | http://www.opis.cz/mechtex/pdf/BI%2028.pdf · https://minibldcmotor.com/product/micro-bldc-brushless-dc-motor/bl2838-bl2838i-b2838m-28mm-bldc-motor.html |
+| Pololu 25D HP 6V 4.4:1 (#1570) | A 6 V: 2200 rpm, bloqueo 1,2 kg·cm, 6 A, potencia máxima 6,7 W. No llega a 2 kg·cm de bloqueo. | https://www.pololu.com/product/1570/specs |
+| Faulhaber 2232U006SR | 7100 rpm sin carga a 6 V, 11 W. Con su caja más corta (3,71:1) queda lento. Desde €111,74 solo el motor (referencia). | https://www.glockenankermotor.com/dc-kleinstmotoren-faulhaber/2232...sr-faulhaber/ |
+| Motores de taladro de 12 V (clase 540/550) | La clase 540 mide 35,8 mm de diámetro (Mabuchi RS-540SH), así que no cabe. En la clase 380, el motor que Mabuchi publica para taladro y destornillador es el RS-380PH-4045 (abajo). | https://www.mabuchi-motor.co.jp/motorize/branch/motor/ |
+
+### Opciones
+| # | Modelo | Tienda | COP con envío | rpm sin carga / con 0,06 N·m (7,4 V) | Torque nominal | Torque de bloqueo | Corriente nominal / bloqueo | Ø × L | Eje | Montaje | Peso | Plano / STEP | Enlace |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| B2-1 (recomendada) | Mabuchi RS-380PH-4045 + caja planetaria de 28 mm, 1 etapa, 5:1 | Motor: Super Radicon, Japón (¥1.139). Caja: SLW (cotizar) | NO ENCONTRADO | Estimación: 3083 / ≈2630 (≈2045 a 6,0 V y ≈3045 a 8,4 V) | Motor: NO ENCONTRADO (máxima eficiencia 11,6 mN·m a 6 V). Estimación a la salida: 0,06 N·m con ≈3,7 A | Motor: 77,5 mN·m a 6 V. Estimación a la salida, 7,4 V: ≈0,41 N·m | Motor a 6 V: 0,56 A sin carga, 3,17 A en máxima eficiencia, 18 A en bloqueo. Estimación a 7,4 V: ≈3,7 A / ≈22 A | Motor: 27,7 mm (plano 29,2 MAX) × 37,8 mm. Caja SLW 1 etapa: 22,9 mm. Total ≈ 60,7 mm | Motor 2,3 mm. Salida de la caja: NO ENCONTRADO | Motor: rosca M2,6×0,45, tornillo de 3,0 mm máx.; cantidad y círculo NO ENCONTRADO (en el plano aparece 16,0 sin decir qué mide) | Motor 80 g; caja NO ENCONTRADO | Plano del motor en la hoja de datos; STEP NO ENCONTRADO | https://product.mabuchi-motor.com/detail.html?id=99 · https://www.robotistan.com/Data/EditorFiles/%C3%9Cr%C3%BCnler%20A%C3%A7%C4%B1klama/Motorlar/Mabuchi%20RS-380PH%2016975/RS-380PH%20Datasheet.pdf · https://super-rc.co.jp/rc/product/view?id=82428 · https://slwmotor.com/product/28mm-planetary-gearbox-reducer/ |
+| B2-1b | Mabuchi RS-380PH-4045 + caja de 28 mm 1:4 de AliExpress | Caja: CL Motor01 Store (R$44,09 + envío R$68,79 en la vista de Brasil) | NO ENCONTRADO | Estimación: 3854 / ≈3140 (≈2410 a 6 V) | Igual que B2-1; con 4:1 la salida da 0,06 N·m con ≈4,5 A (más de 4 A) | Estimación: ≈0,33 N·m | Estimación: ≈4,5 A / ≈22 A | Caja: largo NO ENCONTRADO | Caja: NO ENCONTRADO | Caja: NO ENCONTRADO | Caja: NO ENCONTRADO | NO ENCONTRADO | https://www.aliexpress.com/item/1005008878534309.html |
+| B2-2 (referencia de precio) | maxon DCX 22 L 9 V (DCX22L01GBSL450) + GPX 22 3,9:1 (GPX22AAKLSL03D9CPLW) | maxon (tienda en línea) | NO ENCONTRADO (€217,36 + €96,94 = €314,30 sin IVA ni envío) | A 9 V el motor da 12300 rpm sin carga y 11400 nominales. Estimación a 7,4 V: 2593 / ≈2450 | Motor: 26,5 mN·m continuos (≈0,09 N·m a la salida) | Motor: 371 mN·m | Motor: 4 A continuos / 53,4 A | Ø22; caja de 19,9 mm; largo del motor NO ENCONTRADO | NO ENCONTRADO | NO ENCONTRADO | 95 + 45 = 140 g (pasa de 120) | maxon publica el plano; STEP NO ENCONTRADO | https://www.maxongroup.com/maxon/view/product/motor/dcmotor/DCX/DCX22/DCX22L01GBSL450 · https://www.maxongroup.com/maxon/view/product/gear/planetary/GPX/GPX22/GPX22-1-Stufig-A/GPX22AAKLSL03D9CPLW |
+| B2-3 (BLDC, hay que pedirla al fabricante) | SLW BLDC 28 mm con devanado para 7,4 V y caja de 1 etapa | SLW (cotizar) | NO ENCONTRADO | NO ENCONTRADO (la versión publicada no llega) | NO ENCONTRADO | NO ENCONTRADO | NO ENCONTRADO | Ø28; caja de 23,2 mm | NO ENCONTRADO | NO ENCONTRADO | NO ENCONTRADO | NO ENCONTRADO | https://slwmotor.com/product/28mm-diameter-brushless-dc-motor-with-planetary-gearbox/ |
+
+### Cómo salen las estimaciones
+- Uso la recta de un motor DC: velocidad y torque de bloqueo proporcionales al voltaje, \(n = n_0\,(1 - T/T_{bloqueo})\) e \(I = I_0 + T/K_t\). Para el RS-380PH-4045, \(K_t = 77{,}5 / (18 - 0{,}56) \approx 4{,}44\) mN·m/A.
+- La eficiencia de la caja planetaria de 1 etapa la supuse en 0,85 (la ficha de la caja no la publica) y la de maxon en 0,90.
+- B2-1 a 7,4 V con 5:1: el motor da 0,06 / (5 × 0,85) = 14,1 mN·m a ≈13.140 rpm, o sea ≈2630 rpm a la salida, con ≈3,7 A.
+- Pasado por el engranaje de 2,75:1, a la cuchilla llegan ≈955 rpm y 0,06 × 2,75 ≈ 0,165 N·m (sin contar la eficiencia del engranaje), igual al techo del torque de corte estimado (0,055–0,165 N·m). En bloqueo llegarían ≈1,1 N·m a la cuchilla.
+- Con la batería baja (6,0 V), B2-1 cae a ≈2045 rpm, por debajo de 2500. Si eso importa, la 4:1 se mantiene en rango (2410–3660 rpm entre 6 y 8,4 V) pero consume ≈4,5 A.
+
+### Driver
+- **B2-1 y B2-2 (con escobillas):** basta un puente H o un MOSFET con PWM de ≥5 A continuos que aguante el pico de bloqueo (~22 A), o un driver con limitador de corriente. Didácticas tenía una "Tarjeta driver para motor DC 15A DRV-36V-15A" a $57.596, pero la página es antigua y hay que confirmar si sigue y qué medidas tiene. https://www.didacticaselectronicas.com/index.php/view/category/virtuemart_category_id/344
+- **B2-3 (BLDC):** la página de SLW no dice qué driver usa ni si viene incluido (NO ENCONTRADO). Los BLDC de 28 mm con driver interno que revisé (Transmotec, Mechtex, Kegu) no llegan al torque pedido.
+
+### Recomendación
+- **Para el prototipo, B2-1:** el RS-380PH-4045 es el único con ficha publicada que llega a 2500–3500 rpm con 0,06 N·m sin pasar de 4 A, y cumple el diámetro (27,7 mm de cuerpo). Lo que no está confirmado: el largo total (≈60,7 mm con la caja de SLW, 0,7 mm más de lo pedido), el peso de la caja (para no pasar de 120 g la caja tendría que pesar ≤40 g) y el eje de salida de la caja.
+- **Si se compra ya en AliExpress, B2-1b (4:1):** es la caja que se puede pedir hoy. Consume ≈4,5 A, por encima del límite.
+- B2-2 (maxon) sirve como referencia de calidad y precio: ≈€314 sin IVA ni envío, pesa 140 g y queda justo de rpm a 7,4 V.
+
+### Pendiente para Nick
+- Pedir a SLW (sin compra) cotización de la caja de 28 mm de 1 etapa 5:1 para un motor 380 y preguntar si tienen el BLDC de 28 mm en 3:1 o 2,5:1 para 7,4–12 V. Texto sugerido: "Hello, I need a quote for 1–2 units: (1) 28 mm 1-stage planetary gearbox, 5:1 (or 4:1), input for a Mabuchi RS-380 motor (2.3 mm shaft); please send length, weight, output shaft (diameter, D-flat, length), mounting holes, rated torque, efficiency and a drawing/STEP. (2) Your 28 mm BLDC planetary motor with a 3:1 or 2.5:1 ratio and a winding for 7.4–12 V: no-load and rated speed, rated and stall torque, currents, which driver it needs, and price with shipping to Colombia."
+- Confirmar en el plano del RS-380PH-4045 la cantidad de agujeros M2,6 y su círculo antes de diseñar el adaptador.
+- Preguntar por WhatsApp a BigTronica si el "Motor DC 6-9V con piñón" es un 380 y de qué modelo.
