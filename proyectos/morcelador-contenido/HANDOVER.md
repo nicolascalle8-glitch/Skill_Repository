@@ -1,6 +1,6 @@
 # HANDOVER — Morcelador contenido (morcelador-contenido)
 
-Última actualización: 2026-11-11 12:55 (Bogotá)
+Última actualización: 2026-11-12 13:00 (Bogotá)
 Chat de origen: chat de Claude "morcelador" en el proyecto claude.ai "3D Printing" (2026-11-10 20:19 → 2026-11-11 12:51)
 Auditoría más reciente: 🟡 65/100
 
@@ -13,9 +13,10 @@ Morcelador laparoscópico **inalámbrico, en bolsa (contenido)**, pedido por el 
 
 ### Dónde vamos
 - Etapa 1 investigación ✅, Etapa 2 patentes en Colombia ✅ (falta la búsqueda oficial del abogado), Etapa 3 concepto ✅ (Concepto A aprobado).
-- Etapa 4 banco de pruebas ⏳: modelo en Fusion hecho (sin guardar); falta el motor (el JGB37-520 no alcanza).
-- Prototipo imprimible ⏳: v2 en Fusion (sin guardar) quedó **mal de concepto**: tapa el canal central por donde sale el mioma. Se acordó rediseñar como **v3**.
-- Próximo paso: Perplexity entrega motores (uso A banco, uso B mango) → Claude modela v3 en Fusion.
+- Banco: v2 modelado en Fusion (2026-11-11 13:25); 9 STL en `Documentos\morcelador_STL\banco_v2`, sin laminar.
+- Prototipo: v3 modelado (13:25), túnel a 0,8 mm, 14 STL y 2 placas laminadas sin enviar (14:02).
+- **v3.1 (fijaciones) SIN TERMINAR** (Nick, 2026-11-12): script en `archivos/prototipo_morcelador_v3_1.py`. Falta como mínimo: fijar válvula y túnel, integrar el motor B2-1 y la relación ~2,75:1 si Nick los aprueba, guardar, STL v3.1, laminar. Nick debe decir qué más le falta.
+- Próximo paso: terminar el v3.1.
 
 ### Decisiones vigentes
 | Fecha | Decisión | Por qué | Quién |
@@ -95,6 +96,10 @@ Morcelador laparoscópico **inalámbrico, en bolsa (contenido)**, pedido por el 
 ---
 
 ## 3. Historial de actualizaciones
+
+### 2026-11-12 13:00 — (sin auditoría nueva)
+- **Nuevo (desde otros chats, ver bitácora):** v3 y banco v2 modelados (11-nov 13:25); motor del mango Uso B v2 de Perplexity, recomendado B2-1 RS-380PH-4045 + 5:1 (13:26); túnel 0,8 mm, STL v3 y laminado en X2D y K2 Pro (14:02); v3.1 con fijaciones (20:25).
+- **Abierto:** Nick avisa que el **v3.1 no quedó terminado**. Se registra como tarea principal del siguiente chat.
 
 ### 2026-11-11 12:55 — 🟡 65/100
 - **Nuevo:** proyecto creado en el repo. Todas las decisiones de la tabla. Hitos Fase 1, roadmap, legal, SIPI/SECOP, banco v1, prototipo v1/v2.

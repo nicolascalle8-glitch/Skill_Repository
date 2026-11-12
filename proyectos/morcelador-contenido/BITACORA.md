@@ -12,6 +12,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Esta bitáco
 
 ## Entradas
 
+### 2026-11-12 13:00 — Claude (Opus 5.5) — HECHO
+- **Qué:** Por pedido de Nick, el CONTEXTO y el HANDOVER ahora dicen que el **prototipo v3.1 no quedó terminado**. Es la tarea principal del siguiente chat: fijar válvula y túnel, integrar el motor B2-1 y la relación ~2,75:1 si Nick los aprueba, guardar, exportar STL v3.1 y laminar. Antes, preguntarle a Nick qué más falta.
+- **Archivos:** proyectos/morcelador-contenido/CONTEXTO.md y HANDOVER.md.
+- **Fuentes:** mensaje de Nick (2026-11-12 12:54); entradas de la bitácora del 2026-11-11 (13:25, 13:26, 14:02, 20:25).
+- **Verificado:** CONTEXTO con 1.359 palabras (debajo del tope de 1.500).
+- **Para Nick:** decir qué más le falta al v3.1 y si se aprueba el motor B2-1.
+- **Para la siguiente IA:** empezar por archivos/prototipo_morcelador_v3_1.py y no tocar el diseño del v3. Drive: falta copiar esta entrada.
+
 ### 2026-11-11 20:25 — Claude (Opus 5.5) — HECHO
 - **Qué:** Prototipo v3.1 en un diseño nuevo de Fusion (el v3 no se tocó). Agrega las fijaciones que faltaban: 2 nervios en el agujero del anillo de imanes que entran en 2 ranuras del tubo cuchilla (arrastre sin tapar el canal), ranura y anillo E DIN 6799-15 en el cubo del anillo (en vez del retén a presión), ranura y anillo DIN 471-25 detrás de la corona (para que el rotor no se corra con la atracción de los imanes), cubo con prisionero M3 en el piñón, 8 tornillos M3 entre las mitades del mango (pasante y cabeza en la derecha, inserto de calor en la izquierda, 3 torres dentro de la bahía) y clic de 0,5 mm en las 2 bayonetas. El motor quedó 2 mm más atrás (cara en x = −37,5) para dar espacio al anillo DIN 471.
 - **Archivos:** proyectos/morcelador-contenido/archivos/prototipo_morcelador_v3_1.py
