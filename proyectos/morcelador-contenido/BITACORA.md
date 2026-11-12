@@ -12,6 +12,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Esta bitáco
 
 ## Entradas
 
+### 2026-11-12 13:52 — Claude (Opus 5.5) — HECHO
+- **Qué:** Nick eligió reusar piezas del v3 ya impreso (opción B). Se reusan: espaciador y corona (iguales), rotor y piñón v3 (pegar corona al rotor y piñón al eje, no tienen anillo ni prisionero), funda v3 (cortar 2 mm del final del túnel), cartucho y nariz v3 (taladrar 2 × Ø1,6 en el cuello y 2 × Ø2,2 en la nariz, o pegar). Se reimprimen 7 piezas repartidas por volumen: X2D = mitad izquierda, anillo conducido, cuchilla (≈84 cm³); K2 Pro = mitad derecha, tubo del canal, cuerpo y tapa de la válvula (≈85 cm³). Nick lamina.
+- **Archivos:** Documentos\morcelador_STL\v3_2_reimpresion\X2D y \K2_Pro (copias de los STL v3.2).
+- **Fuentes:** prototipo_morcelador_v3.py vs v3_2.py (comparación pieza por pieza); volúmenes de los cuerpos en Fusion.
+- **Verificado:** carpetas listadas con los 3 + 4 STL. No verificado: tiempos (los saca Nick en el slicer); que el anillo E de 24 mm quepa en la nariz v3 (hueco de 24,4).
+- **Para Nick:** las 2 mitades van en impresoras distintas: mismo proceso "Rapid Pla +" y PLA en las dos para que las caras de unión coincidan.
+- **Para la siguiente IA:** el retén impreso del v3 ya no se usa (va el anillo E DIN 6799-15).
+
 ### 2026-11-12 13:28 — Claude (Opus 5.5) — HECHO
 - **Qué:** Rehice el prototipo completo como **v3.2** (diseño nuevo en Fusion, sin guardar; v3 y v3.1 no se tocaron), con lo que Nick reportó del v3.1: (1) el canal ya no está pegado a las mitades: es un **tubo aparte** (16,6/14,2) que entra por detrás al final y se atornilla con 2 M2 e insertos; antes el rotor no se podía meter en la mitad. (2) **Parte trasera fija:** espiga D28 con 2 pernos; la válvula entra con bayoneta de 30° + clic, recibe el túnel con un O-ring 13 × 1,5, y la tapa aprieta la membrana con 3 M2. (3) **Cuchilla impresa** 12/10,4 × 150 con corona de 6 dientes y 2 lengüetas atrás que entran en 2 ranuras del anillo conducido (arrastre y tope sin pegante). (4) **Mango más delgado:** las 2 18650 una detrás de otra, empuñadura ovalada de 27 mm de ancho (antes caja de 44 × 42), cañón trasero D36 (antes D56), canal de 116 mm. Sin tapa de baterías: el pack 2S queda adentro. (5) Nada suelto: motor con 2 M2,6 en la cara, nariz con 2 M2, 9 tornillos M3 entre mitades. Exporté 14 STL orientados y laminé (sin enviar ni guardar): X2D 2h11m / 47,8 g; K2 Pro 6h53m / 190,3 g.
 - **Archivos:** proyectos/morcelador-contenido/archivos/prototipo_morcelador_v3_2.py; STL en Documentos\morcelador_STL\v3_2 (PC de Nick).
