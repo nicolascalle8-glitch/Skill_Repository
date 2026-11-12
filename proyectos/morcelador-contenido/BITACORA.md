@@ -12,6 +12,14 @@ Reglas: CONTRATO.md (raíz). Entradas nuevas arriba. Nada se borra. Esta bitáco
 
 ## Entradas
 
+### 2026-11-11 20:25 — Claude (Opus 5.5) — HECHO
+- **Qué:** Prototipo v3.1 en un diseño nuevo de Fusion (el v3 no se tocó). Agrega las fijaciones que faltaban: 2 nervios en el agujero del anillo de imanes que entran en 2 ranuras del tubo cuchilla (arrastre sin tapar el canal), ranura y anillo E DIN 6799-15 en el cubo del anillo (en vez del retén a presión), ranura y anillo DIN 471-25 detrás de la corona (para que el rotor no se corra con la atracción de los imanes), cubo con prisionero M3 en el piñón, 8 tornillos M3 entre las mitades del mango (pasante y cabeza en la derecha, inserto de calor en la izquierda, 3 torres dentro de la bahía) y clic de 0,5 mm en las 2 bayonetas. El motor quedó 2 mm más atrás (cara en x = −37,5) para dar espacio al anillo DIN 471.
+- **Archivos:** proyectos/morcelador-contenido/archivos/prototipo_morcelador_v3_1.py
+- **Fuentes:** Revisión del v3 con Nick (no tenía fijaciones). Medidas de los anillos elásticos e insertos = nominales, "por calibrar".
+- **Verificado:** 443 operaciones sanas, 0 interferencias entre 21 cuerpos y capturas de cerca. Corregí un error de la primera corrida: las ranuras de los anillos se cortaban en el disco interior y no en el anillo.
+- **Para Nick:** El arrastre de la cuchilla es positivo, pero conviene sumarle epóxico. Las ranuras del tubo (2 × 2 mm × 5,8 mm) se cortan con Dremel. Ojo con el sentido de giro: la cuchilla debe girar en el mismo sentido en que cierra la bayoneta, así el roce la aprieta. Sigue pendiente pegar o dar clic a la válvula y al túnel.
+- **Para la siguiente IA:** En ring_x, el perfil anular se elige por profileLoops == 2, no por el área más grande.
+
 ### 2026-11-11 14:02 — Claude (Opus 5.5) — HECHO
 - **Qué:** Preparé la impresión del v3 (solo lo de mano; el banco no, por pedido de Nick). Subí la pared del túnel de la funda a 0,8 mm, volví a generar el v3 en Fusion (sin errores ni interferencias) y exporté 14 STL orientados a Documentos\morcelador_STL\v3 en el PC de Nick (también hay 9 STL del banco en \banco_v2, sin laminar). Laminé las dos placas, sin enviarlas (Nick las revisa): X2D = rotor, corona, piñón, espaciador, anillo, retén y válvula (2) en PETG HF slot A3, 3 paredes, gyroid 30 %, soporte solo en zonas críticas → 1 h 31 min, 30 g. K2 Pro = 2 mitades del mango, tapa, funda, cuerpo del cartucho y nariz en Rapid PLA+ (CFS), 4 paredes, gyroid 30 %, soporte normal y z-hop de 0,4 mm otra vez (quité el override del filamento, que estaba en 0) → ~9 h 35 min, ~304 g.
 - **Archivos:** proyectos/morcelador-contenido/archivos/prototipo_morcelador_v3.py (túnel de 0,8 mm); proyecto Bambu guardado como Documentos\morcelador_STL\v3\anillo_conducido.3mf; proyecto de Creality sin guardar.
