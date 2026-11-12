@@ -1,18 +1,15 @@
 # CONTEXTO — Morcelador contenido (morcelador-contenido)
 
-Actualizado: 2026-11-12 13:00 (Bogotá). Lee solo esto para arrancar. El historial completo está en HANDOVER.md y solo se abre si Nick pregunta por algo del pasado.
+Actualizado: 2026-11-12 13:28 (Bogotá). Lee solo esto para arrancar. El historial completo está en HANDOVER.md y solo se abre si Nick pregunta por algo del pasado.
 
 ## En una frase
 Morcelador laparoscópico inalámbrico y en bolsa para el Dr. Gustavo Calle (papá de Nick, ginecólogo). Concepto aprobado. Banco v2 modelado. Prototipo **v3** modelado e impresión preparada; **v3.1 (con fijaciones) quedó SIN TERMINAR** (ver abajo). **Confidencial hasta radicar la patente.**
 
-## Tu siguiente tarea: TERMINAR EL v3.1
-Estado (Nick, 2026-11-12): el modelado del v3.1 no se terminó. Lo hecho está en `archivos/prototipo_morcelador_v3_1.py` (bitácora 2026-11-11 20:25: nervios de arrastre de la cuchilla, anillos DIN 6799-15 y DIN 471-25, prisionero M3 del piñón, 8 tornillos M3 entre mitades, clic de 0,5 mm en las bayonetas, motor 2 mm más atrás). Lo que se sabe que falta:
-1. **Preguntarle a Nick qué más considera sin terminar** antes de modelar (no está escrito en ningún lado).
-2. Fijación de la **válvula** y del **túnel** de la funda (pegar o clic) — pendiente según bitácora 20:25.
-3. Integrar el **motor del mango B2-1** si Nick lo aprueba: Mabuchi RS-380PH-4045 + caja planetaria 28 mm 5:1 (L ≈ 60,7 mm, agujeros M2,6 sin confirmar) y relación de engranajes ~2,75:1 (el v3 tiene 43T/17T = 2,53:1). Ver `archivos/investigacion-motores-banco-y-mango-2026-11-11.md`, sección "Uso B v2".
-4. Correr el script en Fusion (diseño nuevo, no tocar el v3), revisar operaciones sanas y 0 interferencias, capturas.
-5. Pedir permiso para guardar; exportar STL v3.1 orientados (los STL de `Documentos\morcelador_STL\v3` son del v3, no del v3.1); `puerta-fabricacion`; laminar con `parametros-impresion`.
-6. Entrada en la bitácora (GitHub y Drive).
+## Tu siguiente tarea: PROBAR EL v3.2
+Estado (2026-11-12 13:28): el v3.2 reemplaza al v3.1 (que no se podía armar). Script `archivos/prototipo_morcelador_v3_2.py`; STL en `Documentos\morcelador_STL\v3_2`; placas laminadas sin guardar (X2D 2h11m, K2 6h53m). Cambios: tubo del canal aparte (se mete al final), válvula con bayoneta + O-ring + tapa con 3 M2, cuchilla impresa con lengüetas, empuñadura de 27 mm con 18650 en línea, sin tapa de baterías. Falta:
+1. Nick: guardar el diseño, imprimir, armar y decir qué falla.
+2. Aprobar o no: sin tapa de baterías; motor B2-1 y 2,75:1 (hoy 43/17).
+3. Medir lo "por calibrar" (motor, O-ring, insertos M2) y la probeta de holguras.
 
 ## Diseño v3 (acordado con Nick 2026-11-11)
 - **Mango reutilizable** sellado, no estéril, se limpia con toallita. Forma de pistola; 2 pilas 18650 en la empuñadura.
@@ -57,17 +54,19 @@ Estado (Nick, 2026-11-12): el modelado del v3.1 no se terminó. Lo hecho está e
 - [ ] Aprobar separación 1,6 mm y Hall abajo (ver bitácora 13:25) — Nick
 - [ ] Motor del mango con requisito corregido (Perplexity, Uso B v2) — Nick
 - [ ] rpm de los morceladores Storz — Nick
-- [ ] **Terminar v3.1** (fijación válvula/túnel, motor B2-1, guardar, STL, laminar) — Claude
+- [x] v3.2 modelado completo, STL y placas laminadas (2026-11-12 13:28) — Claude
+- [ ] Guardar v3.2, imprimir y armar — Nick
 - [ ] Decidir motor del mango B2-1 (RS-380PH-4045 + 5:1) y enviar consulta a SLW — Nick
 - [ ] Tamaño de mioma y tiempo de morcelación actual — Nick pregunta al Dr. Calle
 - [ ] Acuerdos: opciones A/B, [CONFIRMAR], abogado — Nick
 - [ ] HX711 pin RATE en alto — Nick
 - [ ] Copias viejas de Fase 3/Roadmap en Drive — Gemini
 
-## Criterio de cierre (v3.1)
-- [ ] v3.1 completo en Fusion (incluye válvula y túnel fijos), sin interferencias, todas las operaciones sanas
-- [ ] STL por pieza + tabla de impresión (material, orientación)
-- [ ] Pasó `puerta-fabricacion`
+## Criterio de cierre (v3.2)
+- [x] v3.2 completo en Fusion, sin interferencias, todas las operaciones sanas
+- [x] STL por pieza + placas laminadas
+- [x] puerta-fabricacion = PRUEBA LIMITADA (banco y ex vivo; la cuchilla impresa no corta tejido)
+- [ ] Armado real sin piezas flojas (Nick)
 
 ## Preguntas abiertas
 - A1 vs A2 → banco. Motor del mango → Perplexity. Engranajes rectos vs otra transmisión.
@@ -82,11 +81,13 @@ Estado (Nick, 2026-11-12): el modelado del v3.1 no se terminó. Lo hecho está e
 - Diseñar contra lo que Nick escribió (pidió funda plástica desde el inicio).
 - Olvidar el canal central de extracción.
 - Cortes de extrusión que atraviesan otros componentes en Fusion.
+- Piezas que no se pueden montar: revisar el orden de montaje antes de partir el mango (v3.1).
 
 ## Mapa de archivos (abrir solo cuando la tarea lo pida)
 | Archivo | Qué tiene | Abrir cuando |
 |---|---|---|
-| archivos/prototipo_morcelador_v3_1.py | v3.1 a medio terminar (fijaciones) | **Siempre: punto de partida para terminar el v3.1** |
+| archivos/prototipo_morcelador_v3_2.py | v3.2 completo (armable) | **Siempre: modelo vigente** |
+| archivos/prototipo_morcelador_v3_1.py | v3.1 (no se podía armar) | Comparar |
 | archivos/prototipo_morcelador_v3.py | v3 completo (túnel 0,8 mm) | Comparar con el v3.1 |
 | archivos/investigacion-motores-banco-y-mango-2026-11-11.md | Motores banco y mango (Perplexity) | Integrar el motor B2-1 |
 | archivos/prototipo_morcelador_v1.py | Script base viejo | Casi nunca |
