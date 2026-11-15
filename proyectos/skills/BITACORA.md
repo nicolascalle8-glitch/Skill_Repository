@@ -14,10 +14,32 @@ Copia en Google Drive: Proyectos IA / skills / Bitácora — skills (https://doc
 - 2026-10-24 20:50 — Claude — Integración del sistema de Gemini: 3 reglas al contrato, ordenar D:\Personal\Claude por proyecto, guion cronometrado en presentaciones-universidad, confirmar perfil.
 - 2026-10-25 18:38 — Claude — (monitor) Agregar "no es para la estudiante de Física" a la descripción de presentaciones-universidad, voz-nick, panel-asesores y router-ing.
 - 2026-11-08 18:37 — Claude — (monitor) Decidir repo de osciloscopio-ds215h: Skills_Fisica (recomendado) o Skill_Repository.
+- 2026-11-15 18:40 — Claude — (monitor) Agregar osciloscopio-ds215h a Skills_Fisica en registry/REPOS.yml.
+- 2026-11-15 18:40 — Claude — (monitor) Mejorar parametros-impresion con las lecciones del morcelador (z-hop, CFS, PETG HF, reinicio de slicers).
+- 2026-11-15 18:40 — Claude — (monitor) Mejorar diseno-cad-fusion: STL con encabezado de 80 bytes que abra en Bambu.
 
 ---
 
 ## Entradas
+
+### 2026-11-15 18:40 — Claude (claude-opus-5-5) — PROPUESTA
+**Qué:** (monitor) 3 propuestas, detalle en proyectos/skills/monitor/2026-11-15.md: (1) agregar osciloscopio-ds215h a Skills_Fisica en registry/REPOS.yml (la bitácora del 2026-11-09 dice que ya está allá); (2) pasar a parametros-impresion las lecciones del morcelador: override de z-hop del filamento, CFS vacío, PETG HF ≠ Elegoo, reinicio de los slicers; (3) diseno-cad-fusion: exigir STL con encabezado de 80 bytes que abra en Bambu.
+**Fuentes:** bitácora morcelador-contenido 2026-11-11 14:02 y 2026-11-12 13:28; bitácora skills 2026-11-09 11:19; sincronizar.py 2026-11-15.
+**Para Nick:** decir sí/no a cada una.
+
+### 2026-11-15 18:40 — Claude (claude-opus-5-5) — HECHO
+**Qué:** Revisión de skills 2026-11-15 (semanal, sin Nick). Sobra: 0. Actualizar: 3 (reinstalar router-ing; cerebro-nick y contexto-nick fuera del catálogo de router-ing). Mejorar: 2 (parametros-impresion, diseno-cad-fusion). Crear: 0. 3 propuestas.
+**Archivos:** proyectos/skills/monitor/2026-11-15.md, proyectos/skills/BITACORA.md
+**Fuentes:** sincronizar.py e inventario.py 2026-11-15; skills instaladas (~/.claude/skills/synced); 30 commits desde 2026-11-08; bitácoras de morcelador-contenido, horno-vertical, ia-local, skills.
+**Verificado:** inventario.py: 2 hallazgos (cerebro-nick y contexto-nick no están en el catálogo de router-ing), ya existían antes de la sincronización. Chats no revisados (sin herramienta). Skills_Fisica sin acceso.
+**Para Nick:** reinstalar router-ing.skill; responder las 3 propuestas.
+**Para la siguiente IA:** selector-ia vence revisión el 2026-11-23. No subir osciloscopio-ds215h a este repo.
+
+### 2026-11-15 18:37 — Claude (claude-opus-5-5) — HECHO
+**Qué:** Sincronización 2026-11-15. Subida: parametros-impresion (nueva; registrada en CAPACIDADES.yml en-prueba y en el catálogo de router-ing). Reinstalar: router-ing (el repo va adelante en el catálogo). No subida: osciloscopio-ds215h (salió NUEVA; según la entrada del 2026-11-09 vive en Skills_Fisica, ver propuesta). Bloqueadas: ninguna. Conflictos: ninguno. Skills_Fisica: no sincronizado, sin acceso desde la tarea.
+**Archivos:** skills/parametros-impresion/SKILL.md, registry/CAPACIDADES.yml, skills/router-ing/references/catalogo.md
+**Fuentes:** skills instaladas en la cuenta de Claude.
+**Verificado:** sincronizar.py --aplicar; YAML de CAPACIDADES y REPOS cargan; diff solo agrega; sin claves en el SKILL.md.
 
 ### 2026-11-09 11:19 — Perplexity Computer (Claude Opus 5.5) — HECHO
 **Qué:** Pedido de Nick: crear las skills para Perplexity a partir del repo. Las 13 skills de `skills/` (incluidas `contexto-nick` y `cerebro-nick`) se adaptaron a Perplexity y se guardaron en su cuenta de Perplexity. Las copias quedan en `perplexity/skills/`, y `skills/` (las de Claude) no se tocó. Cada skill trae una sección "Acceso a las otras skills de Nick" que carga `contexto-nick` y `cerebro-nick` de fondo y las demás por nombre. Los scripts de `monitor-skills` (versión Perplexity) ahora usan solo `perplexity/skills/`.
