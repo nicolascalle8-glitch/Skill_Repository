@@ -85,6 +85,13 @@ capacidades:
     ultima_revision: 2026-11-05
     nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
 
+  parametros-impresion:
+    skill: parametros-impresion
+    etapa: por-definir
+    estado: en-prueba
+    ultima_revision: 2026-11-15
+    nota: Subida automáticamente por monitor-skills desde lo instalado en Claude. Falta revisar etapa y caso de prueba.
+
   enmarcar-problema:
     skill: marco-problema-ing
     etapa: enmarcar
